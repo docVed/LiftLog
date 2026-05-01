@@ -33,11 +33,23 @@ export interface WorkoutUpdatedEvent {
   workout: Session;
   restTimerInfo: RestTimerInfo | undefined;
   cardioTimerInfo: CardioTimerInfo | undefined;
+  keiserTimerInfo: KeiserTimerInfo | undefined;
 }
 
 export interface CardioTimerInfo {
   currentDuration: Duration;
   currentBlockStartTime: Instant | undefined;
+  exerciseIndex: number;
+  setIndex: number;
+}
+
+export interface KeiserTimerInfo {
+  currentDuration: Duration;
+  currentBlockStartTime: Instant | undefined;
+  prepDuration: Duration;
+  maxDuration: Duration;
+  moveDuration: Duration;
+  pauseDuration: Duration;
   exerciseIndex: number;
   setIndex: number;
 }
@@ -97,6 +109,22 @@ export function toWorkoutMessageDao(
                   : null,
                 exerciseIndex: e.cardioTimerInfo.exerciseIndex,
                 setIndex: e.cardioTimerInfo.setIndex,
+              }
+            : null,
+          keiserTimerInfo: e.keiserTimerInfo
+            ? {
+                currentDuration: toDurationDao(
+                  e.keiserTimerInfo.currentDuration,
+                ),
+                currentBlockStartTime: e.keiserTimerInfo.currentBlockStartTime
+                  ? toTimestampDao(e.keiserTimerInfo.currentBlockStartTime)
+                  : null,
+                prepDuration: toDurationDao(e.keiserTimerInfo.prepDuration),
+                maxDuration: toDurationDao(e.keiserTimerInfo.maxDuration),
+                moveDuration: toDurationDao(e.keiserTimerInfo.moveDuration),
+                pauseDuration: toDurationDao(e.keiserTimerInfo.pauseDuration),
+                exerciseIndex: e.keiserTimerInfo.exerciseIndex,
+                setIndex: e.keiserTimerInfo.setIndex,
               }
             : null,
           totalWeightLifted: e.workout.totalWeightLifted.toDao(),
@@ -161,6 +189,40 @@ export function fromWorkoutMessageDao(
             exerciseIndex:
               event.workoutUpdatedEvent.cardioTimerInfo.exerciseIndex!,
             setIndex: event.workoutUpdatedEvent.cardioTimerInfo.setIndex!,
+          }
+        : undefined,
+      keiserTimerInfo: event.workoutUpdatedEvent?.keiserTimerInfo
+        ? {
+            currentBlockStartTime: event.workoutUpdatedEvent.keiserTimerInfo
+              .currentBlockStartTime
+              ? fromTimestampDao(
+                  event.workoutUpdatedEvent.keiserTimerInfo
+                    .currentBlockStartTime,
+                )
+              : undefined,
+            currentDuration:
+              fromDurationDao(
+                event.workoutUpdatedEvent.keiserTimerInfo.currentDuration,
+              ) ?? Duration.ZERO,
+            prepDuration:
+              fromDurationDao(
+                event.workoutUpdatedEvent.keiserTimerInfo.prepDuration,
+              ) ?? Duration.ZERO,
+            maxDuration:
+              fromDurationDao(
+                event.workoutUpdatedEvent.keiserTimerInfo.maxDuration,
+              ) ?? Duration.ZERO,
+            moveDuration:
+              fromDurationDao(
+                event.workoutUpdatedEvent.keiserTimerInfo.moveDuration,
+              ) ?? Duration.ZERO,
+            pauseDuration:
+              fromDurationDao(
+                event.workoutUpdatedEvent.keiserTimerInfo.pauseDuration,
+              ) ?? Duration.ZERO,
+            exerciseIndex:
+              event.workoutUpdatedEvent.keiserTimerInfo.exerciseIndex!,
+            setIndex: event.workoutUpdatedEvent.keiserTimerInfo.setIndex!,
           }
         : undefined,
     }))

@@ -5,7 +5,9 @@ import WeightFormat from '@/components/presentation/foundation/weight-format';
 import { spacing, useAppTheme } from '@/hooks/useAppTheme';
 import { Weight } from '@/models/weight';
 import {
+  RecordedCardioExercise,
   RecordedExercise,
+  RecordedKeiserExercise,
   RecordedWeightedExercise,
 } from '@/models/session-models';
 import { formatDistance } from '@/utils/distance';
@@ -89,6 +91,17 @@ function FilledChips(props: {
       </Chip>
     ));
   }
+  if (props.exercise instanceof RecordedKeiserExercise) {
+    return props.exercise.sets
+      .map((set, i) =>
+        set.duration ? (
+          <Chip key={'duration' + i}>
+            <SurfaceText>{formatTimeSpan(set.duration)}</SurfaceText>
+          </Chip>
+        ) : null,
+      )
+      .filter(isNotNullOrUndefined);
+  }
   return props.exercise.sets
     .flatMap((set, i) => [
       set.duration && (
@@ -139,11 +152,21 @@ function PlannedChips(props: {
       </Chip>
     ));
   }
-  return props.exercise.sets.map((set, index) => (
-    <Chip key={index}>
-      <SurfaceText>{formatCardioTarget(set.blueprint.target)}</SurfaceText>
-    </Chip>
-  ));
+  if (props.exercise instanceof RecordedKeiserExercise) {
+    return props.exercise.sets.map((set, index) => (
+      <Chip key={index}>
+        <SurfaceText>{formatTimeSpan(set.blueprint.maxDuration)}</SurfaceText>
+      </Chip>
+    ));
+  }
+  if (props.exercise instanceof RecordedCardioExercise) {
+    return props.exercise.sets.map((set, index) => (
+      <Chip key={index}>
+        <SurfaceText>{formatCardioTarget(set.blueprint.target)}</SurfaceText>
+      </Chip>
+    ));
+  }
+  return null;
 }
 
 export default function ExerciseSummary({

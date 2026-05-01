@@ -3,6 +3,7 @@ import { HealthExportService as HES } from './health-export-service-shared';
 import {
   RecordedCardioExercise,
   RecordedExercise,
+  RecordedKeiserExercise,
   RecordedWeightedExercise,
   Session,
 } from '@/models/session-models';
@@ -105,7 +106,19 @@ function toExerciseSegment(exercise: RecordedExercise): ExerciseSegment {
   return match(exercise)
     .with(P.instanceOf(RecordedWeightedExercise), toWeightedExerciseSegment)
     .with(P.instanceOf(RecordedCardioExercise), toCardioExerciseSegment)
+    .with(P.instanceOf(RecordedKeiserExercise), toKeiserExerciseSegment)
     .exhaustive();
+}
+
+function toKeiserExerciseSegment(
+  exercise: RecordedKeiserExercise,
+): ExerciseSegment {
+  return {
+    segmentType: ExerciseSegmentType.OTHER_WORKOUT,
+    startTime: exercise.earliestTime!.toString(),
+    endTime: exercise.latestTime!.toString(),
+    repetitions: 0,
+  };
 }
 
 function toWeightedExerciseSegment(

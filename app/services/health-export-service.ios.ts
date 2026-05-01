@@ -3,6 +3,7 @@ import { HealthExportService as HES } from './health-export-service-shared';
 import {
   RecordedCardioExercise,
   RecordedExercise,
+  RecordedKeiserExercise,
   RecordedWeightedExercise,
   Session,
 } from '@/models/session-models';
@@ -136,6 +137,7 @@ function toQuantitySampleForSaving(
       P.instanceOf(RecordedCardioExercise),
       toCardioExerciseQuantitySampleForSaving,
     )
+    .with(P.instanceOf(RecordedKeiserExercise), () => undefined)
     .exhaustive();
 }
 

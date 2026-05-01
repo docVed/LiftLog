@@ -14,6 +14,7 @@ import {
   CardioExerciseBlueprint,
   CardioTarget,
   ExerciseBlueprint,
+  KeiserExerciseBlueprint,
   matchCardioTarget,
   WeightedExerciseBlueprint,
 } from '@/models/blueprint-models';
@@ -91,6 +92,9 @@ export default function ExerciseBlueprintSummary({
           .with(P.instanceOf(CardioExerciseBlueprint), (b) => (
             <CardioExerciseBlueprintSummary blueprint={b} />
           ))
+          .with(P.instanceOf(KeiserExerciseBlueprint), (b) => (
+            <KeiserExerciseBlueprintSummary blueprint={b} />
+          ))
           .exhaustive()}
       </View>
     </TouchableRipple>
@@ -128,6 +132,24 @@ export function formatCardioTarget(target: CardioTarget): string {
     distance: (t) => formatDistance(t.value),
     time: (t) => formatTimeSpan(t.value),
   });
+}
+
+function KeiserExerciseBlueprintSummary({
+  blueprint,
+}: {
+  blueprint: KeiserExerciseBlueprint;
+}) {
+  return (
+    <View style={{ gap: spacing[1], alignItems: 'flex-start' }}>
+      {blueprint.sets.map((set, i) => (
+        <SurfaceText key={i}>
+          Set {i + 1}: up to {formatTimeSpan(set.maxDuration)} (
+          {formatTimeSpan(set.moveDuration)} move /{' '}
+          {formatTimeSpan(set.pauseDuration)} pause)
+        </SurfaceText>
+      ))}
+    </View>
+  );
 }
 
 function WeightedExerciseBlueprintSummary({

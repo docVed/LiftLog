@@ -1,6 +1,6 @@
 import {
-  RecordedCardioExercise,
   RecordedExercise,
+  RecordedWeightedExercise,
   Session,
 } from '@/models/session-models';
 import { addEffect } from '@/store/store';
@@ -94,7 +94,7 @@ class ExportedSetCsvRow {
     exercise: RecordedExercise,
   ): ExportedSetCsvRow[] {
     // TODO: What do we do about cardio?
-    if (exercise instanceof RecordedCardioExercise) {
+    if (!(exercise instanceof RecordedWeightedExercise)) {
       return [];
     }
     return exercise.potentialSets

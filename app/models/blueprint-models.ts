@@ -185,11 +185,13 @@ export class SessionBlueprint {
 
 export type ExerciseBlueprint =
   | WeightedExerciseBlueprint
-  | CardioExerciseBlueprint;
+  | CardioExerciseBlueprint
+  | KeiserExerciseBlueprint;
 
 export type ExerciseBlueprintPOJO =
   | WeightedExerciseBlueprintPOJO
-  | CardioExerciseBlueprintPOJO;
+  | CardioExerciseBlueprintPOJO
+  | KeiserExerciseBlueprintPOJO;
 
 export function fromExerciseBlueprintPOJO(
   pojo: ExerciseBlueprintPOJO | ExerciseBlueprint,
@@ -208,6 +210,13 @@ export function fromExerciseBlueprintPOJO(
         P.instanceOf(WeightedExerciseBlueprint),
       ),
       WeightedExerciseBlueprint.fromPOJO,
+    )
+    .with(
+      P.union(
+        { type: 'KeiserExerciseBlueprint' },
+        P.instanceOf(KeiserExerciseBlueprint),
+      ),
+      KeiserExerciseBlueprint.fromPOJO,
     )
     .exhaustive();
 }
@@ -431,8 +440,8 @@ export class CardioExerciseBlueprint {
       return true;
     }
     if (
-      other instanceof WeightedExerciseBlueprint ||
-      ('type' in other && other.type === 'WeightedExerciseBlueprint')
+      !(other instanceof CardioExerciseBlueprint) &&
+      !('type' in other && other.type === 'CardioExerciseBlueprint')
     ) {
       return false;
     }
@@ -491,6 +500,212 @@ export class CardioExerciseBlueprint {
     return new CardioExerciseBlueprint(
       other.name ?? this.name,
       other.sets?.map((x) => CardioExerciseSetBlueprint.fromPOJO(x)) ??
+        this.sets,
+      other.notes ?? this.notes,
+      other.link ?? this.link,
+    );
+  }
+}
+
+export interface KeiserExerciseSetBlueprintPOJO {
+  type: 'KeiserExerciseSetBlueprint';
+  readonly maxDuration: Duration;
+  readonly prepDuration: Duration;
+  readonly moveDuration: Duration;
+  readonly pauseDuration: Duration;
+}
+
+export class KeiserExerciseSetBlueprint {
+  constructor(
+    readonly maxDuration: Duration,
+    readonly prepDuration: Duration,
+    readonly moveDuration: Duration,
+    readonly pauseDuration: Duration,
+  ) {}
+
+  static empty(): KeiserExerciseSetBlueprint {
+    return new KeiserExerciseSetBlueprint(
+      Duration.ofMinutes(3),
+      Duration.ofSeconds(5),
+      Duration.ofSeconds(4),
+      Duration.ofSeconds(2),
+    );
+  }
+
+  static fromPOJO(
+    pojo: DeepOmit<KeiserExerciseSetBlueprintPOJO, 'type'>,
+  ): KeiserExerciseSetBlueprint {
+    return new KeiserExerciseSetBlueprint(
+      pojo.maxDuration,
+      pojo.prepDuration,
+      pojo.moveDuration,
+      pojo.pauseDuration,
+    );
+  }
+
+  toPOJO(): KeiserExerciseSetBlueprintPOJO {
+    return {
+      type: 'KeiserExerciseSetBlueprint',
+      maxDuration: this.maxDuration,
+      prepDuration: this.prepDuration,
+      moveDuration: this.moveDuration,
+      pauseDuration: this.pauseDuration,
+    };
+  }
+
+  static fromDao(
+    dao: LiftLog.Ui.Models.SessionBlueprintDao.IKeiserExerciseSetBlueprintDao,
+  ): KeiserExerciseSetBlueprint {
+    return new KeiserExerciseSetBlueprint(
+      fromDurationDao(dao.maxDuration) ?? Duration.ofMinutes(3),
+      fromDurationDao(dao.prepDuration) ?? Duration.ofSeconds(5),
+      fromDurationDao(dao.moveDuration) ?? Duration.ofSeconds(4),
+      fromDurationDao(dao.pauseDuration) ?? Duration.ofSeconds(2),
+    );
+  }
+
+  toDao(): LiftLog.Ui.Models.SessionBlueprintDao.KeiserExerciseSetBlueprintDao {
+    return new LiftLog.Ui.Models.SessionBlueprintDao.KeiserExerciseSetBlueprintDao(
+      {
+        maxDuration: toDurationDao(this.maxDuration),
+        prepDuration: toDurationDao(this.prepDuration),
+        moveDuration: toDurationDao(this.moveDuration),
+        pauseDuration: toDurationDao(this.pauseDuration),
+      },
+    );
+  }
+
+  equals(
+    other:
+      | KeiserExerciseSetBlueprint
+      | KeiserExerciseSetBlueprintPOJO
+      | undefined,
+  ): boolean {
+    if (!other) {
+      return false;
+    }
+    return (
+      this.maxDuration.equals(other.maxDuration) &&
+      this.prepDuration.equals(other.prepDuration) &&
+      this.moveDuration.equals(other.moveDuration) &&
+      this.pauseDuration.equals(other.pauseDuration)
+    );
+  }
+
+  with(
+    other:
+      | Partial<KeiserExerciseSetBlueprint>
+      | Partial<KeiserExerciseSetBlueprintPOJO>,
+  ): KeiserExerciseSetBlueprint {
+    return new KeiserExerciseSetBlueprint(
+      other.maxDuration ?? this.maxDuration,
+      other.prepDuration ?? this.prepDuration,
+      other.moveDuration ?? this.moveDuration,
+      other.pauseDuration ?? this.pauseDuration,
+    );
+  }
+}
+
+export interface KeiserExerciseBlueprintPOJO {
+  type: 'KeiserExerciseBlueprint';
+  name: string;
+  sets: KeiserExerciseSetBlueprintPOJO[];
+  notes: string;
+  link: string;
+}
+
+export class KeiserExerciseBlueprint {
+  constructor(
+    readonly name: string,
+    readonly sets: KeiserExerciseSetBlueprint[],
+    readonly notes: string,
+    readonly link: string,
+  ) {
+    if (!sets.length) {
+      throw new Error('Must have at least one set in keiser exercise');
+    }
+  }
+
+  static empty(): KeiserExerciseBlueprint {
+    return new KeiserExerciseBlueprint(
+      '',
+      [KeiserExerciseSetBlueprint.empty()],
+      '',
+      '',
+    );
+  }
+
+  static fromPOJO(
+    pojo: KeiserExerciseBlueprintPOJO | KeiserExerciseBlueprint,
+  ): KeiserExerciseBlueprint {
+    return new KeiserExerciseBlueprint(
+      pojo.name,
+      pojo.sets.map((x) => KeiserExerciseSetBlueprint.fromPOJO(x)),
+      pojo.notes,
+      pojo.link,
+    );
+  }
+
+  equals(other: ExerciseBlueprint | ExerciseBlueprintPOJO | undefined) {
+    if (!other) {
+      return false;
+    }
+    if (other === this) {
+      return true;
+    }
+    if (
+      !(other instanceof KeiserExerciseBlueprint) &&
+      !('type' in other && other.type === 'KeiserExerciseBlueprint')
+    ) {
+      return false;
+    }
+    return (
+      this.name === other.name &&
+      this.sets.length === other.sets.length &&
+      this.sets.every((set, index) => set.equals(other.sets[index])) &&
+      this.notes === other.notes &&
+      this.link === other.link
+    );
+  }
+
+  toPOJO(): KeiserExerciseBlueprintPOJO {
+    return {
+      type: 'KeiserExerciseBlueprint',
+      name: this.name,
+      sets: this.sets.map((x) => x.toPOJO()),
+      notes: this.notes,
+      link: this.link,
+    };
+  }
+
+  toDao(): LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2 {
+    return new LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2({
+      name: this.name,
+      notes: this.notes,
+      link: this.link,
+      type: LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType.KEISER_TIMER,
+      keiserSets: this.sets.map((x) => x.toDao()),
+    });
+  }
+
+  static fromDao(
+    dao: LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2,
+  ): KeiserExerciseBlueprint {
+    const sets = (dao.keiserSets ?? []).map((x) =>
+      KeiserExerciseSetBlueprint.fromDao(x),
+    );
+    return new KeiserExerciseBlueprint(
+      dao.name!,
+      sets.length === 0 ? [KeiserExerciseSetBlueprint.empty()] : sets,
+      dao.notes ?? '',
+      dao.link ?? '',
+    );
+  }
+
+  with(other: Partial<KeiserExerciseBlueprintPOJO>): KeiserExerciseBlueprint {
+    return new KeiserExerciseBlueprint(
+      other.name ?? this.name,
+      other.sets?.map((x) => KeiserExerciseSetBlueprint.fromPOJO(x)) ??
         this.sets,
       other.notes ?? this.notes,
       other.link ?? this.link,
@@ -576,8 +791,8 @@ export class WeightedExerciseBlueprint {
       return true;
     }
     if (
-      other instanceof CardioExerciseBlueprint ||
-      ('type' in other && other.type === 'CardioExerciseBlueprint')
+      !(other instanceof WeightedExerciseBlueprint) &&
+      !('type' in other && other.type === 'WeightedExerciseBlueprint')
     ) {
       return false;
     }
@@ -674,6 +889,10 @@ export class KeyedExerciseBlueprint {
         .with(
           P.instanceOf(CardioExerciseBlueprint),
           (t) => t.sets[0]?.target.type ?? 'distance',
+        )
+        .with(
+          P.instanceOf(KeiserExerciseBlueprint),
+          (k) => `keiser_${k.sets.length}`,
         )
         .exhaustive(),
     );
@@ -795,6 +1014,12 @@ export function fromExerciseBlueprintDao(
   }
   if (dao.type === LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType.CARDIO) {
     return CardioExerciseBlueprint.fromDao(dao);
+  }
+  if (
+    dao.type ===
+    LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType.KEISER_TIMER
+  ) {
+    return KeiserExerciseBlueprint.fromDao(dao);
   }
   return WeightedExerciseBlueprint.fromDao(dao);
 }

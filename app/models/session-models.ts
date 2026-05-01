@@ -12,6 +12,10 @@ import {
   CardioExerciseSetBlueprintPOJO,
   DistanceUnit,
   fromExerciseBlueprintDao,
+  KeiserExerciseBlueprint,
+  KeiserExerciseBlueprintPOJO,
+  KeiserExerciseSetBlueprint,
+  KeiserExerciseSetBlueprintPOJO,
 } from '@/models/blueprint-models';
 import { TemporalComparer } from '@/models/comparers';
 import {
@@ -123,6 +127,9 @@ export class Session {
         )
         .with(P.instanceOf(CardioExerciseBlueprint), (ce) =>
           RecordedCardioExercise.empty(ce),
+        )
+        .with(P.instanceOf(KeiserExerciseBlueprint), (ke) =>
+          RecordedKeiserExercise.empty(ke),
         )
         .exhaustive();
     }
@@ -288,13 +295,15 @@ export class Session {
 
   get nextExercise(): RecordedExercise | undefined {
     const recordedExercises = this.recordedExercises;
-    const cardioExerciseWithRunningTimer = recordedExercises.find(
+    const exerciseWithRunningTimer = recordedExercises.find(
       (x) =>
-        x instanceof RecordedCardioExercise &&
-        x.sets.some((s) => s.currentBlockStartTime),
+        (x instanceof RecordedCardioExercise &&
+          x.sets.some((s) => s.currentBlockStartTime)) ||
+        (x instanceof RecordedKeiserExercise &&
+          x.sets.some((s) => s.currentBlockStartTime)),
     );
-    if (cardioExerciseWithRunningTimer) {
-      return cardioExerciseWithRunningTimer;
+    if (exerciseWithRunningTimer) {
+      return exerciseWithRunningTimer;
     }
     const latestExerciseIndex = Enumerable.from(recordedExercises)
       .select(indexed)
@@ -405,11 +414,13 @@ export class Session {
 
 export type RecordedExercise =
   | RecordedCardioExercise
-  | RecordedWeightedExercise;
+  | RecordedWeightedExercise
+  | RecordedKeiserExercise;
 
 export type RecordedExercisePOJO =
   | RecordedCardioExercisePOJO
-  | RecordedWeightedExercisePOJO;
+  | RecordedWeightedExercisePOJO
+  | RecordedKeiserExercisePOJO;
 
 export function fromRecordedExercisePOJO(
   pojo: RecordedExercisePOJO | RecordedExercise,
@@ -429,6 +440,13 @@ export function fromRecordedExercisePOJO(
       ),
       RecordedWeightedExercise.fromPOJO,
     )
+    .with(
+      P.union(
+        { type: 'RecordedKeiserExercise' },
+        P.instanceOf(RecordedKeiserExercise),
+      ),
+      RecordedKeiserExercise.fromPOJO,
+    )
     .exhaustive();
 }
 
@@ -442,6 +460,9 @@ export function createEmptyRecordedExercise(
     )
     .with(P.instanceOf(CardioExerciseBlueprint), (b) =>
       RecordedCardioExercise.empty(b),
+    )
+    .with(P.instanceOf(KeiserExerciseBlueprint), (b) =>
+      RecordedKeiserExercise.empty(b),
     )
     .exhaustive();
 }
@@ -699,7 +720,7 @@ export class RecordedCardioExercise {
     if (other === this) {
       return true;
     }
-    if (other instanceof RecordedWeightedExercise) {
+    if (!(other instanceof RecordedCardioExercise)) {
       return false;
     }
     return (
@@ -754,6 +775,265 @@ export class RecordedCardioExercise {
       sets:
         sets.length === 0
           ? [getRecordedCardioSetFromDeprecatedFields(dao).toPOJO()]
+          : sets,
+    });
+  }
+}
+
+export interface RecordedKeiserExerciseSetPOJO {
+  readonly type: 'RecordedKeiserExerciseSet';
+  readonly blueprint: KeiserExerciseSetBlueprintPOJO;
+  readonly completionDateTime: OffsetDateTime | undefined;
+  readonly duration: Duration | undefined;
+  readonly currentBlockStartTime: OffsetDateTime | undefined;
+}
+
+export class RecordedKeiserExerciseSet {
+  constructor(
+    readonly blueprint: KeiserExerciseSetBlueprint,
+    readonly completionDateTime: OffsetDateTime | undefined,
+    readonly duration: Duration | undefined,
+    /**
+     * Describes the start time of a currently running timer. This is not persisted.
+     * The actual elapsed time (excluding prep) is computed from this and `duration`.
+     */
+    readonly currentBlockStartTime: OffsetDateTime | undefined,
+  ) {}
+
+  static empty(blueprint: KeiserExerciseSetBlueprint): RecordedKeiserExerciseSet {
+    return new RecordedKeiserExerciseSet(
+      blueprint,
+      undefined,
+      undefined,
+      undefined,
+    );
+  }
+
+  static fromPOJO(
+    pojo:
+      | Omit<RecordedKeiserExerciseSetPOJO, 'type'>
+      | RecordedKeiserExerciseSet,
+  ): RecordedKeiserExerciseSet {
+    return new RecordedKeiserExerciseSet(
+      KeiserExerciseSetBlueprint.fromPOJO(pojo.blueprint),
+      pojo.completionDateTime,
+      pojo.duration,
+      pojo.currentBlockStartTime,
+    );
+  }
+
+  get isCompletelyFilled(): boolean {
+    return (
+      !!this.completionDateTime &&
+      !!this.duration &&
+      !this.currentBlockStartTime
+    );
+  }
+
+  toPOJO(): RecordedKeiserExerciseSetPOJO {
+    return {
+      type: 'RecordedKeiserExerciseSet',
+      blueprint: this.blueprint.toPOJO(),
+      completionDateTime: this.completionDateTime,
+      duration: this.duration,
+      currentBlockStartTime: this.currentBlockStartTime,
+    };
+  }
+
+  static fromDao(
+    dao: LiftLog.Ui.Models.SessionHistoryDao.IRecordedKeiserExerciseSetDao,
+  ): RecordedKeiserExerciseSet {
+    return RecordedKeiserExerciseSet.fromPOJO({
+      blueprint: KeiserExerciseSetBlueprint.fromDao(dao.blueprint!).toPOJO(),
+      completionDateTime: fromDateTimeDao(dao.completionDateTime),
+      duration: fromDurationDao(dao.duration),
+      currentBlockStartTime: undefined,
+    });
+  }
+
+  toDao(): LiftLog.Ui.Models.SessionHistoryDao.IRecordedKeiserExerciseSetDao {
+    return {
+      blueprint: this.blueprint.toDao(),
+      completionDateTime: toDateTimeDao(this.completionDateTime),
+      duration: toDurationDao(this.duration),
+    };
+  }
+
+  with(other: Partial<RecordedKeiserExerciseSet>): RecordedKeiserExerciseSet {
+    return new RecordedKeiserExerciseSet(
+      other.blueprint ?? this.blueprint,
+      'completionDateTime' in other
+        ? other.completionDateTime
+        : this.completionDateTime,
+      'duration' in other ? other.duration : this.duration,
+      'currentBlockStartTime' in other
+        ? other.currentBlockStartTime
+        : this.currentBlockStartTime,
+    );
+  }
+
+  equals(other: RecordedKeiserExerciseSet): boolean {
+    return (
+      ((this.completionDateTime &&
+        other.completionDateTime &&
+        this.completionDateTime.equals(other.completionDateTime)) ||
+        this.completionDateTime === other.completionDateTime) &&
+      ((this.duration &&
+        other.duration &&
+        this.duration.equals(other.duration)) ||
+        this.duration === other.duration) &&
+      this.blueprint.equals(other.blueprint)
+    );
+  }
+}
+
+export interface RecordedKeiserExercisePOJO {
+  type: 'RecordedKeiserExercise';
+  blueprint: KeiserExerciseBlueprintPOJO;
+  sets: RecordedKeiserExerciseSetPOJO[];
+  notes: string | undefined;
+}
+
+export class RecordedKeiserExercise {
+  constructor(
+    readonly blueprint: KeiserExerciseBlueprint,
+    readonly sets: RecordedKeiserExerciseSet[],
+    readonly notes: string | undefined,
+  ) {
+    if (!sets.length) {
+      throw new Error('Keiser exercise must have at least one set');
+    }
+  }
+
+  static fromPOJO(
+    pojo: Omit<RecordedKeiserExercisePOJO, 'type'> | RecordedKeiserExercise,
+  ): RecordedKeiserExercise {
+    return new RecordedKeiserExercise(
+      KeiserExerciseBlueprint.fromPOJO(pojo.blueprint),
+      pojo.sets.map((x) => RecordedKeiserExerciseSet.fromPOJO(x)),
+      pojo.notes,
+    );
+  }
+
+  static empty(blueprint: KeiserExerciseBlueprint): RecordedKeiserExercise {
+    return new RecordedKeiserExercise(
+      blueprint,
+      blueprint.sets.map((x) => RecordedKeiserExerciseSet.empty(x)),
+      undefined,
+    );
+  }
+
+  get currentSetIndex() {
+    return this.sets.findIndex((x) => !x.isCompletelyFilled);
+  }
+
+  get duration(): Duration | undefined {
+    return this.sets.reduce(
+      (accum, set) => accum.plus(set.duration ?? Duration.ZERO),
+      Duration.ZERO,
+    );
+  }
+
+  get isComplete(): boolean {
+    return this.sets.every((x) => x.isCompletelyFilled);
+  }
+
+  get isStarted() {
+    return this.sets.some((x) => !!x.completionDateTime || !!x.duration);
+  }
+
+  get latestTime(): OffsetDateTime | undefined {
+    return this.sets
+      .map((x) => x.completionDateTime)
+      .filter((x) => x)
+      .sort(TemporalComparer)
+      .at(-1);
+  }
+
+  get earliestTime(): OffsetDateTime | undefined {
+    return this.sets
+      .map((x) => x.completionDateTime)
+      .filter((x) => x)
+      .sort(TemporalComparer)
+      .at(0);
+  }
+
+  withNothingCompleted(): RecordedKeiserExercise {
+    return this.with({
+      notes: undefined,
+      sets: this.blueprint.sets.map((s) => RecordedKeiserExerciseSet.empty(s)),
+    });
+  }
+
+  equals(other: RecordedExercise | undefined): boolean {
+    if (!other) {
+      return false;
+    }
+    if (other === this) {
+      return true;
+    }
+    if (!(other instanceof RecordedKeiserExercise)) {
+      return false;
+    }
+    return (
+      this.blueprint.equals(other.blueprint) &&
+      this.sets.length === other.sets.length &&
+      this.sets.every((set, index) => set.equals(other.sets[index])) &&
+      this.notes === other.notes
+    );
+  }
+
+  with(
+    other:
+      | Partial<RecordedKeiserExercisePOJO>
+      | Partial<RecordedKeiserExercise>,
+  ): RecordedKeiserExercise {
+    return new RecordedKeiserExercise(
+      KeiserExerciseBlueprint.fromPOJO(other.blueprint ?? this.blueprint),
+      other.sets?.map((x) => RecordedKeiserExerciseSet.fromPOJO(x)) ??
+        this.sets,
+      'notes' in other ? other.notes : this.notes,
+    );
+  }
+
+  toPOJO(): RecordedKeiserExercisePOJO {
+    return {
+      type: 'RecordedKeiserExercise',
+      blueprint: this.blueprint.toPOJO(),
+      sets: this.sets.map((x) => x.toPOJO()),
+      notes: this.notes,
+    };
+  }
+
+  toDao(): LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2 {
+    return new LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2({
+      exerciseBlueprint: this.blueprint.toDao(),
+      notes: toStringValue(this.notes),
+      type: LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType.KEISER_TIMER,
+      keiserSets: this.sets.map((x) => x.toDao()),
+    });
+  }
+
+  static fromDao(
+    dao: LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2,
+  ): RecordedKeiserExercise {
+    const blueprint = fromExerciseBlueprintDao(
+      dao.exerciseBlueprint,
+    ).toPOJO() as KeiserExerciseBlueprintPOJO;
+    const sets =
+      dao.keiserSets?.map((x) =>
+        RecordedKeiserExerciseSet.fromDao(x).toPOJO(),
+      ) ?? [];
+    return RecordedKeiserExercise.fromPOJO({
+      notes: dao.notes?.value ?? undefined,
+      blueprint,
+      sets:
+        sets.length === 0
+          ? blueprint.sets.map((s) =>
+              RecordedKeiserExerciseSet.empty(
+                KeiserExerciseSetBlueprint.fromPOJO(s),
+              ).toPOJO(),
+            )
           : sets,
     });
   }
@@ -826,7 +1106,7 @@ export class RecordedWeightedExercise {
     if (other === this) {
       return true;
     }
-    if (other instanceof RecordedCardioExercise) {
+    if (!(other instanceof RecordedWeightedExercise)) {
       return false;
     }
 
@@ -1189,6 +1469,12 @@ export function fromRecordedExerciseDao(
   }
   if (dao.type === LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType.CARDIO) {
     return RecordedCardioExercise.fromDao(dao);
+  }
+  if (
+    dao.type ===
+    LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType.KEISER_TIMER
+  ) {
+    return RecordedKeiserExercise.fromDao(dao);
   }
   return RecordedWeightedExercise.fromDao(sessionDate, dao);
 }

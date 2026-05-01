@@ -30,6 +30,7 @@ import ItemList from '@/components/presentation/foundation/item-list';
 import {
   RecordedCardioExercise,
   RecordedExercise,
+  RecordedKeiserExercise,
   RecordedWeightedExercise,
 } from '@/models/session-models';
 import WeightedExercise from '@/components/presentation/workout/weighted/weighted-exercise';
@@ -346,6 +347,7 @@ export default function SessionComponent(props: {
           }
         />
       ))
+      .with(P.instanceOf(RecordedKeiserExercise), () => null)
       .exhaustive();
   };
 

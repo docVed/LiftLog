@@ -9,6 +9,7 @@ import LabelledFormRow from '@/components/presentation/foundation/labelled-form-
 import ListSwitch from '@/components/presentation/foundation/list-switch';
 import RestEditorGroup from '@/components/presentation/workout-editor/rest-editor-group';
 import SelectButton from '@/components/presentation/foundation/select-button';
+import { SurfaceText } from '@/components/presentation/foundation/surface-text';
 import { spacing, useAppTheme } from '@/hooks/useAppTheme';
 import {
   CardioExerciseBlueprint,
@@ -18,6 +19,9 @@ import {
   DistanceCardioTarget,
   DistanceUnits,
   ExerciseBlueprint,
+  KeiserExerciseBlueprint,
+  KeiserExerciseBlueprintPOJO,
+  KeiserExerciseSetBlueprint,
   matchCardioTarget,
   TimeCardioTarget,
   WeightedExerciseBlueprint,
@@ -81,11 +85,17 @@ export function ExerciseEditor(props: ExerciseEditorProps) {
     setExercise(propsExercise);
   }, [propsExercise]);
   const updateExercise = (
-    ex: Partial<WeightedExerciseBlueprint | CardioExerciseBlueprint>,
+    ex: Partial<
+      | WeightedExerciseBlueprint
+      | CardioExerciseBlueprint
+      | KeiserExerciseBlueprint
+    >,
   ) => {
     const update = exercise.with(
       ex as unknown as Partial<
-        WeightedExerciseBlueprintPOJO & CardioExerciseBlueprintPOJO
+        WeightedExerciseBlueprintPOJO &
+          CardioExerciseBlueprintPOJO &
+          KeiserExerciseBlueprintPOJO
       >,
     );
     setExercise(update);
@@ -99,8 +109,13 @@ export function ExerciseEditor(props: ExerciseEditorProps) {
         ...exercise,
         sets: undefined!, // Will not overwrite empty
       });
-    } else {
+    } else if (type === 'cardio') {
       newExercise = CardioExerciseBlueprint.empty().with({
+        ...exercise,
+        sets: undefined!, // Will not overwrite empty
+      });
+    } else {
+      newExercise = KeiserExerciseBlueprint.empty().with({
         ...exercise,
         sets: undefined!, // Will not overwrite empty
       });
@@ -116,6 +131,9 @@ export function ExerciseEditor(props: ExerciseEditorProps) {
     .with(P.instanceOf(CardioExerciseBlueprint), (e) => (
       <CardioExerciseEditor exercise={e} updateExercise={updateExercise} />
     ))
+    .with(P.instanceOf(KeiserExerciseBlueprint), (e) => (
+      <KeiserExerciseEditor exercise={e} updateExercise={updateExercise} />
+    ))
     .exhaustive();
 
   return (
@@ -129,7 +147,9 @@ export function ExerciseEditor(props: ExerciseEditorProps) {
             value={
               exercise instanceof WeightedExerciseBlueprint
                 ? 'weighted'
-                : 'cardio'
+                : exercise instanceof KeiserExerciseBlueprint
+                  ? 'keiser'
+                  : 'cardio'
             }
             buttons={[
               {
@@ -143,6 +163,12 @@ export function ExerciseEditor(props: ExerciseEditorProps) {
                 label: 'Cardio/Time',
                 icon: 'directionsRun',
                 testID: 'cardio-button',
+              },
+              {
+                value: 'keiser',
+                label: 'Keiser',
+                icon: 'timer',
+                testID: 'keiser-button',
               },
             ]}
             onValueChange={handleTypeChange}
@@ -220,7 +246,11 @@ function CardioExerciseEditor({
 }: {
   exercise: CardioExerciseBlueprint;
   updateExercise: (
-    ex: Partial<CardioExerciseBlueprint | WeightedExerciseBlueprint>,
+    ex: Partial<
+      | CardioExerciseBlueprint
+      | WeightedExerciseBlueprint
+      | KeiserExerciseBlueprint
+    >,
   ) => void;
 }) {
   const { colors } = useAppTheme();
@@ -343,7 +373,11 @@ function SharedFieldsEditor({
 }: {
   exercise: ExerciseBlueprint;
   updateExercise: (
-    ex: Partial<CardioExerciseBlueprint | WeightedExerciseBlueprint>,
+    ex: Partial<
+      | CardioExerciseBlueprint
+      | WeightedExerciseBlueprint
+      | KeiserExerciseBlueprint
+    >,
   ) => void;
 }) {
   const { t } = useTranslate();
@@ -493,6 +527,133 @@ function TimeTargetEditor(props: {
       }
     />
   );
+}
+
+function KeiserExerciseEditor({
+  exercise,
+  updateExercise,
+}: {
+  exercise: KeiserExerciseBlueprint;
+  updateExercise: (
+    ex: Partial<
+      | CardioExerciseBlueprint
+      | WeightedExerciseBlueprint
+      | KeiserExerciseBlueprint
+    >,
+  ) => void;
+}) {
+  const { colors } = useAppTheme();
+  return (
+    <>
+      <SharedFieldsEditor exercise={exercise} updateExercise={updateExercise} />
+      {exercise.sets.map((set, setIndex) => (
+        <KeiserSetEditor
+          key={setIndex}
+          set={set}
+          setIndex={setIndex}
+          updateSet={(newSet) =>
+            updateExercise({
+              sets: exercise.sets.map((oldSet, i) =>
+                setIndex === i ? newSet : oldSet,
+              ),
+            })
+          }
+        />
+      ))}
+      <List.Section>
+        <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+          <Button
+            icon={'doNotDisturbOn'}
+            disabled={exercise.sets.length === 1}
+            textColor={colors.error}
+            onPress={() =>
+              updateExercise({
+                sets: exercise.sets.filter(
+                  (_, i) => i !== exercise.sets.length - 1,
+                ),
+              })
+            }
+          >
+            Remove set
+          </Button>
+          <Button
+            icon={'addCircle'}
+            onPress={() =>
+              updateExercise({
+                sets: [
+                  ...exercise.sets,
+                  exercise.sets[exercise.sets.length - 1],
+                ],
+              })
+            }
+          >
+            Add set
+          </Button>
+        </View>
+      </List.Section>
+    </>
+  );
+}
+
+function KeiserSetEditor({
+  set,
+  setIndex,
+  updateSet,
+}: {
+  set: KeiserExerciseSetBlueprint;
+  setIndex: number;
+  updateSet: (val: KeiserExerciseSetBlueprint) => void;
+}) {
+  return (
+    <Card mode="contained">
+      <Card.Content style={{ gap: spacing[3] }}>
+        <SegmentedButtonsRowLabel label={`Set ${setIndex + 1}`} />
+        <LabelledFormRow label="Max duration" icon="targetFill">
+          <DurationEditor
+            duration={set.maxDuration}
+            showHours
+            onDurationUpdated={(maxDuration) =>
+              updateSet(set.with({ maxDuration }))
+            }
+          />
+        </LabelledFormRow>
+        <LabelledFormRow
+          label="Prep countdown"
+          icon="airlineSeatReclineExtraFill"
+        >
+          <DurationEditor
+            duration={set.prepDuration}
+            onDurationUpdated={(prepDuration) =>
+              updateSet(set.with({ prepDuration }))
+            }
+          />
+        </LabelledFormRow>
+        <LabelledFormRow label="Move duration" icon="directionsRunFill">
+          <DurationEditor
+            duration={set.moveDuration}
+            onDurationUpdated={(moveDuration) =>
+              updateSet(set.with({ moveDuration }))
+            }
+          />
+        </LabelledFormRow>
+        <LabelledFormRow
+          label="Pause duration"
+          icon="airlineSeatReclineExtraFill"
+        >
+          <DurationEditor
+            duration={set.pauseDuration}
+            onDurationUpdated={(pauseDuration) =>
+              updateSet(set.with({ pauseDuration }))
+            }
+          />
+        </LabelledFormRow>
+      </Card.Content>
+    </Card>
+  );
+}
+
+function SegmentedButtonsRowLabel({ label }: { label: string }) {
+  return <SurfaceText>{label}</SurfaceText>;
 }
 
 function WeightedExerciseEditor({

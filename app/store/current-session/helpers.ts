@@ -1,12 +1,14 @@
 import { WeightedExerciseBlueprintPOJO } from '@/models/blueprint-models';
 import {
   RecordedCardioExercise,
+  RecordedKeiserExercise,
   RecordedSetPOJO,
   RecordedWeightedExercise,
   Session,
 } from '@/models/session-models';
 import {
   CardioTimerInfo,
+  KeiserTimerInfo,
   RestTimerInfo,
 } from '@/models/workout-worker-messages';
 import { Duration, OffsetDateTime } from '@js-joda/core';
@@ -61,6 +63,44 @@ export function getCardioTimerInfo(
         setIndex
       ].currentBlockStartTime?.toInstant(),
     currentDuration: exerciseWithRunningTimer.duration ?? Duration.ZERO,
+    exerciseIndex,
+    setIndex,
+  };
+}
+
+export function getKeiserTimerInfo(
+  session: Session,
+): KeiserTimerInfo | undefined {
+  const exerciseIndex = session.recordedExercises.findIndex(
+    (x) =>
+      x instanceof RecordedKeiserExercise &&
+      x.sets.some((s) => s.currentBlockStartTime),
+  );
+
+  if (exerciseIndex === -1) {
+    return undefined;
+  }
+
+  const exerciseWithRunningTimer = session.recordedExercises[
+    exerciseIndex
+  ] as RecordedKeiserExercise;
+  const setIndex = exerciseWithRunningTimer.sets.findIndex(
+    (s) => s.currentBlockStartTime,
+  );
+
+  if (setIndex === -1) {
+    return undefined;
+  }
+
+  const set = exerciseWithRunningTimer.sets[setIndex];
+
+  return {
+    currentBlockStartTime: set.currentBlockStartTime?.toInstant(),
+    currentDuration: set.duration ?? Duration.ZERO,
+    prepDuration: set.blueprint.prepDuration,
+    maxDuration: set.blueprint.maxDuration,
+    moveDuration: set.blueprint.moveDuration,
+    pauseDuration: set.blueprint.pauseDuration,
     exerciseIndex,
     setIndex,
   };

@@ -30,6 +30,7 @@ import { addUnpublishedSessionId } from '@/store/feed';
 import { setStatsIsDirty } from '@/store/stats';
 import {
   getCardioTimerInfo,
+  getKeiserTimerInfo,
   getTimerInfo,
 } from '@/store/current-session/helpers';
 
@@ -225,6 +226,7 @@ export function applyCurrentSessionEffects() {
               stateAfterReduce.currentSession.workoutSessionLastSetTime,
             ),
             cardioTimerInfo: getCardioTimerInfo(currentValue),
+            keiserTimerInfo: getKeiserTimerInfo(currentValue),
           }),
         );
       }

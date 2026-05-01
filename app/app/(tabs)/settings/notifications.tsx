@@ -7,6 +7,7 @@ import {
 } from '@/store/current-session';
 import {
   getCardioTimerInfo,
+  getKeiserTimerInfo,
   getTimerInfo,
 } from '@/store/current-session/helpers';
 import { setRestNotifications } from '@/store/settings';
@@ -49,6 +50,7 @@ export default function AppConfiguration() {
                   workout: currentWorkout,
                   restTimerInfo: getTimerInfo(currentWorkout, lastSetTime),
                   cardioTimerInfo: getCardioTimerInfo(currentWorkout),
+                  keiserTimerInfo: getKeiserTimerInfo(currentWorkout),
                 }),
               );
             }

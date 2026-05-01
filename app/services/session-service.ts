@@ -3,6 +3,7 @@ import {
   SessionBlueprint,
   ExerciseBlueprint,
   CardioExerciseBlueprint,
+  KeiserExerciseBlueprint,
 } from '@/models/blueprint-models';
 import { Weight, WeightUnit } from '@/models/weight';
 import {
@@ -10,6 +11,7 @@ import {
   RecordedCardioExercise,
   RecordedCardioExerciseSet,
   RecordedExercise,
+  RecordedKeiserExercise,
   RecordedWeightedExercise,
   Session,
 } from '@/models/session-models';
@@ -118,6 +120,9 @@ export class SessionService {
             }),
           ),
         });
+      }
+      if (e instanceof KeiserExerciseBlueprint) {
+        return RecordedKeiserExercise.empty(e);
       }
       const weightedLastExercise =
         lastExercise instanceof RecordedWeightedExercise

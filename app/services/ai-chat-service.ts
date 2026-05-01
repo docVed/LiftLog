@@ -180,30 +180,39 @@ function parseAiExercise(
     };
   }
 
-  return {
-    type: 'CardioExerciseBlueprint',
-    name: ex.name,
-    link: ex.link,
-    notes: ex.notes,
-    sets: ex.sets.map((set) => ({
-      type: 'CardioExerciseSetBlueprint' as const,
-      target: match(set.target)
-        .returnType<CardioTarget>()
-        .with({ type: 'distance' }, (t) => ({
-          type: 'distance' as const,
-          value: { value: BigNumber(t.value.value), unit: t.value.unit },
-        }))
-        .with({ type: 'time' }, (t) => ({
-          type: 'time' as const,
-          value: parseDuration(t.value),
-        }))
-        .exhaustive(),
-      trackDistance: set.trackDistance,
-      trackIncline: set.trackIncline,
-      trackResistance: set.trackResistance,
-      trackDuration: set.trackDuration,
-      trackWeight: set.trackWeight,
-      trackSteps: set.trackSteps,
-    })),
-  };
+  const firstSet = ex.sets[0];
+  if (firstSet && 'target' in firstSet) {
+    const cardioSets = ex.sets as Extract<
+      typeof ex.sets,
+      readonly { target: unknown }[]
+    >;
+    return {
+      type: 'CardioExerciseBlueprint',
+      name: ex.name,
+      link: ex.link,
+      notes: ex.notes,
+      sets: cardioSets.map((set) => ({
+        type: 'CardioExerciseSetBlueprint' as const,
+        target: match(set.target)
+          .returnType<CardioTarget>()
+          .with({ type: 'distance' }, (t) => ({
+            type: 'distance' as const,
+            value: { value: BigNumber(t.value.value), unit: t.value.unit },
+          }))
+          .with({ type: 'time' }, (t) => ({
+            type: 'time' as const,
+            value: parseDuration(t.value),
+          }))
+          .exhaustive(),
+        trackDistance: set.trackDistance,
+        trackIncline: set.trackIncline,
+        trackResistance: set.trackResistance,
+        trackDuration: set.trackDuration,
+        trackWeight: set.trackWeight,
+        trackSteps: set.trackSteps,
+      })),
+    };
+  }
+
+  throw new Error('Unsupported AI exercise blueprint shape');
 }

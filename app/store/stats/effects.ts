@@ -246,7 +246,7 @@ function computeStats(
   let heaviestLift: HeaviestLift | undefined = undefined;
   for (const session of sessionsWithExercises) {
     for (const ex of session.recordedExercises) {
-      if (ex instanceof RecordedCardioExercise) {
+      if (!(ex instanceof RecordedWeightedExercise)) {
         continue;
       }
       const maxWeight = ex.potentialSets
