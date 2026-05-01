@@ -4,11 +4,14 @@ import {
   ExerciseBlueprint,
   Distance,
   CardioExerciseBlueprint,
+  KeiserExerciseBlueprint,
 } from '@/models/blueprint-models';
 import { Weight } from '@/models/weight';
 import {
   RecordedCardioExercisePOJO,
   RecordedCardioExerciseSet,
+  RecordedKeiserExercisePOJO,
+  RecordedKeiserExerciseSet,
   RecordedWeightedExercise,
   RecordedWeightedExercisePOJO,
   Session,
@@ -269,6 +272,27 @@ const currentSessionSlice = createSlice({
                 .with({
                   // Basically allows us to use values from set, even if there are more sets now and it would be undefined
                   ...cardioExistingExercise.sets[i],
+                  blueprint: set,
+                })
+                .toPOJO(),
+            );
+          }
+
+          const keiserExistingExercise =
+            session.recordedExercises[action.exerciseIndex].type ===
+            'RecordedKeiserExercise'
+              ? (session.recordedExercises[
+                  action.exerciseIndex
+                ] as RecordedKeiserExercisePOJO)
+              : undefined;
+
+          if (keiserExistingExercise) {
+            keiserExistingExercise.sets = (
+              action.newBlueprint as KeiserExerciseBlueprint
+            ).sets.map((set, i) =>
+              RecordedKeiserExerciseSet.empty(set)
+                .with({
+                  ...keiserExistingExercise.sets[i],
                   blueprint: set,
                 })
                 .toPOJO(),
@@ -544,6 +568,76 @@ const currentSessionSlice = createSlice({
         exercise.sets[action.setIndex].completionDateTime = action.time;
       },
     ),
+
+    updateDurationForKeiserExercise: targetedSessionAction(
+      (
+        session,
+        action: {
+          duration: Duration | undefined;
+          exerciseIndex: number;
+          setIndex: number;
+        },
+      ) => {
+        const exercise = session.recordedExercises[action.exerciseIndex];
+        if (exercise.type !== 'RecordedKeiserExercise') {
+          return;
+        }
+        exercise.sets[action.setIndex].duration = action.duration;
+      },
+    ),
+
+    updateCurrentBlockStartTimeForKeiserExercise: targetedSessionAction(
+      (
+        session,
+        action: {
+          time: OffsetDateTime | undefined;
+          exerciseIndex: number;
+          setIndex: number;
+        },
+      ) => {
+        const exercise = session.recordedExercises[action.exerciseIndex];
+        if (exercise.type !== 'RecordedKeiserExercise') {
+          return;
+        }
+        exercise.sets[action.setIndex].currentBlockStartTime = action.time;
+      },
+    ),
+
+    setCompletionTimeForKeiserExercise: targetedSessionAction(
+      (
+        session,
+        action: {
+          time: OffsetDateTime | undefined;
+          exerciseIndex: number;
+          setIndex: number;
+        },
+      ) => {
+        const exercise = session.recordedExercises[action.exerciseIndex];
+        if (exercise.type !== 'RecordedKeiserExercise') {
+          return;
+        }
+        exercise.sets[action.setIndex].completionDateTime = action.time;
+      },
+    ),
+
+    resetKeiserExerciseSet: targetedSessionAction(
+      (
+        session,
+        action: {
+          exerciseIndex: number;
+          setIndex: number;
+        },
+      ) => {
+        const exercise = session.recordedExercises[action.exerciseIndex];
+        if (exercise.type !== 'RecordedKeiserExercise') {
+          return;
+        }
+        const set = exercise.sets[action.setIndex];
+        set.duration = undefined;
+        set.currentBlockStartTime = undefined;
+        set.completionDateTime = undefined;
+      },
+    ),
   },
   selectors: {
     selectState: (x) => x,
@@ -613,6 +707,10 @@ export const {
   updateWeightForCardioExercise,
   updateStepsForCardioExercise,
   setCompletionTimeForCardioExercise,
+  updateDurationForKeiserExercise,
+  updateCurrentBlockStartTimeForKeiserExercise,
+  setCompletionTimeForKeiserExercise,
+  resetKeiserExerciseSet,
 } = currentSessionSlice.actions;
 
 export const currentSessionReducer = currentSessionSlice.reducer;
