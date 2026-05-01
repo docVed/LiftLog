@@ -4,15 +4,19 @@ import {
   editExercise,
   notifySetTimer,
   removeExercise,
+  resetKeiserExerciseSet,
   selectCurrentSession,
   SessionTarget,
   setCompletionTimeForCardioExercise,
+  setCompletionTimeForKeiserExercise,
   setExerciseReps,
   setWorkoutSessionLastSetTime,
   updateBodyweight,
   updateCurrentBlockStartTimeForCardioExercise,
+  updateCurrentBlockStartTimeForKeiserExercise,
   updateDistanceForCardioExercise,
   updateDurationForCardioExercise,
+  updateDurationForKeiserExercise,
   updateInclineForCardioExercise,
   updateNotesForExercise,
   updateResistanceForCardioExercise,
@@ -52,6 +56,7 @@ import WeightFormat from '@/components/presentation/foundation/weight-format';
 import { formatDuration } from '@/utils/format-date';
 import { match, P } from 'ts-pattern';
 import { CardioExercise } from '@/components/presentation/workout/cardio/cardio-exercise';
+import { KeiserExercise } from '@/components/presentation/workout/keiser/keiser-exercise';
 import { DelayRender } from '../presentation/foundation/delay-render';
 import { Loader } from '../presentation/foundation/loader';
 
@@ -347,7 +352,62 @@ export default function SessionComponent(props: {
           }
         />
       ))
-      .with(P.instanceOf(RecordedKeiserExercise), () => null)
+      .with(P.instanceOf(RecordedKeiserExercise), (item) => (
+        <KeiserExercise
+          recordedExercise={item}
+          toStartNext={session.nextExercise === item}
+          setCurrentBlockStartTime={(time, setIndex) =>
+            dispatch(updateCurrentBlockStartTimeForKeiserExercise, {
+              time,
+              setIndex,
+              exerciseIndex: index,
+            })
+          }
+          updateDuration={(duration, setIndex) =>
+            dispatch(updateDurationForKeiserExercise, {
+              duration,
+              setIndex,
+              exerciseIndex: index,
+            })
+          }
+          setCompletionTime={(time, setIndex) =>
+            dispatch(setCompletionTimeForKeiserExercise, {
+              time,
+              setIndex,
+              exerciseIndex: index,
+            })
+          }
+          resetSet={(setIndex) =>
+            dispatch(resetKeiserExerciseSet, {
+              setIndex,
+              exerciseIndex: index,
+            })
+          }
+          updateNotesForExercise={(notes) =>
+            dispatch(updateNotesForExercise, { notes, exerciseIndex: index })
+          }
+          onEditExercise={() => {
+            setEditingExerciseBlueprint(item.blueprint);
+            setExerciseToEditIndex(index);
+            setExerciseEditorOpen(true);
+          }}
+          onRemoveExercise={() =>
+            dispatch(removeExercise, {
+              exerciseIndex: index,
+            })
+          }
+          onOpenLink={() => {
+            openUrl(item.blueprint.link);
+          }}
+          isReadonly={isReadonly}
+          showPreviousButton={props.target === 'workoutSession'}
+          previousRecordedExercises={
+            recentlyCompletedExercises(
+              item.blueprint,
+            ) as RecordedKeiserExercise[]
+          }
+        />
+      ))
       .exhaustive();
   };
 
