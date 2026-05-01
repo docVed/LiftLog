@@ -2,6 +2,7 @@ package expo.modules.workoutworker.handlers
 
 
 import LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2OuterClass.ExerciseType.CARDIO
+import LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2OuterClass.ExerciseType.KEISER_TIMER
 import LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2OuterClass.ExerciseType.WEIGHTED
 import LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2OuterClass
 import LiftLog.Ui.Models.Utils
@@ -43,6 +44,7 @@ class WorkoutUpdatedHandler(
             when {
                 workoutUpdatedEvent.hasRestTimerInfo() -> showRestTimerNotification(event)
                 workoutUpdatedEvent.hasCardioTimerInfo() -> showCardioTimerNotification(event)
+                workoutUpdatedEvent.hasKeiserTimerInfo() -> showKeiserTimerNotification(event)
                 workoutUpdatedEvent.hasCurrentExerciseDetails() -> showCurrentExerciseNotification(
                     event
                 )
@@ -188,6 +190,63 @@ class WorkoutUpdatedHandler(
         timer.start()
     }
 
+    @OptIn(ExperimentalTime::class)
+    private fun showKeiserTimerNotification(
+        event: WorkoutMessageOuterClass.WorkoutMessage,
+    ) {
+        val workoutUpdatedEvent = event.workoutUpdatedEvent
+
+        val keiserTimerInfo = workoutUpdatedEvent.keiserTimerInfo
+        val currentExerciseMessage = getCurrentExerciseMessage(event)
+        val prepDurationSecs = keiserTimerInfo.prepDuration.seconds
+        val maxDurationSecs = keiserTimerInfo.maxDuration.seconds
+        val moveDurationSecs = keiserTimerInfo.moveDuration.seconds
+        val pauseDurationSecs = keiserTimerInfo.pauseDuration.seconds
+        val cycleSecs = moveDurationSecs + pauseDurationSecs
+
+        timer.updateCallback {
+            val accumulatedSecs =
+                fromDurationDao(keiserTimerInfo.currentDuration).toInt(SECONDS).toLong()
+            val blockStartSecs = keiserTimerInfo.currentBlockStartTime.seconds
+            val now = Clock.System.now().epochSeconds
+            val sinceBlockStart = now - blockStartSecs
+            val (phaseLabel, displaySecs) = if (accumulatedSecs == 0L &&
+                sinceBlockStart < prepDurationSecs
+            ) {
+                "GET READY" to (prepDurationSecs - sinceBlockStart)
+            } else {
+                val effectiveSinceBlock = if (accumulatedSecs == 0L)
+                    sinceBlockStart - prepDurationSecs
+                else
+                    sinceBlockStart
+                val totalRun = accumulatedSecs + effectiveSinceBlock.coerceAtLeast(0)
+                if (totalRun >= maxDurationSecs) {
+                    "DONE" to maxDurationSecs
+                } else {
+                    val intoCycle = if (cycleSecs > 0) totalRun % cycleSecs else 0L
+                    val label = if (intoCycle < moveDurationSecs) "MOVE" else "PAUSE"
+                    label to totalRun
+                }
+            }
+            val subText =
+                "$phaseLabel · ${formatDuration(displaySecs.toDuration(SECONDS))}/${
+                    formatDuration(maxDurationSecs.toDuration(SECONDS))
+                }"
+            val notifBuilder =
+                notificationManager.createWorkoutNotificationBuilder()
+                    .setContentText(currentExerciseMessage)
+                    .setSubText(subText)
+                    .setProgress(
+                        maxDurationSecs.toInt(),
+                        displaySecs.toInt().coerceIn(0, maxDurationSecs.toInt()),
+                        false,
+                    )
+
+            notificationManager.notifyPersistent(notifBuilder.build())
+        }
+        timer.start()
+    }
+
     private fun fromDurationDao(duration: com.google.protobuf.Duration): Duration {
         // TODO dropping nanos, not a problem for our uses though
         return duration.seconds.toDuration(SECONDS)
@@ -257,8 +316,33 @@ class WorkoutUpdatedHandler(
                 "\$EXERCISE_DESCRIPTOR$", "${currentExercise.name} - ${getCardioTarget()}"
             )
 
+            currentExercise.type == KEISER_TIMER -> messageTemplate.replace(
+                "\$EXERCISE_DESCRIPTOR$",
+                "${currentExercise.name} - ${
+                    formatDuration(
+                        getKeiserMaxDurationSeconds(event).toDuration(SECONDS)
+                    )
+                }"
+            )
+
             else -> ""
         }
+    }
+
+    @OptIn(ExperimentalTime::class)
+    private fun getKeiserMaxDurationSeconds(
+        event: WorkoutMessageOuterClass.WorkoutMessage,
+    ): Long {
+        if (event.workoutUpdatedEvent.hasKeiserTimerInfo()) {
+            return event.workoutUpdatedEvent.keiserTimerInfo.maxDuration.seconds
+        }
+        val currentExercise = event.workoutUpdatedEvent.currentExerciseDetails
+        val setIndex = currentExercise.setIndex
+        val keiserSets = currentExercise.exercise.keiserSetsList
+        if (setIndex < 0 || setIndex >= keiserSets.size) {
+            return 0
+        }
+        return keiserSets[setIndex].blueprint.maxDuration.seconds
     }
 
     private fun toBigDecimal(value: Utils.DecimalValue): BigDecimal {
