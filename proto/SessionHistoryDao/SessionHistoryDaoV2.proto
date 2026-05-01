@@ -39,6 +39,9 @@ message RecordedExerciseDaoV2 {
   optional LiftLog.Ui.Models.DecimalValue deprecated_resistance = 11;
   optional LiftLog.Ui.Models.DecimalValue deprecated_incline = 12;
   repeated RecordedCardioExerciseSetDao cardio_sets = 13;
+
+  // Keiser timer
+  repeated RecordedKeiserExerciseSetDao keiser_sets = 15;
 }
 
 message RecordedCardioExerciseSetDao {
@@ -51,6 +54,12 @@ message RecordedCardioExerciseSetDao {
   optional LiftLog.Ui.Models.DecimalValue incline = 7;
   optional LiftLog.Ui.Models.Weight weight = 8;
   optional google.protobuf.Int32Value steps = 9;
+}
+
+message RecordedKeiserExerciseSetDao {
+  LiftLog.Ui.Models.SessionBlueprintDao.KeiserExerciseSetBlueprintDao blueprint = 1;
+  optional LiftLog.Ui.Models.DateTimeDao completion_date_time = 2;
+  optional google.protobuf.Duration duration = 3;
 }
 
 message PotentialSetDaoV2 {

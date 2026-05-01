@@ -17,6 +17,7 @@ message SessionBlueprintDaoV2 {
 enum ExerciseType {
   WEIGHTED = 0;
   CARDIO = 1;
+  KEISER_TIMER = 2;
 }
 
 message CardioTarget {
@@ -48,6 +49,9 @@ message ExerciseBlueprintDaoV2 {
   bool deprecated_track_resistance = 14;
   bool deprecated_track_incline = 15;
   repeated CardioExerciseSetBlueprintDao cardio_sets = 16;
+
+  // Keiser timer
+  repeated KeiserExerciseSetBlueprintDao keiser_sets = 17;
 }
 
 message CardioExerciseSetBlueprintDao {
@@ -64,4 +68,11 @@ message RestDaoV2 {
   google.protobuf.Duration min_rest = 1;
   google.protobuf.Duration max_rest = 2;
   google.protobuf.Duration failure_rest = 3;
+}
+
+message KeiserExerciseSetBlueprintDao {
+  google.protobuf.Duration max_duration = 1;
+  google.protobuf.Duration prep_duration = 2;
+  google.protobuf.Duration move_duration = 3;
+  google.protobuf.Duration pause_duration = 4;
 }

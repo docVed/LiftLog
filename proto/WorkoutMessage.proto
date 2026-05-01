@@ -38,6 +38,7 @@ message WorkoutUpdatedEvent {
 
   optional RestTimerInfo rest_timer_info = 3;
   optional CardioTimerInfo cardio_timer_info = 4;
+  optional KeiserTimerInfo keiser_timer_info = 7;
 
   Weight total_weight_lifted = 5;
   google.protobuf.Duration workout_duration = 6;
@@ -66,6 +67,17 @@ message CardioTimerInfo {
   optional google.protobuf.Timestamp current_block_start_time = 2;
   int32 exercise_index = 3;
   int32 set_index = 4;
+}
+
+message KeiserTimerInfo {
+  google.protobuf.Duration current_duration = 1;
+  optional google.protobuf.Timestamp current_block_start_time = 2;
+  google.protobuf.Duration prep_duration = 3;
+  google.protobuf.Duration max_duration = 4;
+  google.protobuf.Duration move_duration = 5;
+  google.protobuf.Duration pause_duration = 6;
+  int32 exercise_index = 7;
+  int32 set_index = 8;
 }
 
 

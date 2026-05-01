@@ -9,1580 +9,6 @@ export namespace LiftLog {
         /** Namespace Models. */
         namespace Models {
 
-            /** Namespace SessionHistoryDao. */
-            namespace SessionHistoryDao {
-
-                /** Properties of a SessionHistoryDaoV2. */
-                interface ISessionHistoryDaoV2 {
-
-                    /** SessionHistoryDaoV2 completedSessions */
-                    completedSessions?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2[]|null);
-                }
-
-                /** Represents a SessionHistoryDaoV2. */
-                class SessionHistoryDaoV2 implements ISessionHistoryDaoV2 {
-
-                    /**
-                     * Constructs a new SessionHistoryDaoV2.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.SessionHistoryDao.ISessionHistoryDaoV2);
-
-                    /** SessionHistoryDaoV2 completedSessions. */
-                    public completedSessions: LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2[];
-
-                    /**
-                     * Creates a new SessionHistoryDaoV2 instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns SessionHistoryDaoV2 instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.SessionHistoryDao.ISessionHistoryDaoV2): LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2;
-
-                    /**
-                     * Encodes the specified SessionHistoryDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.verify|verify} messages.
-                     * @param message SessionHistoryDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.SessionHistoryDao.ISessionHistoryDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified SessionHistoryDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.verify|verify} messages.
-                     * @param message SessionHistoryDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionHistoryDao.ISessionHistoryDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a SessionHistoryDaoV2 message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns SessionHistoryDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2;
-
-                    /**
-                     * Decodes a SessionHistoryDaoV2 message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns SessionHistoryDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2;
-
-                    /**
-                     * Verifies a SessionHistoryDaoV2 message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a SessionHistoryDaoV2 message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns SessionHistoryDaoV2
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2;
-
-                    /**
-                     * Creates a plain object from a SessionHistoryDaoV2 message. Also converts values to other types if specified.
-                     * @param message SessionHistoryDaoV2
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this SessionHistoryDaoV2 to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for SessionHistoryDaoV2
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a SessionDaoV2. */
-                interface ISessionDaoV2 {
-
-                    /** SessionDaoV2 id */
-                    id?: (LiftLog.Ui.Models.IUuidDao|null);
-
-                    /** SessionDaoV2 sessionName */
-                    sessionName?: (string|null);
-
-                    /** SessionDaoV2 recordedExercises */
-                    recordedExercises?: (LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2[]|null);
-
-                    /** SessionDaoV2 date */
-                    date?: (LiftLog.Ui.Models.IDateOnlyDao|null);
-
-                    /** SessionDaoV2 bodyweightValue */
-                    bodyweightValue?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** SessionDaoV2 bodyweightUnit */
-                    bodyweightUnit?: (LiftLog.Ui.Models.WeightUnit|null);
-
-                    /** SessionDaoV2 blueprintNotes */
-                    blueprintNotes?: (string|null);
-                }
-
-                /** Represents a SessionDaoV2. */
-                class SessionDaoV2 implements ISessionDaoV2 {
-
-                    /**
-                     * Constructs a new SessionDaoV2.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2);
-
-                    /** SessionDaoV2 id. */
-                    public id?: (LiftLog.Ui.Models.IUuidDao|null);
-
-                    /** SessionDaoV2 sessionName. */
-                    public sessionName: string;
-
-                    /** SessionDaoV2 recordedExercises. */
-                    public recordedExercises: LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2[];
-
-                    /** SessionDaoV2 date. */
-                    public date?: (LiftLog.Ui.Models.IDateOnlyDao|null);
-
-                    /** SessionDaoV2 bodyweightValue. */
-                    public bodyweightValue?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** SessionDaoV2 bodyweightUnit. */
-                    public bodyweightUnit: LiftLog.Ui.Models.WeightUnit;
-
-                    /** SessionDaoV2 blueprintNotes. */
-                    public blueprintNotes: string;
-
-                    /** SessionDaoV2 _bodyweightValue. */
-                    public _bodyweightValue?: "bodyweightValue";
-
-                    /**
-                     * Creates a new SessionDaoV2 instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns SessionDaoV2 instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2): LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2;
-
-                    /**
-                     * Encodes the specified SessionDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.verify|verify} messages.
-                     * @param message SessionDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified SessionDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.verify|verify} messages.
-                     * @param message SessionDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a SessionDaoV2 message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns SessionDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2;
-
-                    /**
-                     * Decodes a SessionDaoV2 message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns SessionDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2;
-
-                    /**
-                     * Verifies a SessionDaoV2 message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a SessionDaoV2 message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns SessionDaoV2
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2;
-
-                    /**
-                     * Creates a plain object from a SessionDaoV2 message. Also converts values to other types if specified.
-                     * @param message SessionDaoV2
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this SessionDaoV2 to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for SessionDaoV2
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a RecordedExerciseDaoV2. */
-                interface IRecordedExerciseDaoV2 {
-
-                    /** RecordedExerciseDaoV2 exerciseBlueprint */
-                    exerciseBlueprint?: (LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2|null);
-
-                    /** RecordedExerciseDaoV2 type */
-                    type?: (LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType|null);
-
-                    /** RecordedExerciseDaoV2 notes */
-                    notes?: (google.protobuf.IStringValue|null);
-
-                    /** RecordedExerciseDaoV2 potentialSets */
-                    potentialSets?: (LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2[]|null);
-
-                    /** RecordedExerciseDaoV2 deprecatedCompletionDateTime */
-                    deprecatedCompletionDateTime?: (LiftLog.Ui.Models.IDateTimeDao|null);
-
-                    /** RecordedExerciseDaoV2 deprecatedDuration */
-                    deprecatedDuration?: (google.protobuf.IDuration|null);
-
-                    /** RecordedExerciseDaoV2 deprecatedDistanceValue */
-                    deprecatedDistanceValue?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** RecordedExerciseDaoV2 deprecatedDistanceUnit */
-                    deprecatedDistanceUnit?: (google.protobuf.IStringValue|null);
-
-                    /** RecordedExerciseDaoV2 deprecatedResistance */
-                    deprecatedResistance?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** RecordedExerciseDaoV2 deprecatedIncline */
-                    deprecatedIncline?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** RecordedExerciseDaoV2 cardioSets */
-                    cardioSets?: (LiftLog.Ui.Models.SessionHistoryDao.IRecordedCardioExerciseSetDao[]|null);
-                }
-
-                /** Represents a RecordedExerciseDaoV2. */
-                class RecordedExerciseDaoV2 implements IRecordedExerciseDaoV2 {
-
-                    /**
-                     * Constructs a new RecordedExerciseDaoV2.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2);
-
-                    /** RecordedExerciseDaoV2 exerciseBlueprint. */
-                    public exerciseBlueprint?: (LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2|null);
-
-                    /** RecordedExerciseDaoV2 type. */
-                    public type: LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType;
-
-                    /** RecordedExerciseDaoV2 notes. */
-                    public notes?: (google.protobuf.IStringValue|null);
-
-                    /** RecordedExerciseDaoV2 potentialSets. */
-                    public potentialSets: LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2[];
-
-                    /** RecordedExerciseDaoV2 deprecatedCompletionDateTime. */
-                    public deprecatedCompletionDateTime?: (LiftLog.Ui.Models.IDateTimeDao|null);
-
-                    /** RecordedExerciseDaoV2 deprecatedDuration. */
-                    public deprecatedDuration?: (google.protobuf.IDuration|null);
-
-                    /** RecordedExerciseDaoV2 deprecatedDistanceValue. */
-                    public deprecatedDistanceValue?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** RecordedExerciseDaoV2 deprecatedDistanceUnit. */
-                    public deprecatedDistanceUnit?: (google.protobuf.IStringValue|null);
-
-                    /** RecordedExerciseDaoV2 deprecatedResistance. */
-                    public deprecatedResistance?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** RecordedExerciseDaoV2 deprecatedIncline. */
-                    public deprecatedIncline?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** RecordedExerciseDaoV2 cardioSets. */
-                    public cardioSets: LiftLog.Ui.Models.SessionHistoryDao.IRecordedCardioExerciseSetDao[];
-
-                    /** RecordedExerciseDaoV2 _notes. */
-                    public _notes?: "notes";
-
-                    /** RecordedExerciseDaoV2 _deprecatedCompletionDateTime. */
-                    public _deprecatedCompletionDateTime?: "deprecatedCompletionDateTime";
-
-                    /** RecordedExerciseDaoV2 _deprecatedDuration. */
-                    public _deprecatedDuration?: "deprecatedDuration";
-
-                    /** RecordedExerciseDaoV2 _deprecatedDistanceValue. */
-                    public _deprecatedDistanceValue?: "deprecatedDistanceValue";
-
-                    /** RecordedExerciseDaoV2 _deprecatedDistanceUnit. */
-                    public _deprecatedDistanceUnit?: "deprecatedDistanceUnit";
-
-                    /** RecordedExerciseDaoV2 _deprecatedResistance. */
-                    public _deprecatedResistance?: "deprecatedResistance";
-
-                    /** RecordedExerciseDaoV2 _deprecatedIncline. */
-                    public _deprecatedIncline?: "deprecatedIncline";
-
-                    /**
-                     * Creates a new RecordedExerciseDaoV2 instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns RecordedExerciseDaoV2 instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2): LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2;
-
-                    /**
-                     * Encodes the specified RecordedExerciseDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.verify|verify} messages.
-                     * @param message RecordedExerciseDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified RecordedExerciseDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.verify|verify} messages.
-                     * @param message RecordedExerciseDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a RecordedExerciseDaoV2 message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns RecordedExerciseDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2;
-
-                    /**
-                     * Decodes a RecordedExerciseDaoV2 message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns RecordedExerciseDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2;
-
-                    /**
-                     * Verifies a RecordedExerciseDaoV2 message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a RecordedExerciseDaoV2 message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns RecordedExerciseDaoV2
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2;
-
-                    /**
-                     * Creates a plain object from a RecordedExerciseDaoV2 message. Also converts values to other types if specified.
-                     * @param message RecordedExerciseDaoV2
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this RecordedExerciseDaoV2 to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for RecordedExerciseDaoV2
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a RecordedCardioExerciseSetDao. */
-                interface IRecordedCardioExerciseSetDao {
-
-                    /** RecordedCardioExerciseSetDao blueprint */
-                    blueprint?: (LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao|null);
-
-                    /** RecordedCardioExerciseSetDao completionDateTime */
-                    completionDateTime?: (LiftLog.Ui.Models.IDateTimeDao|null);
-
-                    /** RecordedCardioExerciseSetDao duration */
-                    duration?: (google.protobuf.IDuration|null);
-
-                    /** RecordedCardioExerciseSetDao distanceValue */
-                    distanceValue?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** RecordedCardioExerciseSetDao distanceUnit */
-                    distanceUnit?: (google.protobuf.IStringValue|null);
-
-                    /** RecordedCardioExerciseSetDao resistance */
-                    resistance?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** RecordedCardioExerciseSetDao incline */
-                    incline?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** RecordedCardioExerciseSetDao weight */
-                    weight?: (LiftLog.Ui.Models.IWeight|null);
-
-                    /** RecordedCardioExerciseSetDao steps */
-                    steps?: (google.protobuf.IInt32Value|null);
-                }
-
-                /** Represents a RecordedCardioExerciseSetDao. */
-                class RecordedCardioExerciseSetDao implements IRecordedCardioExerciseSetDao {
-
-                    /**
-                     * Constructs a new RecordedCardioExerciseSetDao.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.SessionHistoryDao.IRecordedCardioExerciseSetDao);
-
-                    /** RecordedCardioExerciseSetDao blueprint. */
-                    public blueprint?: (LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao|null);
-
-                    /** RecordedCardioExerciseSetDao completionDateTime. */
-                    public completionDateTime?: (LiftLog.Ui.Models.IDateTimeDao|null);
-
-                    /** RecordedCardioExerciseSetDao duration. */
-                    public duration?: (google.protobuf.IDuration|null);
-
-                    /** RecordedCardioExerciseSetDao distanceValue. */
-                    public distanceValue?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** RecordedCardioExerciseSetDao distanceUnit. */
-                    public distanceUnit?: (google.protobuf.IStringValue|null);
-
-                    /** RecordedCardioExerciseSetDao resistance. */
-                    public resistance?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** RecordedCardioExerciseSetDao incline. */
-                    public incline?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** RecordedCardioExerciseSetDao weight. */
-                    public weight?: (LiftLog.Ui.Models.IWeight|null);
-
-                    /** RecordedCardioExerciseSetDao steps. */
-                    public steps?: (google.protobuf.IInt32Value|null);
-
-                    /** RecordedCardioExerciseSetDao _completionDateTime. */
-                    public _completionDateTime?: "completionDateTime";
-
-                    /** RecordedCardioExerciseSetDao _duration. */
-                    public _duration?: "duration";
-
-                    /** RecordedCardioExerciseSetDao _distanceValue. */
-                    public _distanceValue?: "distanceValue";
-
-                    /** RecordedCardioExerciseSetDao _distanceUnit. */
-                    public _distanceUnit?: "distanceUnit";
-
-                    /** RecordedCardioExerciseSetDao _resistance. */
-                    public _resistance?: "resistance";
-
-                    /** RecordedCardioExerciseSetDao _incline. */
-                    public _incline?: "incline";
-
-                    /** RecordedCardioExerciseSetDao _weight. */
-                    public _weight?: "weight";
-
-                    /** RecordedCardioExerciseSetDao _steps. */
-                    public _steps?: "steps";
-
-                    /**
-                     * Creates a new RecordedCardioExerciseSetDao instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns RecordedCardioExerciseSetDao instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.SessionHistoryDao.IRecordedCardioExerciseSetDao): LiftLog.Ui.Models.SessionHistoryDao.RecordedCardioExerciseSetDao;
-
-                    /**
-                     * Encodes the specified RecordedCardioExerciseSetDao message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedCardioExerciseSetDao.verify|verify} messages.
-                     * @param message RecordedCardioExerciseSetDao message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.SessionHistoryDao.IRecordedCardioExerciseSetDao, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified RecordedCardioExerciseSetDao message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedCardioExerciseSetDao.verify|verify} messages.
-                     * @param message RecordedCardioExerciseSetDao message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionHistoryDao.IRecordedCardioExerciseSetDao, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a RecordedCardioExerciseSetDao message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns RecordedCardioExerciseSetDao
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionHistoryDao.RecordedCardioExerciseSetDao;
-
-                    /**
-                     * Decodes a RecordedCardioExerciseSetDao message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns RecordedCardioExerciseSetDao
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionHistoryDao.RecordedCardioExerciseSetDao;
-
-                    /**
-                     * Verifies a RecordedCardioExerciseSetDao message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a RecordedCardioExerciseSetDao message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns RecordedCardioExerciseSetDao
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionHistoryDao.RecordedCardioExerciseSetDao;
-
-                    /**
-                     * Creates a plain object from a RecordedCardioExerciseSetDao message. Also converts values to other types if specified.
-                     * @param message RecordedCardioExerciseSetDao
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.SessionHistoryDao.RecordedCardioExerciseSetDao, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this RecordedCardioExerciseSetDao to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for RecordedCardioExerciseSetDao
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a PotentialSetDaoV2. */
-                interface IPotentialSetDaoV2 {
-
-                    /** PotentialSetDaoV2 recordedSet */
-                    recordedSet?: (LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2|null);
-
-                    /** PotentialSetDaoV2 weightValue */
-                    weightValue?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** PotentialSetDaoV2 weightUnit */
-                    weightUnit?: (LiftLog.Ui.Models.WeightUnit|null);
-                }
-
-                /** Represents a PotentialSetDaoV2. */
-                class PotentialSetDaoV2 implements IPotentialSetDaoV2 {
-
-                    /**
-                     * Constructs a new PotentialSetDaoV2.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2);
-
-                    /** PotentialSetDaoV2 recordedSet. */
-                    public recordedSet?: (LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2|null);
-
-                    /** PotentialSetDaoV2 weightValue. */
-                    public weightValue?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** PotentialSetDaoV2 weightUnit. */
-                    public weightUnit: LiftLog.Ui.Models.WeightUnit;
-
-                    /** PotentialSetDaoV2 _recordedSet. */
-                    public _recordedSet?: "recordedSet";
-
-                    /**
-                     * Creates a new PotentialSetDaoV2 instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns PotentialSetDaoV2 instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2): LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2;
-
-                    /**
-                     * Encodes the specified PotentialSetDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.verify|verify} messages.
-                     * @param message PotentialSetDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified PotentialSetDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.verify|verify} messages.
-                     * @param message PotentialSetDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a PotentialSetDaoV2 message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns PotentialSetDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2;
-
-                    /**
-                     * Decodes a PotentialSetDaoV2 message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns PotentialSetDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2;
-
-                    /**
-                     * Verifies a PotentialSetDaoV2 message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a PotentialSetDaoV2 message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns PotentialSetDaoV2
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2;
-
-                    /**
-                     * Creates a plain object from a PotentialSetDaoV2 message. Also converts values to other types if specified.
-                     * @param message PotentialSetDaoV2
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this PotentialSetDaoV2 to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for PotentialSetDaoV2
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a RecordedSetDaoV2. */
-                interface IRecordedSetDaoV2 {
-
-                    /** RecordedSetDaoV2 repsCompleted */
-                    repsCompleted?: (number|null);
-
-                    /** RecordedSetDaoV2 completionTime */
-                    completionTime?: (LiftLog.Ui.Models.ITimeOnlyDao|null);
-
-                    /** RecordedSetDaoV2 completionDate */
-                    completionDate?: (LiftLog.Ui.Models.IDateOnlyDao|null);
-
-                    /** RecordedSetDaoV2 completionOffset */
-                    completionOffset?: (LiftLog.Ui.Models.IZoneOffsetDao|null);
-                }
-
-                /** Represents a RecordedSetDaoV2. */
-                class RecordedSetDaoV2 implements IRecordedSetDaoV2 {
-
-                    /**
-                     * Constructs a new RecordedSetDaoV2.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2);
-
-                    /** RecordedSetDaoV2 repsCompleted. */
-                    public repsCompleted: number;
-
-                    /** RecordedSetDaoV2 completionTime. */
-                    public completionTime?: (LiftLog.Ui.Models.ITimeOnlyDao|null);
-
-                    /** RecordedSetDaoV2 completionDate. */
-                    public completionDate?: (LiftLog.Ui.Models.IDateOnlyDao|null);
-
-                    /** RecordedSetDaoV2 completionOffset. */
-                    public completionOffset?: (LiftLog.Ui.Models.IZoneOffsetDao|null);
-
-                    /** RecordedSetDaoV2 _completionDate. */
-                    public _completionDate?: "completionDate";
-
-                    /** RecordedSetDaoV2 _completionOffset. */
-                    public _completionOffset?: "completionOffset";
-
-                    /**
-                     * Creates a new RecordedSetDaoV2 instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns RecordedSetDaoV2 instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2): LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2;
-
-                    /**
-                     * Encodes the specified RecordedSetDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.verify|verify} messages.
-                     * @param message RecordedSetDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified RecordedSetDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.verify|verify} messages.
-                     * @param message RecordedSetDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a RecordedSetDaoV2 message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns RecordedSetDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2;
-
-                    /**
-                     * Decodes a RecordedSetDaoV2 message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns RecordedSetDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2;
-
-                    /**
-                     * Verifies a RecordedSetDaoV2 message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a RecordedSetDaoV2 message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns RecordedSetDaoV2
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2;
-
-                    /**
-                     * Creates a plain object from a RecordedSetDaoV2 message. Also converts values to other types if specified.
-                     * @param message RecordedSetDaoV2
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this RecordedSetDaoV2 to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for RecordedSetDaoV2
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-            }
-
-            /** Namespace SessionBlueprintDao. */
-            namespace SessionBlueprintDao {
-
-                /** Properties of a SessionBlueprintContainerDaoV2. */
-                interface ISessionBlueprintContainerDaoV2 {
-
-                    /** SessionBlueprintContainerDaoV2 sessionBlueprints */
-                    sessionBlueprints?: (LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2[]|null);
-                }
-
-                /** Represents a SessionBlueprintContainerDaoV2. */
-                class SessionBlueprintContainerDaoV2 implements ISessionBlueprintContainerDaoV2 {
-
-                    /**
-                     * Constructs a new SessionBlueprintContainerDaoV2.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintContainerDaoV2);
-
-                    /** SessionBlueprintContainerDaoV2 sessionBlueprints. */
-                    public sessionBlueprints: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2[];
-
-                    /**
-                     * Creates a new SessionBlueprintContainerDaoV2 instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns SessionBlueprintContainerDaoV2 instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintContainerDaoV2): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2;
-
-                    /**
-                     * Encodes the specified SessionBlueprintContainerDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2.verify|verify} messages.
-                     * @param message SessionBlueprintContainerDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintContainerDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified SessionBlueprintContainerDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2.verify|verify} messages.
-                     * @param message SessionBlueprintContainerDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintContainerDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a SessionBlueprintContainerDaoV2 message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns SessionBlueprintContainerDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2;
-
-                    /**
-                     * Decodes a SessionBlueprintContainerDaoV2 message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns SessionBlueprintContainerDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2;
-
-                    /**
-                     * Verifies a SessionBlueprintContainerDaoV2 message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a SessionBlueprintContainerDaoV2 message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns SessionBlueprintContainerDaoV2
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2;
-
-                    /**
-                     * Creates a plain object from a SessionBlueprintContainerDaoV2 message. Also converts values to other types if specified.
-                     * @param message SessionBlueprintContainerDaoV2
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this SessionBlueprintContainerDaoV2 to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for SessionBlueprintContainerDaoV2
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a SessionBlueprintDaoV2. */
-                interface ISessionBlueprintDaoV2 {
-
-                    /** SessionBlueprintDaoV2 name */
-                    name?: (string|null);
-
-                    /** SessionBlueprintDaoV2 exerciseBlueprints */
-                    exerciseBlueprints?: (LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2[]|null);
-
-                    /** SessionBlueprintDaoV2 notes */
-                    notes?: (string|null);
-                }
-
-                /** Represents a SessionBlueprintDaoV2. */
-                class SessionBlueprintDaoV2 implements ISessionBlueprintDaoV2 {
-
-                    /**
-                     * Constructs a new SessionBlueprintDaoV2.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2);
-
-                    /** SessionBlueprintDaoV2 name. */
-                    public name: string;
-
-                    /** SessionBlueprintDaoV2 exerciseBlueprints. */
-                    public exerciseBlueprints: LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2[];
-
-                    /** SessionBlueprintDaoV2 notes. */
-                    public notes: string;
-
-                    /**
-                     * Creates a new SessionBlueprintDaoV2 instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns SessionBlueprintDaoV2 instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2;
-
-                    /**
-                     * Encodes the specified SessionBlueprintDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.verify|verify} messages.
-                     * @param message SessionBlueprintDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified SessionBlueprintDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.verify|verify} messages.
-                     * @param message SessionBlueprintDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a SessionBlueprintDaoV2 message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns SessionBlueprintDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2;
-
-                    /**
-                     * Decodes a SessionBlueprintDaoV2 message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns SessionBlueprintDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2;
-
-                    /**
-                     * Verifies a SessionBlueprintDaoV2 message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a SessionBlueprintDaoV2 message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns SessionBlueprintDaoV2
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2;
-
-                    /**
-                     * Creates a plain object from a SessionBlueprintDaoV2 message. Also converts values to other types if specified.
-                     * @param message SessionBlueprintDaoV2
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this SessionBlueprintDaoV2 to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for SessionBlueprintDaoV2
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** ExerciseType enum. */
-                enum ExerciseType {
-                    WEIGHTED = 0,
-                    CARDIO = 1
-                }
-
-                /** Properties of a CardioTarget. */
-                interface ICardioTarget {
-
-                    /** CardioTarget type */
-                    type?: (string|null);
-
-                    /** CardioTarget timeValue */
-                    timeValue?: (google.protobuf.IDuration|null);
-
-                    /** CardioTarget distanceValue */
-                    distanceValue?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** CardioTarget distanceUnit */
-                    distanceUnit?: (string|null);
-                }
-
-                /** Represents a CardioTarget. */
-                class CardioTarget implements ICardioTarget {
-
-                    /**
-                     * Constructs a new CardioTarget.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget);
-
-                    /** CardioTarget type. */
-                    public type: string;
-
-                    /** CardioTarget timeValue. */
-                    public timeValue?: (google.protobuf.IDuration|null);
-
-                    /** CardioTarget distanceValue. */
-                    public distanceValue?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** CardioTarget distanceUnit. */
-                    public distanceUnit?: (string|null);
-
-                    /** CardioTarget _distanceUnit. */
-                    public _distanceUnit?: "distanceUnit";
-
-                    /**
-                     * Creates a new CardioTarget instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns CardioTarget instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget): LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget;
-
-                    /**
-                     * Encodes the specified CardioTarget message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget.verify|verify} messages.
-                     * @param message CardioTarget message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified CardioTarget message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget.verify|verify} messages.
-                     * @param message CardioTarget message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a CardioTarget message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns CardioTarget
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget;
-
-                    /**
-                     * Decodes a CardioTarget message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns CardioTarget
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget;
-
-                    /**
-                     * Verifies a CardioTarget message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a CardioTarget message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns CardioTarget
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget;
-
-                    /**
-                     * Creates a plain object from a CardioTarget message. Also converts values to other types if specified.
-                     * @param message CardioTarget
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this CardioTarget to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for CardioTarget
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of an ExerciseBlueprintDaoV2. */
-                interface IExerciseBlueprintDaoV2 {
-
-                    /** ExerciseBlueprintDaoV2 name */
-                    name?: (string|null);
-
-                    /** ExerciseBlueprintDaoV2 notes */
-                    notes?: (string|null);
-
-                    /** ExerciseBlueprintDaoV2 link */
-                    link?: (string|null);
-
-                    /** ExerciseBlueprintDaoV2 type */
-                    type?: (LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType|null);
-
-                    /** ExerciseBlueprintDaoV2 sets */
-                    sets?: (number|null);
-
-                    /** ExerciseBlueprintDaoV2 repsPerSet */
-                    repsPerSet?: (number|null);
-
-                    /** ExerciseBlueprintDaoV2 weightIncreaseOnSuccess */
-                    weightIncreaseOnSuccess?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** ExerciseBlueprintDaoV2 restBetweenSets */
-                    restBetweenSets?: (LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2|null);
-
-                    /** ExerciseBlueprintDaoV2 supersetWithNext */
-                    supersetWithNext?: (boolean|null);
-
-                    /** ExerciseBlueprintDaoV2 deprecatedCardioTarget */
-                    deprecatedCardioTarget?: (LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget|null);
-
-                    /** ExerciseBlueprintDaoV2 deprecatedTrackDuration */
-                    deprecatedTrackDuration?: (boolean|null);
-
-                    /** ExerciseBlueprintDaoV2 deprecatedTrackDistance */
-                    deprecatedTrackDistance?: (boolean|null);
-
-                    /** ExerciseBlueprintDaoV2 deprecatedTrackResistance */
-                    deprecatedTrackResistance?: (boolean|null);
-
-                    /** ExerciseBlueprintDaoV2 deprecatedTrackIncline */
-                    deprecatedTrackIncline?: (boolean|null);
-
-                    /** ExerciseBlueprintDaoV2 cardioSets */
-                    cardioSets?: (LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao[]|null);
-                }
-
-                /** Represents an ExerciseBlueprintDaoV2. */
-                class ExerciseBlueprintDaoV2 implements IExerciseBlueprintDaoV2 {
-
-                    /**
-                     * Constructs a new ExerciseBlueprintDaoV2.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2);
-
-                    /** ExerciseBlueprintDaoV2 name. */
-                    public name: string;
-
-                    /** ExerciseBlueprintDaoV2 notes. */
-                    public notes: string;
-
-                    /** ExerciseBlueprintDaoV2 link. */
-                    public link: string;
-
-                    /** ExerciseBlueprintDaoV2 type. */
-                    public type: LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType;
-
-                    /** ExerciseBlueprintDaoV2 sets. */
-                    public sets: number;
-
-                    /** ExerciseBlueprintDaoV2 repsPerSet. */
-                    public repsPerSet: number;
-
-                    /** ExerciseBlueprintDaoV2 weightIncreaseOnSuccess. */
-                    public weightIncreaseOnSuccess?: (LiftLog.Ui.Models.IDecimalValue|null);
-
-                    /** ExerciseBlueprintDaoV2 restBetweenSets. */
-                    public restBetweenSets?: (LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2|null);
-
-                    /** ExerciseBlueprintDaoV2 supersetWithNext. */
-                    public supersetWithNext: boolean;
-
-                    /** ExerciseBlueprintDaoV2 deprecatedCardioTarget. */
-                    public deprecatedCardioTarget?: (LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget|null);
-
-                    /** ExerciseBlueprintDaoV2 deprecatedTrackDuration. */
-                    public deprecatedTrackDuration: boolean;
-
-                    /** ExerciseBlueprintDaoV2 deprecatedTrackDistance. */
-                    public deprecatedTrackDistance: boolean;
-
-                    /** ExerciseBlueprintDaoV2 deprecatedTrackResistance. */
-                    public deprecatedTrackResistance: boolean;
-
-                    /** ExerciseBlueprintDaoV2 deprecatedTrackIncline. */
-                    public deprecatedTrackIncline: boolean;
-
-                    /** ExerciseBlueprintDaoV2 cardioSets. */
-                    public cardioSets: LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao[];
-
-                    /**
-                     * Creates a new ExerciseBlueprintDaoV2 instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns ExerciseBlueprintDaoV2 instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2): LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2;
-
-                    /**
-                     * Encodes the specified ExerciseBlueprintDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.verify|verify} messages.
-                     * @param message ExerciseBlueprintDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified ExerciseBlueprintDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.verify|verify} messages.
-                     * @param message ExerciseBlueprintDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes an ExerciseBlueprintDaoV2 message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns ExerciseBlueprintDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2;
-
-                    /**
-                     * Decodes an ExerciseBlueprintDaoV2 message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns ExerciseBlueprintDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2;
-
-                    /**
-                     * Verifies an ExerciseBlueprintDaoV2 message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates an ExerciseBlueprintDaoV2 message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns ExerciseBlueprintDaoV2
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2;
-
-                    /**
-                     * Creates a plain object from an ExerciseBlueprintDaoV2 message. Also converts values to other types if specified.
-                     * @param message ExerciseBlueprintDaoV2
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this ExerciseBlueprintDaoV2 to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for ExerciseBlueprintDaoV2
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a CardioExerciseSetBlueprintDao. */
-                interface ICardioExerciseSetBlueprintDao {
-
-                    /** CardioExerciseSetBlueprintDao cardioTarget */
-                    cardioTarget?: (LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget|null);
-
-                    /** CardioExerciseSetBlueprintDao trackDuration */
-                    trackDuration?: (boolean|null);
-
-                    /** CardioExerciseSetBlueprintDao trackDistance */
-                    trackDistance?: (boolean|null);
-
-                    /** CardioExerciseSetBlueprintDao trackResistance */
-                    trackResistance?: (boolean|null);
-
-                    /** CardioExerciseSetBlueprintDao trackIncline */
-                    trackIncline?: (boolean|null);
-
-                    /** CardioExerciseSetBlueprintDao trackWeight */
-                    trackWeight?: (boolean|null);
-
-                    /** CardioExerciseSetBlueprintDao trackSteps */
-                    trackSteps?: (boolean|null);
-                }
-
-                /** Represents a CardioExerciseSetBlueprintDao. */
-                class CardioExerciseSetBlueprintDao implements ICardioExerciseSetBlueprintDao {
-
-                    /**
-                     * Constructs a new CardioExerciseSetBlueprintDao.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao);
-
-                    /** CardioExerciseSetBlueprintDao cardioTarget. */
-                    public cardioTarget?: (LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget|null);
-
-                    /** CardioExerciseSetBlueprintDao trackDuration. */
-                    public trackDuration: boolean;
-
-                    /** CardioExerciseSetBlueprintDao trackDistance. */
-                    public trackDistance: boolean;
-
-                    /** CardioExerciseSetBlueprintDao trackResistance. */
-                    public trackResistance: boolean;
-
-                    /** CardioExerciseSetBlueprintDao trackIncline. */
-                    public trackIncline: boolean;
-
-                    /** CardioExerciseSetBlueprintDao trackWeight. */
-                    public trackWeight: boolean;
-
-                    /** CardioExerciseSetBlueprintDao trackSteps. */
-                    public trackSteps: boolean;
-
-                    /**
-                     * Creates a new CardioExerciseSetBlueprintDao instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns CardioExerciseSetBlueprintDao instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao): LiftLog.Ui.Models.SessionBlueprintDao.CardioExerciseSetBlueprintDao;
-
-                    /**
-                     * Encodes the specified CardioExerciseSetBlueprintDao message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.CardioExerciseSetBlueprintDao.verify|verify} messages.
-                     * @param message CardioExerciseSetBlueprintDao message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified CardioExerciseSetBlueprintDao message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.CardioExerciseSetBlueprintDao.verify|verify} messages.
-                     * @param message CardioExerciseSetBlueprintDao message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a CardioExerciseSetBlueprintDao message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns CardioExerciseSetBlueprintDao
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionBlueprintDao.CardioExerciseSetBlueprintDao;
-
-                    /**
-                     * Decodes a CardioExerciseSetBlueprintDao message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns CardioExerciseSetBlueprintDao
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionBlueprintDao.CardioExerciseSetBlueprintDao;
-
-                    /**
-                     * Verifies a CardioExerciseSetBlueprintDao message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a CardioExerciseSetBlueprintDao message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns CardioExerciseSetBlueprintDao
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionBlueprintDao.CardioExerciseSetBlueprintDao;
-
-                    /**
-                     * Creates a plain object from a CardioExerciseSetBlueprintDao message. Also converts values to other types if specified.
-                     * @param message CardioExerciseSetBlueprintDao
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.SessionBlueprintDao.CardioExerciseSetBlueprintDao, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this CardioExerciseSetBlueprintDao to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for CardioExerciseSetBlueprintDao
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a RestDaoV2. */
-                interface IRestDaoV2 {
-
-                    /** RestDaoV2 minRest */
-                    minRest?: (google.protobuf.IDuration|null);
-
-                    /** RestDaoV2 maxRest */
-                    maxRest?: (google.protobuf.IDuration|null);
-
-                    /** RestDaoV2 failureRest */
-                    failureRest?: (google.protobuf.IDuration|null);
-                }
-
-                /** Represents a RestDaoV2. */
-                class RestDaoV2 implements IRestDaoV2 {
-
-                    /**
-                     * Constructs a new RestDaoV2.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2);
-
-                    /** RestDaoV2 minRest. */
-                    public minRest?: (google.protobuf.IDuration|null);
-
-                    /** RestDaoV2 maxRest. */
-                    public maxRest?: (google.protobuf.IDuration|null);
-
-                    /** RestDaoV2 failureRest. */
-                    public failureRest?: (google.protobuf.IDuration|null);
-
-                    /**
-                     * Creates a new RestDaoV2 instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns RestDaoV2 instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2): LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2;
-
-                    /**
-                     * Encodes the specified RestDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2.verify|verify} messages.
-                     * @param message RestDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified RestDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2.verify|verify} messages.
-                     * @param message RestDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a RestDaoV2 message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns RestDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2;
-
-                    /**
-                     * Decodes a RestDaoV2 message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns RestDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2;
-
-                    /**
-                     * Verifies a RestDaoV2 message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a RestDaoV2 message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns RestDaoV2
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2;
-
-                    /**
-                     * Creates a plain object from a RestDaoV2 message. Also converts values to other types if specified.
-                     * @param message RestDaoV2
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this RestDaoV2 to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for RestDaoV2
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-            }
-
             /** Properties of an UuidDao. */
             interface IUuidDao {
 
@@ -2326,6 +752,4010 @@ export namespace LiftLog {
 
                 /**
                  * Gets the default type url for Weight
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            /** Namespace CurrentSessionStateDao. */
+            namespace CurrentSessionStateDao {
+
+                /** Properties of a CurrentSessionStateDaoV2. */
+                interface ICurrentSessionStateDaoV2 {
+
+                    /** CurrentSessionStateDaoV2 workoutSession */
+                    workoutSession?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null);
+
+                    /** CurrentSessionStateDaoV2 historySession */
+                    historySession?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null);
+                }
+
+                /** Represents a CurrentSessionStateDaoV2. */
+                class CurrentSessionStateDaoV2 implements ICurrentSessionStateDaoV2 {
+
+                    /**
+                     * Constructs a new CurrentSessionStateDaoV2.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2);
+
+                    /** CurrentSessionStateDaoV2 workoutSession. */
+                    public workoutSession?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null);
+
+                    /** CurrentSessionStateDaoV2 historySession. */
+                    public historySession?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null);
+
+                    /** CurrentSessionStateDaoV2 _workoutSession. */
+                    public _workoutSession?: "workoutSession";
+
+                    /** CurrentSessionStateDaoV2 _historySession. */
+                    public _historySession?: "historySession";
+
+                    /**
+                     * Creates a new CurrentSessionStateDaoV2 instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns CurrentSessionStateDaoV2 instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2): LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2;
+
+                    /**
+                     * Encodes the specified CurrentSessionStateDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.verify|verify} messages.
+                     * @param message CurrentSessionStateDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified CurrentSessionStateDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.verify|verify} messages.
+                     * @param message CurrentSessionStateDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a CurrentSessionStateDaoV2 message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns CurrentSessionStateDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2;
+
+                    /**
+                     * Decodes a CurrentSessionStateDaoV2 message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns CurrentSessionStateDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2;
+
+                    /**
+                     * Verifies a CurrentSessionStateDaoV2 message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a CurrentSessionStateDaoV2 message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns CurrentSessionStateDaoV2
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2;
+
+                    /**
+                     * Creates a plain object from a CurrentSessionStateDaoV2 message. Also converts values to other types if specified.
+                     * @param message CurrentSessionStateDaoV2
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this CurrentSessionStateDaoV2 to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for CurrentSessionStateDaoV2
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+            }
+
+            /** Namespace SessionHistoryDao. */
+            namespace SessionHistoryDao {
+
+                /** Properties of a SessionHistoryDaoV2. */
+                interface ISessionHistoryDaoV2 {
+
+                    /** SessionHistoryDaoV2 completedSessions */
+                    completedSessions?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2[]|null);
+                }
+
+                /** Represents a SessionHistoryDaoV2. */
+                class SessionHistoryDaoV2 implements ISessionHistoryDaoV2 {
+
+                    /**
+                     * Constructs a new SessionHistoryDaoV2.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.SessionHistoryDao.ISessionHistoryDaoV2);
+
+                    /** SessionHistoryDaoV2 completedSessions. */
+                    public completedSessions: LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2[];
+
+                    /**
+                     * Creates a new SessionHistoryDaoV2 instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns SessionHistoryDaoV2 instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.SessionHistoryDao.ISessionHistoryDaoV2): LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2;
+
+                    /**
+                     * Encodes the specified SessionHistoryDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.verify|verify} messages.
+                     * @param message SessionHistoryDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.SessionHistoryDao.ISessionHistoryDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified SessionHistoryDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2.verify|verify} messages.
+                     * @param message SessionHistoryDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionHistoryDao.ISessionHistoryDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a SessionHistoryDaoV2 message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns SessionHistoryDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2;
+
+                    /**
+                     * Decodes a SessionHistoryDaoV2 message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns SessionHistoryDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2;
+
+                    /**
+                     * Verifies a SessionHistoryDaoV2 message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a SessionHistoryDaoV2 message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns SessionHistoryDaoV2
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2;
+
+                    /**
+                     * Creates a plain object from a SessionHistoryDaoV2 message. Also converts values to other types if specified.
+                     * @param message SessionHistoryDaoV2
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.SessionHistoryDao.SessionHistoryDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this SessionHistoryDaoV2 to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for SessionHistoryDaoV2
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a SessionDaoV2. */
+                interface ISessionDaoV2 {
+
+                    /** SessionDaoV2 id */
+                    id?: (LiftLog.Ui.Models.IUuidDao|null);
+
+                    /** SessionDaoV2 sessionName */
+                    sessionName?: (string|null);
+
+                    /** SessionDaoV2 recordedExercises */
+                    recordedExercises?: (LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2[]|null);
+
+                    /** SessionDaoV2 date */
+                    date?: (LiftLog.Ui.Models.IDateOnlyDao|null);
+
+                    /** SessionDaoV2 bodyweightValue */
+                    bodyweightValue?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** SessionDaoV2 bodyweightUnit */
+                    bodyweightUnit?: (LiftLog.Ui.Models.WeightUnit|null);
+
+                    /** SessionDaoV2 blueprintNotes */
+                    blueprintNotes?: (string|null);
+                }
+
+                /** Represents a SessionDaoV2. */
+                class SessionDaoV2 implements ISessionDaoV2 {
+
+                    /**
+                     * Constructs a new SessionDaoV2.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2);
+
+                    /** SessionDaoV2 id. */
+                    public id?: (LiftLog.Ui.Models.IUuidDao|null);
+
+                    /** SessionDaoV2 sessionName. */
+                    public sessionName: string;
+
+                    /** SessionDaoV2 recordedExercises. */
+                    public recordedExercises: LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2[];
+
+                    /** SessionDaoV2 date. */
+                    public date?: (LiftLog.Ui.Models.IDateOnlyDao|null);
+
+                    /** SessionDaoV2 bodyweightValue. */
+                    public bodyweightValue?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** SessionDaoV2 bodyweightUnit. */
+                    public bodyweightUnit: LiftLog.Ui.Models.WeightUnit;
+
+                    /** SessionDaoV2 blueprintNotes. */
+                    public blueprintNotes: string;
+
+                    /** SessionDaoV2 _bodyweightValue. */
+                    public _bodyweightValue?: "bodyweightValue";
+
+                    /**
+                     * Creates a new SessionDaoV2 instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns SessionDaoV2 instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2): LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2;
+
+                    /**
+                     * Encodes the specified SessionDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.verify|verify} messages.
+                     * @param message SessionDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified SessionDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2.verify|verify} messages.
+                     * @param message SessionDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a SessionDaoV2 message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns SessionDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2;
+
+                    /**
+                     * Decodes a SessionDaoV2 message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns SessionDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2;
+
+                    /**
+                     * Verifies a SessionDaoV2 message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a SessionDaoV2 message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns SessionDaoV2
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2;
+
+                    /**
+                     * Creates a plain object from a SessionDaoV2 message. Also converts values to other types if specified.
+                     * @param message SessionDaoV2
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.SessionHistoryDao.SessionDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this SessionDaoV2 to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for SessionDaoV2
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a RecordedExerciseDaoV2. */
+                interface IRecordedExerciseDaoV2 {
+
+                    /** RecordedExerciseDaoV2 exerciseBlueprint */
+                    exerciseBlueprint?: (LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2|null);
+
+                    /** RecordedExerciseDaoV2 type */
+                    type?: (LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType|null);
+
+                    /** RecordedExerciseDaoV2 notes */
+                    notes?: (google.protobuf.IStringValue|null);
+
+                    /** RecordedExerciseDaoV2 potentialSets */
+                    potentialSets?: (LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2[]|null);
+
+                    /** RecordedExerciseDaoV2 deprecatedCompletionDateTime */
+                    deprecatedCompletionDateTime?: (LiftLog.Ui.Models.IDateTimeDao|null);
+
+                    /** RecordedExerciseDaoV2 deprecatedDuration */
+                    deprecatedDuration?: (google.protobuf.IDuration|null);
+
+                    /** RecordedExerciseDaoV2 deprecatedDistanceValue */
+                    deprecatedDistanceValue?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** RecordedExerciseDaoV2 deprecatedDistanceUnit */
+                    deprecatedDistanceUnit?: (google.protobuf.IStringValue|null);
+
+                    /** RecordedExerciseDaoV2 deprecatedResistance */
+                    deprecatedResistance?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** RecordedExerciseDaoV2 deprecatedIncline */
+                    deprecatedIncline?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** RecordedExerciseDaoV2 cardioSets */
+                    cardioSets?: (LiftLog.Ui.Models.SessionHistoryDao.IRecordedCardioExerciseSetDao[]|null);
+
+                    /** RecordedExerciseDaoV2 keiserSets */
+                    keiserSets?: (LiftLog.Ui.Models.SessionHistoryDao.IRecordedKeiserExerciseSetDao[]|null);
+                }
+
+                /** Represents a RecordedExerciseDaoV2. */
+                class RecordedExerciseDaoV2 implements IRecordedExerciseDaoV2 {
+
+                    /**
+                     * Constructs a new RecordedExerciseDaoV2.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2);
+
+                    /** RecordedExerciseDaoV2 exerciseBlueprint. */
+                    public exerciseBlueprint?: (LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2|null);
+
+                    /** RecordedExerciseDaoV2 type. */
+                    public type: LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType;
+
+                    /** RecordedExerciseDaoV2 notes. */
+                    public notes?: (google.protobuf.IStringValue|null);
+
+                    /** RecordedExerciseDaoV2 potentialSets. */
+                    public potentialSets: LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2[];
+
+                    /** RecordedExerciseDaoV2 deprecatedCompletionDateTime. */
+                    public deprecatedCompletionDateTime?: (LiftLog.Ui.Models.IDateTimeDao|null);
+
+                    /** RecordedExerciseDaoV2 deprecatedDuration. */
+                    public deprecatedDuration?: (google.protobuf.IDuration|null);
+
+                    /** RecordedExerciseDaoV2 deprecatedDistanceValue. */
+                    public deprecatedDistanceValue?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** RecordedExerciseDaoV2 deprecatedDistanceUnit. */
+                    public deprecatedDistanceUnit?: (google.protobuf.IStringValue|null);
+
+                    /** RecordedExerciseDaoV2 deprecatedResistance. */
+                    public deprecatedResistance?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** RecordedExerciseDaoV2 deprecatedIncline. */
+                    public deprecatedIncline?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** RecordedExerciseDaoV2 cardioSets. */
+                    public cardioSets: LiftLog.Ui.Models.SessionHistoryDao.IRecordedCardioExerciseSetDao[];
+
+                    /** RecordedExerciseDaoV2 keiserSets. */
+                    public keiserSets: LiftLog.Ui.Models.SessionHistoryDao.IRecordedKeiserExerciseSetDao[];
+
+                    /** RecordedExerciseDaoV2 _notes. */
+                    public _notes?: "notes";
+
+                    /** RecordedExerciseDaoV2 _deprecatedCompletionDateTime. */
+                    public _deprecatedCompletionDateTime?: "deprecatedCompletionDateTime";
+
+                    /** RecordedExerciseDaoV2 _deprecatedDuration. */
+                    public _deprecatedDuration?: "deprecatedDuration";
+
+                    /** RecordedExerciseDaoV2 _deprecatedDistanceValue. */
+                    public _deprecatedDistanceValue?: "deprecatedDistanceValue";
+
+                    /** RecordedExerciseDaoV2 _deprecatedDistanceUnit. */
+                    public _deprecatedDistanceUnit?: "deprecatedDistanceUnit";
+
+                    /** RecordedExerciseDaoV2 _deprecatedResistance. */
+                    public _deprecatedResistance?: "deprecatedResistance";
+
+                    /** RecordedExerciseDaoV2 _deprecatedIncline. */
+                    public _deprecatedIncline?: "deprecatedIncline";
+
+                    /**
+                     * Creates a new RecordedExerciseDaoV2 instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RecordedExerciseDaoV2 instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2): LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2;
+
+                    /**
+                     * Encodes the specified RecordedExerciseDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.verify|verify} messages.
+                     * @param message RecordedExerciseDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RecordedExerciseDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2.verify|verify} messages.
+                     * @param message RecordedExerciseDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RecordedExerciseDaoV2 message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RecordedExerciseDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2;
+
+                    /**
+                     * Decodes a RecordedExerciseDaoV2 message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RecordedExerciseDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2;
+
+                    /**
+                     * Verifies a RecordedExerciseDaoV2 message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RecordedExerciseDaoV2 message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RecordedExerciseDaoV2
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2;
+
+                    /**
+                     * Creates a plain object from a RecordedExerciseDaoV2 message. Also converts values to other types if specified.
+                     * @param message RecordedExerciseDaoV2
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.SessionHistoryDao.RecordedExerciseDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RecordedExerciseDaoV2 to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for RecordedExerciseDaoV2
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a RecordedCardioExerciseSetDao. */
+                interface IRecordedCardioExerciseSetDao {
+
+                    /** RecordedCardioExerciseSetDao blueprint */
+                    blueprint?: (LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao|null);
+
+                    /** RecordedCardioExerciseSetDao completionDateTime */
+                    completionDateTime?: (LiftLog.Ui.Models.IDateTimeDao|null);
+
+                    /** RecordedCardioExerciseSetDao duration */
+                    duration?: (google.protobuf.IDuration|null);
+
+                    /** RecordedCardioExerciseSetDao distanceValue */
+                    distanceValue?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** RecordedCardioExerciseSetDao distanceUnit */
+                    distanceUnit?: (google.protobuf.IStringValue|null);
+
+                    /** RecordedCardioExerciseSetDao resistance */
+                    resistance?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** RecordedCardioExerciseSetDao incline */
+                    incline?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** RecordedCardioExerciseSetDao weight */
+                    weight?: (LiftLog.Ui.Models.IWeight|null);
+
+                    /** RecordedCardioExerciseSetDao steps */
+                    steps?: (google.protobuf.IInt32Value|null);
+                }
+
+                /** Represents a RecordedCardioExerciseSetDao. */
+                class RecordedCardioExerciseSetDao implements IRecordedCardioExerciseSetDao {
+
+                    /**
+                     * Constructs a new RecordedCardioExerciseSetDao.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.SessionHistoryDao.IRecordedCardioExerciseSetDao);
+
+                    /** RecordedCardioExerciseSetDao blueprint. */
+                    public blueprint?: (LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao|null);
+
+                    /** RecordedCardioExerciseSetDao completionDateTime. */
+                    public completionDateTime?: (LiftLog.Ui.Models.IDateTimeDao|null);
+
+                    /** RecordedCardioExerciseSetDao duration. */
+                    public duration?: (google.protobuf.IDuration|null);
+
+                    /** RecordedCardioExerciseSetDao distanceValue. */
+                    public distanceValue?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** RecordedCardioExerciseSetDao distanceUnit. */
+                    public distanceUnit?: (google.protobuf.IStringValue|null);
+
+                    /** RecordedCardioExerciseSetDao resistance. */
+                    public resistance?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** RecordedCardioExerciseSetDao incline. */
+                    public incline?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** RecordedCardioExerciseSetDao weight. */
+                    public weight?: (LiftLog.Ui.Models.IWeight|null);
+
+                    /** RecordedCardioExerciseSetDao steps. */
+                    public steps?: (google.protobuf.IInt32Value|null);
+
+                    /** RecordedCardioExerciseSetDao _completionDateTime. */
+                    public _completionDateTime?: "completionDateTime";
+
+                    /** RecordedCardioExerciseSetDao _duration. */
+                    public _duration?: "duration";
+
+                    /** RecordedCardioExerciseSetDao _distanceValue. */
+                    public _distanceValue?: "distanceValue";
+
+                    /** RecordedCardioExerciseSetDao _distanceUnit. */
+                    public _distanceUnit?: "distanceUnit";
+
+                    /** RecordedCardioExerciseSetDao _resistance. */
+                    public _resistance?: "resistance";
+
+                    /** RecordedCardioExerciseSetDao _incline. */
+                    public _incline?: "incline";
+
+                    /** RecordedCardioExerciseSetDao _weight. */
+                    public _weight?: "weight";
+
+                    /** RecordedCardioExerciseSetDao _steps. */
+                    public _steps?: "steps";
+
+                    /**
+                     * Creates a new RecordedCardioExerciseSetDao instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RecordedCardioExerciseSetDao instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.SessionHistoryDao.IRecordedCardioExerciseSetDao): LiftLog.Ui.Models.SessionHistoryDao.RecordedCardioExerciseSetDao;
+
+                    /**
+                     * Encodes the specified RecordedCardioExerciseSetDao message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedCardioExerciseSetDao.verify|verify} messages.
+                     * @param message RecordedCardioExerciseSetDao message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.SessionHistoryDao.IRecordedCardioExerciseSetDao, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RecordedCardioExerciseSetDao message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedCardioExerciseSetDao.verify|verify} messages.
+                     * @param message RecordedCardioExerciseSetDao message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionHistoryDao.IRecordedCardioExerciseSetDao, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RecordedCardioExerciseSetDao message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RecordedCardioExerciseSetDao
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionHistoryDao.RecordedCardioExerciseSetDao;
+
+                    /**
+                     * Decodes a RecordedCardioExerciseSetDao message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RecordedCardioExerciseSetDao
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionHistoryDao.RecordedCardioExerciseSetDao;
+
+                    /**
+                     * Verifies a RecordedCardioExerciseSetDao message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RecordedCardioExerciseSetDao message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RecordedCardioExerciseSetDao
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionHistoryDao.RecordedCardioExerciseSetDao;
+
+                    /**
+                     * Creates a plain object from a RecordedCardioExerciseSetDao message. Also converts values to other types if specified.
+                     * @param message RecordedCardioExerciseSetDao
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.SessionHistoryDao.RecordedCardioExerciseSetDao, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RecordedCardioExerciseSetDao to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for RecordedCardioExerciseSetDao
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a RecordedKeiserExerciseSetDao. */
+                interface IRecordedKeiserExerciseSetDao {
+
+                    /** RecordedKeiserExerciseSetDao blueprint */
+                    blueprint?: (LiftLog.Ui.Models.SessionBlueprintDao.IKeiserExerciseSetBlueprintDao|null);
+
+                    /** RecordedKeiserExerciseSetDao completionDateTime */
+                    completionDateTime?: (LiftLog.Ui.Models.IDateTimeDao|null);
+
+                    /** RecordedKeiserExerciseSetDao duration */
+                    duration?: (google.protobuf.IDuration|null);
+                }
+
+                /** Represents a RecordedKeiserExerciseSetDao. */
+                class RecordedKeiserExerciseSetDao implements IRecordedKeiserExerciseSetDao {
+
+                    /**
+                     * Constructs a new RecordedKeiserExerciseSetDao.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.SessionHistoryDao.IRecordedKeiserExerciseSetDao);
+
+                    /** RecordedKeiserExerciseSetDao blueprint. */
+                    public blueprint?: (LiftLog.Ui.Models.SessionBlueprintDao.IKeiserExerciseSetBlueprintDao|null);
+
+                    /** RecordedKeiserExerciseSetDao completionDateTime. */
+                    public completionDateTime?: (LiftLog.Ui.Models.IDateTimeDao|null);
+
+                    /** RecordedKeiserExerciseSetDao duration. */
+                    public duration?: (google.protobuf.IDuration|null);
+
+                    /** RecordedKeiserExerciseSetDao _completionDateTime. */
+                    public _completionDateTime?: "completionDateTime";
+
+                    /** RecordedKeiserExerciseSetDao _duration. */
+                    public _duration?: "duration";
+
+                    /**
+                     * Creates a new RecordedKeiserExerciseSetDao instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RecordedKeiserExerciseSetDao instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.SessionHistoryDao.IRecordedKeiserExerciseSetDao): LiftLog.Ui.Models.SessionHistoryDao.RecordedKeiserExerciseSetDao;
+
+                    /**
+                     * Encodes the specified RecordedKeiserExerciseSetDao message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedKeiserExerciseSetDao.verify|verify} messages.
+                     * @param message RecordedKeiserExerciseSetDao message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.SessionHistoryDao.IRecordedKeiserExerciseSetDao, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RecordedKeiserExerciseSetDao message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedKeiserExerciseSetDao.verify|verify} messages.
+                     * @param message RecordedKeiserExerciseSetDao message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionHistoryDao.IRecordedKeiserExerciseSetDao, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RecordedKeiserExerciseSetDao message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RecordedKeiserExerciseSetDao
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionHistoryDao.RecordedKeiserExerciseSetDao;
+
+                    /**
+                     * Decodes a RecordedKeiserExerciseSetDao message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RecordedKeiserExerciseSetDao
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionHistoryDao.RecordedKeiserExerciseSetDao;
+
+                    /**
+                     * Verifies a RecordedKeiserExerciseSetDao message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RecordedKeiserExerciseSetDao message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RecordedKeiserExerciseSetDao
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionHistoryDao.RecordedKeiserExerciseSetDao;
+
+                    /**
+                     * Creates a plain object from a RecordedKeiserExerciseSetDao message. Also converts values to other types if specified.
+                     * @param message RecordedKeiserExerciseSetDao
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.SessionHistoryDao.RecordedKeiserExerciseSetDao, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RecordedKeiserExerciseSetDao to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for RecordedKeiserExerciseSetDao
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a PotentialSetDaoV2. */
+                interface IPotentialSetDaoV2 {
+
+                    /** PotentialSetDaoV2 recordedSet */
+                    recordedSet?: (LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2|null);
+
+                    /** PotentialSetDaoV2 weightValue */
+                    weightValue?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** PotentialSetDaoV2 weightUnit */
+                    weightUnit?: (LiftLog.Ui.Models.WeightUnit|null);
+                }
+
+                /** Represents a PotentialSetDaoV2. */
+                class PotentialSetDaoV2 implements IPotentialSetDaoV2 {
+
+                    /**
+                     * Constructs a new PotentialSetDaoV2.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2);
+
+                    /** PotentialSetDaoV2 recordedSet. */
+                    public recordedSet?: (LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2|null);
+
+                    /** PotentialSetDaoV2 weightValue. */
+                    public weightValue?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** PotentialSetDaoV2 weightUnit. */
+                    public weightUnit: LiftLog.Ui.Models.WeightUnit;
+
+                    /** PotentialSetDaoV2 _recordedSet. */
+                    public _recordedSet?: "recordedSet";
+
+                    /**
+                     * Creates a new PotentialSetDaoV2 instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns PotentialSetDaoV2 instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2): LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2;
+
+                    /**
+                     * Encodes the specified PotentialSetDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.verify|verify} messages.
+                     * @param message PotentialSetDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified PotentialSetDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2.verify|verify} messages.
+                     * @param message PotentialSetDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionHistoryDao.IPotentialSetDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a PotentialSetDaoV2 message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns PotentialSetDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2;
+
+                    /**
+                     * Decodes a PotentialSetDaoV2 message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns PotentialSetDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2;
+
+                    /**
+                     * Verifies a PotentialSetDaoV2 message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a PotentialSetDaoV2 message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns PotentialSetDaoV2
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2;
+
+                    /**
+                     * Creates a plain object from a PotentialSetDaoV2 message. Also converts values to other types if specified.
+                     * @param message PotentialSetDaoV2
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.SessionHistoryDao.PotentialSetDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this PotentialSetDaoV2 to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for PotentialSetDaoV2
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a RecordedSetDaoV2. */
+                interface IRecordedSetDaoV2 {
+
+                    /** RecordedSetDaoV2 repsCompleted */
+                    repsCompleted?: (number|null);
+
+                    /** RecordedSetDaoV2 completionTime */
+                    completionTime?: (LiftLog.Ui.Models.ITimeOnlyDao|null);
+
+                    /** RecordedSetDaoV2 completionDate */
+                    completionDate?: (LiftLog.Ui.Models.IDateOnlyDao|null);
+
+                    /** RecordedSetDaoV2 completionOffset */
+                    completionOffset?: (LiftLog.Ui.Models.IZoneOffsetDao|null);
+                }
+
+                /** Represents a RecordedSetDaoV2. */
+                class RecordedSetDaoV2 implements IRecordedSetDaoV2 {
+
+                    /**
+                     * Constructs a new RecordedSetDaoV2.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2);
+
+                    /** RecordedSetDaoV2 repsCompleted. */
+                    public repsCompleted: number;
+
+                    /** RecordedSetDaoV2 completionTime. */
+                    public completionTime?: (LiftLog.Ui.Models.ITimeOnlyDao|null);
+
+                    /** RecordedSetDaoV2 completionDate. */
+                    public completionDate?: (LiftLog.Ui.Models.IDateOnlyDao|null);
+
+                    /** RecordedSetDaoV2 completionOffset. */
+                    public completionOffset?: (LiftLog.Ui.Models.IZoneOffsetDao|null);
+
+                    /** RecordedSetDaoV2 _completionDate. */
+                    public _completionDate?: "completionDate";
+
+                    /** RecordedSetDaoV2 _completionOffset. */
+                    public _completionOffset?: "completionOffset";
+
+                    /**
+                     * Creates a new RecordedSetDaoV2 instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RecordedSetDaoV2 instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2): LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2;
+
+                    /**
+                     * Encodes the specified RecordedSetDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.verify|verify} messages.
+                     * @param message RecordedSetDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RecordedSetDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2.verify|verify} messages.
+                     * @param message RecordedSetDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionHistoryDao.IRecordedSetDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RecordedSetDaoV2 message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RecordedSetDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2;
+
+                    /**
+                     * Decodes a RecordedSetDaoV2 message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RecordedSetDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2;
+
+                    /**
+                     * Verifies a RecordedSetDaoV2 message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RecordedSetDaoV2 message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RecordedSetDaoV2
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2;
+
+                    /**
+                     * Creates a plain object from a RecordedSetDaoV2 message. Also converts values to other types if specified.
+                     * @param message RecordedSetDaoV2
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.SessionHistoryDao.RecordedSetDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RecordedSetDaoV2 to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for RecordedSetDaoV2
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+            }
+
+            /** Namespace SessionBlueprintDao. */
+            namespace SessionBlueprintDao {
+
+                /** Properties of a SessionBlueprintContainerDaoV2. */
+                interface ISessionBlueprintContainerDaoV2 {
+
+                    /** SessionBlueprintContainerDaoV2 sessionBlueprints */
+                    sessionBlueprints?: (LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2[]|null);
+                }
+
+                /** Represents a SessionBlueprintContainerDaoV2. */
+                class SessionBlueprintContainerDaoV2 implements ISessionBlueprintContainerDaoV2 {
+
+                    /**
+                     * Constructs a new SessionBlueprintContainerDaoV2.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintContainerDaoV2);
+
+                    /** SessionBlueprintContainerDaoV2 sessionBlueprints. */
+                    public sessionBlueprints: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2[];
+
+                    /**
+                     * Creates a new SessionBlueprintContainerDaoV2 instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns SessionBlueprintContainerDaoV2 instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintContainerDaoV2): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2;
+
+                    /**
+                     * Encodes the specified SessionBlueprintContainerDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2.verify|verify} messages.
+                     * @param message SessionBlueprintContainerDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintContainerDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified SessionBlueprintContainerDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2.verify|verify} messages.
+                     * @param message SessionBlueprintContainerDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintContainerDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a SessionBlueprintContainerDaoV2 message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns SessionBlueprintContainerDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2;
+
+                    /**
+                     * Decodes a SessionBlueprintContainerDaoV2 message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns SessionBlueprintContainerDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2;
+
+                    /**
+                     * Verifies a SessionBlueprintContainerDaoV2 message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a SessionBlueprintContainerDaoV2 message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns SessionBlueprintContainerDaoV2
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2;
+
+                    /**
+                     * Creates a plain object from a SessionBlueprintContainerDaoV2 message. Also converts values to other types if specified.
+                     * @param message SessionBlueprintContainerDaoV2
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintContainerDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this SessionBlueprintContainerDaoV2 to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for SessionBlueprintContainerDaoV2
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a SessionBlueprintDaoV2. */
+                interface ISessionBlueprintDaoV2 {
+
+                    /** SessionBlueprintDaoV2 name */
+                    name?: (string|null);
+
+                    /** SessionBlueprintDaoV2 exerciseBlueprints */
+                    exerciseBlueprints?: (LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2[]|null);
+
+                    /** SessionBlueprintDaoV2 notes */
+                    notes?: (string|null);
+                }
+
+                /** Represents a SessionBlueprintDaoV2. */
+                class SessionBlueprintDaoV2 implements ISessionBlueprintDaoV2 {
+
+                    /**
+                     * Constructs a new SessionBlueprintDaoV2.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2);
+
+                    /** SessionBlueprintDaoV2 name. */
+                    public name: string;
+
+                    /** SessionBlueprintDaoV2 exerciseBlueprints. */
+                    public exerciseBlueprints: LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2[];
+
+                    /** SessionBlueprintDaoV2 notes. */
+                    public notes: string;
+
+                    /**
+                     * Creates a new SessionBlueprintDaoV2 instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns SessionBlueprintDaoV2 instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2;
+
+                    /**
+                     * Encodes the specified SessionBlueprintDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.verify|verify} messages.
+                     * @param message SessionBlueprintDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified SessionBlueprintDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2.verify|verify} messages.
+                     * @param message SessionBlueprintDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a SessionBlueprintDaoV2 message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns SessionBlueprintDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2;
+
+                    /**
+                     * Decodes a SessionBlueprintDaoV2 message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns SessionBlueprintDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2;
+
+                    /**
+                     * Verifies a SessionBlueprintDaoV2 message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a SessionBlueprintDaoV2 message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns SessionBlueprintDaoV2
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2;
+
+                    /**
+                     * Creates a plain object from a SessionBlueprintDaoV2 message. Also converts values to other types if specified.
+                     * @param message SessionBlueprintDaoV2
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.SessionBlueprintDao.SessionBlueprintDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this SessionBlueprintDaoV2 to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for SessionBlueprintDaoV2
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** ExerciseType enum. */
+                enum ExerciseType {
+                    WEIGHTED = 0,
+                    CARDIO = 1,
+                    KEISER_TIMER = 2
+                }
+
+                /** Properties of a CardioTarget. */
+                interface ICardioTarget {
+
+                    /** CardioTarget type */
+                    type?: (string|null);
+
+                    /** CardioTarget timeValue */
+                    timeValue?: (google.protobuf.IDuration|null);
+
+                    /** CardioTarget distanceValue */
+                    distanceValue?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** CardioTarget distanceUnit */
+                    distanceUnit?: (string|null);
+                }
+
+                /** Represents a CardioTarget. */
+                class CardioTarget implements ICardioTarget {
+
+                    /**
+                     * Constructs a new CardioTarget.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget);
+
+                    /** CardioTarget type. */
+                    public type: string;
+
+                    /** CardioTarget timeValue. */
+                    public timeValue?: (google.protobuf.IDuration|null);
+
+                    /** CardioTarget distanceValue. */
+                    public distanceValue?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** CardioTarget distanceUnit. */
+                    public distanceUnit?: (string|null);
+
+                    /** CardioTarget _distanceUnit. */
+                    public _distanceUnit?: "distanceUnit";
+
+                    /**
+                     * Creates a new CardioTarget instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns CardioTarget instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget): LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget;
+
+                    /**
+                     * Encodes the specified CardioTarget message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget.verify|verify} messages.
+                     * @param message CardioTarget message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified CardioTarget message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget.verify|verify} messages.
+                     * @param message CardioTarget message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a CardioTarget message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns CardioTarget
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget;
+
+                    /**
+                     * Decodes a CardioTarget message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns CardioTarget
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget;
+
+                    /**
+                     * Verifies a CardioTarget message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a CardioTarget message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns CardioTarget
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget;
+
+                    /**
+                     * Creates a plain object from a CardioTarget message. Also converts values to other types if specified.
+                     * @param message CardioTarget
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.SessionBlueprintDao.CardioTarget, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this CardioTarget to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for CardioTarget
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an ExerciseBlueprintDaoV2. */
+                interface IExerciseBlueprintDaoV2 {
+
+                    /** ExerciseBlueprintDaoV2 name */
+                    name?: (string|null);
+
+                    /** ExerciseBlueprintDaoV2 notes */
+                    notes?: (string|null);
+
+                    /** ExerciseBlueprintDaoV2 link */
+                    link?: (string|null);
+
+                    /** ExerciseBlueprintDaoV2 type */
+                    type?: (LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType|null);
+
+                    /** ExerciseBlueprintDaoV2 sets */
+                    sets?: (number|null);
+
+                    /** ExerciseBlueprintDaoV2 repsPerSet */
+                    repsPerSet?: (number|null);
+
+                    /** ExerciseBlueprintDaoV2 weightIncreaseOnSuccess */
+                    weightIncreaseOnSuccess?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** ExerciseBlueprintDaoV2 restBetweenSets */
+                    restBetweenSets?: (LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2|null);
+
+                    /** ExerciseBlueprintDaoV2 supersetWithNext */
+                    supersetWithNext?: (boolean|null);
+
+                    /** ExerciseBlueprintDaoV2 deprecatedCardioTarget */
+                    deprecatedCardioTarget?: (LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget|null);
+
+                    /** ExerciseBlueprintDaoV2 deprecatedTrackDuration */
+                    deprecatedTrackDuration?: (boolean|null);
+
+                    /** ExerciseBlueprintDaoV2 deprecatedTrackDistance */
+                    deprecatedTrackDistance?: (boolean|null);
+
+                    /** ExerciseBlueprintDaoV2 deprecatedTrackResistance */
+                    deprecatedTrackResistance?: (boolean|null);
+
+                    /** ExerciseBlueprintDaoV2 deprecatedTrackIncline */
+                    deprecatedTrackIncline?: (boolean|null);
+
+                    /** ExerciseBlueprintDaoV2 cardioSets */
+                    cardioSets?: (LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao[]|null);
+
+                    /** ExerciseBlueprintDaoV2 keiserSets */
+                    keiserSets?: (LiftLog.Ui.Models.SessionBlueprintDao.IKeiserExerciseSetBlueprintDao[]|null);
+                }
+
+                /** Represents an ExerciseBlueprintDaoV2. */
+                class ExerciseBlueprintDaoV2 implements IExerciseBlueprintDaoV2 {
+
+                    /**
+                     * Constructs a new ExerciseBlueprintDaoV2.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2);
+
+                    /** ExerciseBlueprintDaoV2 name. */
+                    public name: string;
+
+                    /** ExerciseBlueprintDaoV2 notes. */
+                    public notes: string;
+
+                    /** ExerciseBlueprintDaoV2 link. */
+                    public link: string;
+
+                    /** ExerciseBlueprintDaoV2 type. */
+                    public type: LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType;
+
+                    /** ExerciseBlueprintDaoV2 sets. */
+                    public sets: number;
+
+                    /** ExerciseBlueprintDaoV2 repsPerSet. */
+                    public repsPerSet: number;
+
+                    /** ExerciseBlueprintDaoV2 weightIncreaseOnSuccess. */
+                    public weightIncreaseOnSuccess?: (LiftLog.Ui.Models.IDecimalValue|null);
+
+                    /** ExerciseBlueprintDaoV2 restBetweenSets. */
+                    public restBetweenSets?: (LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2|null);
+
+                    /** ExerciseBlueprintDaoV2 supersetWithNext. */
+                    public supersetWithNext: boolean;
+
+                    /** ExerciseBlueprintDaoV2 deprecatedCardioTarget. */
+                    public deprecatedCardioTarget?: (LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget|null);
+
+                    /** ExerciseBlueprintDaoV2 deprecatedTrackDuration. */
+                    public deprecatedTrackDuration: boolean;
+
+                    /** ExerciseBlueprintDaoV2 deprecatedTrackDistance. */
+                    public deprecatedTrackDistance: boolean;
+
+                    /** ExerciseBlueprintDaoV2 deprecatedTrackResistance. */
+                    public deprecatedTrackResistance: boolean;
+
+                    /** ExerciseBlueprintDaoV2 deprecatedTrackIncline. */
+                    public deprecatedTrackIncline: boolean;
+
+                    /** ExerciseBlueprintDaoV2 cardioSets. */
+                    public cardioSets: LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao[];
+
+                    /** ExerciseBlueprintDaoV2 keiserSets. */
+                    public keiserSets: LiftLog.Ui.Models.SessionBlueprintDao.IKeiserExerciseSetBlueprintDao[];
+
+                    /**
+                     * Creates a new ExerciseBlueprintDaoV2 instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ExerciseBlueprintDaoV2 instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2): LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2;
+
+                    /**
+                     * Encodes the specified ExerciseBlueprintDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.verify|verify} messages.
+                     * @param message ExerciseBlueprintDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ExerciseBlueprintDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2.verify|verify} messages.
+                     * @param message ExerciseBlueprintDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionBlueprintDao.IExerciseBlueprintDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an ExerciseBlueprintDaoV2 message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ExerciseBlueprintDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2;
+
+                    /**
+                     * Decodes an ExerciseBlueprintDaoV2 message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ExerciseBlueprintDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2;
+
+                    /**
+                     * Verifies an ExerciseBlueprintDaoV2 message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an ExerciseBlueprintDaoV2 message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ExerciseBlueprintDaoV2
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2;
+
+                    /**
+                     * Creates a plain object from an ExerciseBlueprintDaoV2 message. Also converts values to other types if specified.
+                     * @param message ExerciseBlueprintDaoV2
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ExerciseBlueprintDaoV2 to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ExerciseBlueprintDaoV2
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a CardioExerciseSetBlueprintDao. */
+                interface ICardioExerciseSetBlueprintDao {
+
+                    /** CardioExerciseSetBlueprintDao cardioTarget */
+                    cardioTarget?: (LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget|null);
+
+                    /** CardioExerciseSetBlueprintDao trackDuration */
+                    trackDuration?: (boolean|null);
+
+                    /** CardioExerciseSetBlueprintDao trackDistance */
+                    trackDistance?: (boolean|null);
+
+                    /** CardioExerciseSetBlueprintDao trackResistance */
+                    trackResistance?: (boolean|null);
+
+                    /** CardioExerciseSetBlueprintDao trackIncline */
+                    trackIncline?: (boolean|null);
+
+                    /** CardioExerciseSetBlueprintDao trackWeight */
+                    trackWeight?: (boolean|null);
+
+                    /** CardioExerciseSetBlueprintDao trackSteps */
+                    trackSteps?: (boolean|null);
+                }
+
+                /** Represents a CardioExerciseSetBlueprintDao. */
+                class CardioExerciseSetBlueprintDao implements ICardioExerciseSetBlueprintDao {
+
+                    /**
+                     * Constructs a new CardioExerciseSetBlueprintDao.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao);
+
+                    /** CardioExerciseSetBlueprintDao cardioTarget. */
+                    public cardioTarget?: (LiftLog.Ui.Models.SessionBlueprintDao.ICardioTarget|null);
+
+                    /** CardioExerciseSetBlueprintDao trackDuration. */
+                    public trackDuration: boolean;
+
+                    /** CardioExerciseSetBlueprintDao trackDistance. */
+                    public trackDistance: boolean;
+
+                    /** CardioExerciseSetBlueprintDao trackResistance. */
+                    public trackResistance: boolean;
+
+                    /** CardioExerciseSetBlueprintDao trackIncline. */
+                    public trackIncline: boolean;
+
+                    /** CardioExerciseSetBlueprintDao trackWeight. */
+                    public trackWeight: boolean;
+
+                    /** CardioExerciseSetBlueprintDao trackSteps. */
+                    public trackSteps: boolean;
+
+                    /**
+                     * Creates a new CardioExerciseSetBlueprintDao instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns CardioExerciseSetBlueprintDao instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao): LiftLog.Ui.Models.SessionBlueprintDao.CardioExerciseSetBlueprintDao;
+
+                    /**
+                     * Encodes the specified CardioExerciseSetBlueprintDao message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.CardioExerciseSetBlueprintDao.verify|verify} messages.
+                     * @param message CardioExerciseSetBlueprintDao message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified CardioExerciseSetBlueprintDao message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.CardioExerciseSetBlueprintDao.verify|verify} messages.
+                     * @param message CardioExerciseSetBlueprintDao message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a CardioExerciseSetBlueprintDao message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns CardioExerciseSetBlueprintDao
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionBlueprintDao.CardioExerciseSetBlueprintDao;
+
+                    /**
+                     * Decodes a CardioExerciseSetBlueprintDao message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns CardioExerciseSetBlueprintDao
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionBlueprintDao.CardioExerciseSetBlueprintDao;
+
+                    /**
+                     * Verifies a CardioExerciseSetBlueprintDao message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a CardioExerciseSetBlueprintDao message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns CardioExerciseSetBlueprintDao
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionBlueprintDao.CardioExerciseSetBlueprintDao;
+
+                    /**
+                     * Creates a plain object from a CardioExerciseSetBlueprintDao message. Also converts values to other types if specified.
+                     * @param message CardioExerciseSetBlueprintDao
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.SessionBlueprintDao.CardioExerciseSetBlueprintDao, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this CardioExerciseSetBlueprintDao to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for CardioExerciseSetBlueprintDao
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a RestDaoV2. */
+                interface IRestDaoV2 {
+
+                    /** RestDaoV2 minRest */
+                    minRest?: (google.protobuf.IDuration|null);
+
+                    /** RestDaoV2 maxRest */
+                    maxRest?: (google.protobuf.IDuration|null);
+
+                    /** RestDaoV2 failureRest */
+                    failureRest?: (google.protobuf.IDuration|null);
+                }
+
+                /** Represents a RestDaoV2. */
+                class RestDaoV2 implements IRestDaoV2 {
+
+                    /**
+                     * Constructs a new RestDaoV2.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2);
+
+                    /** RestDaoV2 minRest. */
+                    public minRest?: (google.protobuf.IDuration|null);
+
+                    /** RestDaoV2 maxRest. */
+                    public maxRest?: (google.protobuf.IDuration|null);
+
+                    /** RestDaoV2 failureRest. */
+                    public failureRest?: (google.protobuf.IDuration|null);
+
+                    /**
+                     * Creates a new RestDaoV2 instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RestDaoV2 instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2): LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2;
+
+                    /**
+                     * Encodes the specified RestDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2.verify|verify} messages.
+                     * @param message RestDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RestDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2.verify|verify} messages.
+                     * @param message RestDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionBlueprintDao.IRestDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RestDaoV2 message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RestDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2;
+
+                    /**
+                     * Decodes a RestDaoV2 message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RestDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2;
+
+                    /**
+                     * Verifies a RestDaoV2 message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RestDaoV2 message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RestDaoV2
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2;
+
+                    /**
+                     * Creates a plain object from a RestDaoV2 message. Also converts values to other types if specified.
+                     * @param message RestDaoV2
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.SessionBlueprintDao.RestDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RestDaoV2 to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for RestDaoV2
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a KeiserExerciseSetBlueprintDao. */
+                interface IKeiserExerciseSetBlueprintDao {
+
+                    /** KeiserExerciseSetBlueprintDao maxDuration */
+                    maxDuration?: (google.protobuf.IDuration|null);
+
+                    /** KeiserExerciseSetBlueprintDao prepDuration */
+                    prepDuration?: (google.protobuf.IDuration|null);
+
+                    /** KeiserExerciseSetBlueprintDao moveDuration */
+                    moveDuration?: (google.protobuf.IDuration|null);
+
+                    /** KeiserExerciseSetBlueprintDao pauseDuration */
+                    pauseDuration?: (google.protobuf.IDuration|null);
+                }
+
+                /** Represents a KeiserExerciseSetBlueprintDao. */
+                class KeiserExerciseSetBlueprintDao implements IKeiserExerciseSetBlueprintDao {
+
+                    /**
+                     * Constructs a new KeiserExerciseSetBlueprintDao.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.SessionBlueprintDao.IKeiserExerciseSetBlueprintDao);
+
+                    /** KeiserExerciseSetBlueprintDao maxDuration. */
+                    public maxDuration?: (google.protobuf.IDuration|null);
+
+                    /** KeiserExerciseSetBlueprintDao prepDuration. */
+                    public prepDuration?: (google.protobuf.IDuration|null);
+
+                    /** KeiserExerciseSetBlueprintDao moveDuration. */
+                    public moveDuration?: (google.protobuf.IDuration|null);
+
+                    /** KeiserExerciseSetBlueprintDao pauseDuration. */
+                    public pauseDuration?: (google.protobuf.IDuration|null);
+
+                    /**
+                     * Creates a new KeiserExerciseSetBlueprintDao instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns KeiserExerciseSetBlueprintDao instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.SessionBlueprintDao.IKeiserExerciseSetBlueprintDao): LiftLog.Ui.Models.SessionBlueprintDao.KeiserExerciseSetBlueprintDao;
+
+                    /**
+                     * Encodes the specified KeiserExerciseSetBlueprintDao message. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.KeiserExerciseSetBlueprintDao.verify|verify} messages.
+                     * @param message KeiserExerciseSetBlueprintDao message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.SessionBlueprintDao.IKeiserExerciseSetBlueprintDao, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified KeiserExerciseSetBlueprintDao message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.SessionBlueprintDao.KeiserExerciseSetBlueprintDao.verify|verify} messages.
+                     * @param message KeiserExerciseSetBlueprintDao message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.SessionBlueprintDao.IKeiserExerciseSetBlueprintDao, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a KeiserExerciseSetBlueprintDao message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns KeiserExerciseSetBlueprintDao
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.SessionBlueprintDao.KeiserExerciseSetBlueprintDao;
+
+                    /**
+                     * Decodes a KeiserExerciseSetBlueprintDao message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns KeiserExerciseSetBlueprintDao
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.SessionBlueprintDao.KeiserExerciseSetBlueprintDao;
+
+                    /**
+                     * Verifies a KeiserExerciseSetBlueprintDao message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a KeiserExerciseSetBlueprintDao message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns KeiserExerciseSetBlueprintDao
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.SessionBlueprintDao.KeiserExerciseSetBlueprintDao;
+
+                    /**
+                     * Creates a plain object from a KeiserExerciseSetBlueprintDao message. Also converts values to other types if specified.
+                     * @param message KeiserExerciseSetBlueprintDao
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.SessionBlueprintDao.KeiserExerciseSetBlueprintDao, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this KeiserExerciseSetBlueprintDao to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for KeiserExerciseSetBlueprintDao
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+            }
+
+            /** Namespace WorkoutMessage. */
+            namespace WorkoutMessage {
+
+                /** Properties of a WorkoutMessage. */
+                interface IWorkoutMessage {
+
+                    /** WorkoutMessage translations */
+                    translations?: (LiftLog.Ui.Models.WorkoutMessage.ITranslations|null);
+
+                    /** WorkoutMessage appConfiguration */
+                    appConfiguration?: (LiftLog.Ui.Models.WorkoutMessage.IAppConfiguration|null);
+
+                    /** WorkoutMessage workoutStartedEvent */
+                    workoutStartedEvent?: (LiftLog.Ui.Models.WorkoutMessage.IWorkoutStartedEvent|null);
+
+                    /** WorkoutMessage workoutUpdatedEvent */
+                    workoutUpdatedEvent?: (LiftLog.Ui.Models.WorkoutMessage.IWorkoutUpdatedEvent|null);
+
+                    /** WorkoutMessage workoutEndedEvent */
+                    workoutEndedEvent?: (LiftLog.Ui.Models.WorkoutMessage.IWorkoutEndedEvent|null);
+
+                    /** WorkoutMessage finishWorkoutCommand */
+                    finishWorkoutCommand?: (LiftLog.Ui.Models.WorkoutMessage.IFinishWorkoutCommand|null);
+                }
+
+                /** Represents a WorkoutMessage. */
+                class WorkoutMessage implements IWorkoutMessage {
+
+                    /**
+                     * Constructs a new WorkoutMessage.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.IWorkoutMessage);
+
+                    /** WorkoutMessage translations. */
+                    public translations?: (LiftLog.Ui.Models.WorkoutMessage.ITranslations|null);
+
+                    /** WorkoutMessage appConfiguration. */
+                    public appConfiguration?: (LiftLog.Ui.Models.WorkoutMessage.IAppConfiguration|null);
+
+                    /** WorkoutMessage workoutStartedEvent. */
+                    public workoutStartedEvent?: (LiftLog.Ui.Models.WorkoutMessage.IWorkoutStartedEvent|null);
+
+                    /** WorkoutMessage workoutUpdatedEvent. */
+                    public workoutUpdatedEvent?: (LiftLog.Ui.Models.WorkoutMessage.IWorkoutUpdatedEvent|null);
+
+                    /** WorkoutMessage workoutEndedEvent. */
+                    public workoutEndedEvent?: (LiftLog.Ui.Models.WorkoutMessage.IWorkoutEndedEvent|null);
+
+                    /** WorkoutMessage finishWorkoutCommand. */
+                    public finishWorkoutCommand?: (LiftLog.Ui.Models.WorkoutMessage.IFinishWorkoutCommand|null);
+
+                    /** WorkoutMessage payload. */
+                    public payload?: ("workoutStartedEvent"|"workoutUpdatedEvent"|"workoutEndedEvent"|"finishWorkoutCommand");
+
+                    /**
+                     * Creates a new WorkoutMessage instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns WorkoutMessage instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.IWorkoutMessage): LiftLog.Ui.Models.WorkoutMessage.WorkoutMessage;
+
+                    /**
+                     * Encodes the specified WorkoutMessage message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.WorkoutMessage.verify|verify} messages.
+                     * @param message WorkoutMessage message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.IWorkoutMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified WorkoutMessage message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.WorkoutMessage.verify|verify} messages.
+                     * @param message WorkoutMessage message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.IWorkoutMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a WorkoutMessage message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns WorkoutMessage
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.WorkoutMessage;
+
+                    /**
+                     * Decodes a WorkoutMessage message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns WorkoutMessage
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.WorkoutMessage;
+
+                    /**
+                     * Verifies a WorkoutMessage message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a WorkoutMessage message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns WorkoutMessage
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.WorkoutMessage;
+
+                    /**
+                     * Creates a plain object from a WorkoutMessage message. Also converts values to other types if specified.
+                     * @param message WorkoutMessage
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.WorkoutMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this WorkoutMessage to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for WorkoutMessage
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a WorkoutStartedEvent. */
+                interface IWorkoutStartedEvent {
+                }
+
+                /** Represents a WorkoutStartedEvent. */
+                class WorkoutStartedEvent implements IWorkoutStartedEvent {
+
+                    /**
+                     * Constructs a new WorkoutStartedEvent.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.IWorkoutStartedEvent);
+
+                    /**
+                     * Creates a new WorkoutStartedEvent instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns WorkoutStartedEvent instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.IWorkoutStartedEvent): LiftLog.Ui.Models.WorkoutMessage.WorkoutStartedEvent;
+
+                    /**
+                     * Encodes the specified WorkoutStartedEvent message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.WorkoutStartedEvent.verify|verify} messages.
+                     * @param message WorkoutStartedEvent message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.IWorkoutStartedEvent, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified WorkoutStartedEvent message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.WorkoutStartedEvent.verify|verify} messages.
+                     * @param message WorkoutStartedEvent message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.IWorkoutStartedEvent, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a WorkoutStartedEvent message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns WorkoutStartedEvent
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.WorkoutStartedEvent;
+
+                    /**
+                     * Decodes a WorkoutStartedEvent message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns WorkoutStartedEvent
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.WorkoutStartedEvent;
+
+                    /**
+                     * Verifies a WorkoutStartedEvent message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a WorkoutStartedEvent message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns WorkoutStartedEvent
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.WorkoutStartedEvent;
+
+                    /**
+                     * Creates a plain object from a WorkoutStartedEvent message. Also converts values to other types if specified.
+                     * @param message WorkoutStartedEvent
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.WorkoutStartedEvent, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this WorkoutStartedEvent to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for WorkoutStartedEvent
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a WorkoutUpdatedEvent. */
+                interface IWorkoutUpdatedEvent {
+
+                    /** WorkoutUpdatedEvent workout */
+                    workout?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null);
+
+                    /** WorkoutUpdatedEvent currentExerciseDetails */
+                    currentExerciseDetails?: (LiftLog.Ui.Models.WorkoutMessage.ICurrentExerciseDetails|null);
+
+                    /** WorkoutUpdatedEvent restTimerInfo */
+                    restTimerInfo?: (LiftLog.Ui.Models.WorkoutMessage.IRestTimerInfo|null);
+
+                    /** WorkoutUpdatedEvent cardioTimerInfo */
+                    cardioTimerInfo?: (LiftLog.Ui.Models.WorkoutMessage.ICardioTimerInfo|null);
+
+                    /** WorkoutUpdatedEvent keiserTimerInfo */
+                    keiserTimerInfo?: (LiftLog.Ui.Models.WorkoutMessage.IKeiserTimerInfo|null);
+
+                    /** WorkoutUpdatedEvent totalWeightLifted */
+                    totalWeightLifted?: (LiftLog.Ui.Models.IWeight|null);
+
+                    /** WorkoutUpdatedEvent workoutDuration */
+                    workoutDuration?: (google.protobuf.IDuration|null);
+                }
+
+                /** Represents a WorkoutUpdatedEvent. */
+                class WorkoutUpdatedEvent implements IWorkoutUpdatedEvent {
+
+                    /**
+                     * Constructs a new WorkoutUpdatedEvent.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.IWorkoutUpdatedEvent);
+
+                    /** WorkoutUpdatedEvent workout. */
+                    public workout?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null);
+
+                    /** WorkoutUpdatedEvent currentExerciseDetails. */
+                    public currentExerciseDetails?: (LiftLog.Ui.Models.WorkoutMessage.ICurrentExerciseDetails|null);
+
+                    /** WorkoutUpdatedEvent restTimerInfo. */
+                    public restTimerInfo?: (LiftLog.Ui.Models.WorkoutMessage.IRestTimerInfo|null);
+
+                    /** WorkoutUpdatedEvent cardioTimerInfo. */
+                    public cardioTimerInfo?: (LiftLog.Ui.Models.WorkoutMessage.ICardioTimerInfo|null);
+
+                    /** WorkoutUpdatedEvent keiserTimerInfo. */
+                    public keiserTimerInfo?: (LiftLog.Ui.Models.WorkoutMessage.IKeiserTimerInfo|null);
+
+                    /** WorkoutUpdatedEvent totalWeightLifted. */
+                    public totalWeightLifted?: (LiftLog.Ui.Models.IWeight|null);
+
+                    /** WorkoutUpdatedEvent workoutDuration. */
+                    public workoutDuration?: (google.protobuf.IDuration|null);
+
+                    /** WorkoutUpdatedEvent _currentExerciseDetails. */
+                    public _currentExerciseDetails?: "currentExerciseDetails";
+
+                    /** WorkoutUpdatedEvent _restTimerInfo. */
+                    public _restTimerInfo?: "restTimerInfo";
+
+                    /** WorkoutUpdatedEvent _cardioTimerInfo. */
+                    public _cardioTimerInfo?: "cardioTimerInfo";
+
+                    /** WorkoutUpdatedEvent _keiserTimerInfo. */
+                    public _keiserTimerInfo?: "keiserTimerInfo";
+
+                    /**
+                     * Creates a new WorkoutUpdatedEvent instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns WorkoutUpdatedEvent instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.IWorkoutUpdatedEvent): LiftLog.Ui.Models.WorkoutMessage.WorkoutUpdatedEvent;
+
+                    /**
+                     * Encodes the specified WorkoutUpdatedEvent message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.WorkoutUpdatedEvent.verify|verify} messages.
+                     * @param message WorkoutUpdatedEvent message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.IWorkoutUpdatedEvent, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified WorkoutUpdatedEvent message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.WorkoutUpdatedEvent.verify|verify} messages.
+                     * @param message WorkoutUpdatedEvent message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.IWorkoutUpdatedEvent, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a WorkoutUpdatedEvent message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns WorkoutUpdatedEvent
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.WorkoutUpdatedEvent;
+
+                    /**
+                     * Decodes a WorkoutUpdatedEvent message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns WorkoutUpdatedEvent
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.WorkoutUpdatedEvent;
+
+                    /**
+                     * Verifies a WorkoutUpdatedEvent message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a WorkoutUpdatedEvent message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns WorkoutUpdatedEvent
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.WorkoutUpdatedEvent;
+
+                    /**
+                     * Creates a plain object from a WorkoutUpdatedEvent message. Also converts values to other types if specified.
+                     * @param message WorkoutUpdatedEvent
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.WorkoutUpdatedEvent, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this WorkoutUpdatedEvent to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for WorkoutUpdatedEvent
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a WorkoutEndedEvent. */
+                interface IWorkoutEndedEvent {
+                }
+
+                /** Represents a WorkoutEndedEvent. */
+                class WorkoutEndedEvent implements IWorkoutEndedEvent {
+
+                    /**
+                     * Constructs a new WorkoutEndedEvent.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.IWorkoutEndedEvent);
+
+                    /**
+                     * Creates a new WorkoutEndedEvent instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns WorkoutEndedEvent instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.IWorkoutEndedEvent): LiftLog.Ui.Models.WorkoutMessage.WorkoutEndedEvent;
+
+                    /**
+                     * Encodes the specified WorkoutEndedEvent message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.WorkoutEndedEvent.verify|verify} messages.
+                     * @param message WorkoutEndedEvent message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.IWorkoutEndedEvent, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified WorkoutEndedEvent message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.WorkoutEndedEvent.verify|verify} messages.
+                     * @param message WorkoutEndedEvent message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.IWorkoutEndedEvent, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a WorkoutEndedEvent message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns WorkoutEndedEvent
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.WorkoutEndedEvent;
+
+                    /**
+                     * Decodes a WorkoutEndedEvent message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns WorkoutEndedEvent
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.WorkoutEndedEvent;
+
+                    /**
+                     * Verifies a WorkoutEndedEvent message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a WorkoutEndedEvent message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns WorkoutEndedEvent
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.WorkoutEndedEvent;
+
+                    /**
+                     * Creates a plain object from a WorkoutEndedEvent message. Also converts values to other types if specified.
+                     * @param message WorkoutEndedEvent
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.WorkoutEndedEvent, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this WorkoutEndedEvent to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for WorkoutEndedEvent
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a FinishWorkoutCommand. */
+                interface IFinishWorkoutCommand {
+                }
+
+                /** Represents a FinishWorkoutCommand. */
+                class FinishWorkoutCommand implements IFinishWorkoutCommand {
+
+                    /**
+                     * Constructs a new FinishWorkoutCommand.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.IFinishWorkoutCommand);
+
+                    /**
+                     * Creates a new FinishWorkoutCommand instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns FinishWorkoutCommand instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.IFinishWorkoutCommand): LiftLog.Ui.Models.WorkoutMessage.FinishWorkoutCommand;
+
+                    /**
+                     * Encodes the specified FinishWorkoutCommand message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.FinishWorkoutCommand.verify|verify} messages.
+                     * @param message FinishWorkoutCommand message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.IFinishWorkoutCommand, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified FinishWorkoutCommand message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.FinishWorkoutCommand.verify|verify} messages.
+                     * @param message FinishWorkoutCommand message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.IFinishWorkoutCommand, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a FinishWorkoutCommand message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns FinishWorkoutCommand
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.FinishWorkoutCommand;
+
+                    /**
+                     * Decodes a FinishWorkoutCommand message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns FinishWorkoutCommand
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.FinishWorkoutCommand;
+
+                    /**
+                     * Verifies a FinishWorkoutCommand message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a FinishWorkoutCommand message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns FinishWorkoutCommand
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.FinishWorkoutCommand;
+
+                    /**
+                     * Creates a plain object from a FinishWorkoutCommand message. Also converts values to other types if specified.
+                     * @param message FinishWorkoutCommand
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.FinishWorkoutCommand, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this FinishWorkoutCommand to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for FinishWorkoutCommand
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a CurrentExerciseDetails. */
+                interface ICurrentExerciseDetails {
+
+                    /** CurrentExerciseDetails exercise */
+                    exercise?: (LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2|null);
+
+                    /** CurrentExerciseDetails setIndex */
+                    setIndex?: (number|null);
+                }
+
+                /** Represents a CurrentExerciseDetails. */
+                class CurrentExerciseDetails implements ICurrentExerciseDetails {
+
+                    /**
+                     * Constructs a new CurrentExerciseDetails.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.ICurrentExerciseDetails);
+
+                    /** CurrentExerciseDetails exercise. */
+                    public exercise?: (LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2|null);
+
+                    /** CurrentExerciseDetails setIndex. */
+                    public setIndex: number;
+
+                    /**
+                     * Creates a new CurrentExerciseDetails instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns CurrentExerciseDetails instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.ICurrentExerciseDetails): LiftLog.Ui.Models.WorkoutMessage.CurrentExerciseDetails;
+
+                    /**
+                     * Encodes the specified CurrentExerciseDetails message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.CurrentExerciseDetails.verify|verify} messages.
+                     * @param message CurrentExerciseDetails message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.ICurrentExerciseDetails, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified CurrentExerciseDetails message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.CurrentExerciseDetails.verify|verify} messages.
+                     * @param message CurrentExerciseDetails message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.ICurrentExerciseDetails, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a CurrentExerciseDetails message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns CurrentExerciseDetails
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.CurrentExerciseDetails;
+
+                    /**
+                     * Decodes a CurrentExerciseDetails message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns CurrentExerciseDetails
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.CurrentExerciseDetails;
+
+                    /**
+                     * Verifies a CurrentExerciseDetails message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a CurrentExerciseDetails message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns CurrentExerciseDetails
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.CurrentExerciseDetails;
+
+                    /**
+                     * Creates a plain object from a CurrentExerciseDetails message. Also converts values to other types if specified.
+                     * @param message CurrentExerciseDetails
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.CurrentExerciseDetails, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this CurrentExerciseDetails to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for CurrentExerciseDetails
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a RestTimerInfo. */
+                interface IRestTimerInfo {
+
+                    /** RestTimerInfo startedAt */
+                    startedAt?: (google.protobuf.ITimestamp|null);
+
+                    /** RestTimerInfo partiallyEndAt */
+                    partiallyEndAt?: (google.protobuf.ITimestamp|null);
+
+                    /** RestTimerInfo endAt */
+                    endAt?: (google.protobuf.ITimestamp|null);
+                }
+
+                /** Represents a RestTimerInfo. */
+                class RestTimerInfo implements IRestTimerInfo {
+
+                    /**
+                     * Constructs a new RestTimerInfo.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.IRestTimerInfo);
+
+                    /** RestTimerInfo startedAt. */
+                    public startedAt?: (google.protobuf.ITimestamp|null);
+
+                    /** RestTimerInfo partiallyEndAt. */
+                    public partiallyEndAt?: (google.protobuf.ITimestamp|null);
+
+                    /** RestTimerInfo endAt. */
+                    public endAt?: (google.protobuf.ITimestamp|null);
+
+                    /**
+                     * Creates a new RestTimerInfo instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RestTimerInfo instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.IRestTimerInfo): LiftLog.Ui.Models.WorkoutMessage.RestTimerInfo;
+
+                    /**
+                     * Encodes the specified RestTimerInfo message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.RestTimerInfo.verify|verify} messages.
+                     * @param message RestTimerInfo message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.IRestTimerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RestTimerInfo message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.RestTimerInfo.verify|verify} messages.
+                     * @param message RestTimerInfo message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.IRestTimerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RestTimerInfo message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RestTimerInfo
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.RestTimerInfo;
+
+                    /**
+                     * Decodes a RestTimerInfo message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RestTimerInfo
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.RestTimerInfo;
+
+                    /**
+                     * Verifies a RestTimerInfo message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RestTimerInfo message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RestTimerInfo
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.RestTimerInfo;
+
+                    /**
+                     * Creates a plain object from a RestTimerInfo message. Also converts values to other types if specified.
+                     * @param message RestTimerInfo
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.RestTimerInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RestTimerInfo to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for RestTimerInfo
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a CardioTimerInfo. */
+                interface ICardioTimerInfo {
+
+                    /** CardioTimerInfo currentDuration */
+                    currentDuration?: (google.protobuf.IDuration|null);
+
+                    /** CardioTimerInfo currentBlockStartTime */
+                    currentBlockStartTime?: (google.protobuf.ITimestamp|null);
+
+                    /** CardioTimerInfo exerciseIndex */
+                    exerciseIndex?: (number|null);
+
+                    /** CardioTimerInfo setIndex */
+                    setIndex?: (number|null);
+                }
+
+                /** Represents a CardioTimerInfo. */
+                class CardioTimerInfo implements ICardioTimerInfo {
+
+                    /**
+                     * Constructs a new CardioTimerInfo.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.ICardioTimerInfo);
+
+                    /** CardioTimerInfo currentDuration. */
+                    public currentDuration?: (google.protobuf.IDuration|null);
+
+                    /** CardioTimerInfo currentBlockStartTime. */
+                    public currentBlockStartTime?: (google.protobuf.ITimestamp|null);
+
+                    /** CardioTimerInfo exerciseIndex. */
+                    public exerciseIndex: number;
+
+                    /** CardioTimerInfo setIndex. */
+                    public setIndex: number;
+
+                    /** CardioTimerInfo _currentBlockStartTime. */
+                    public _currentBlockStartTime?: "currentBlockStartTime";
+
+                    /**
+                     * Creates a new CardioTimerInfo instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns CardioTimerInfo instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.ICardioTimerInfo): LiftLog.Ui.Models.WorkoutMessage.CardioTimerInfo;
+
+                    /**
+                     * Encodes the specified CardioTimerInfo message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.CardioTimerInfo.verify|verify} messages.
+                     * @param message CardioTimerInfo message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.ICardioTimerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified CardioTimerInfo message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.CardioTimerInfo.verify|verify} messages.
+                     * @param message CardioTimerInfo message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.ICardioTimerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a CardioTimerInfo message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns CardioTimerInfo
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.CardioTimerInfo;
+
+                    /**
+                     * Decodes a CardioTimerInfo message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns CardioTimerInfo
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.CardioTimerInfo;
+
+                    /**
+                     * Verifies a CardioTimerInfo message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a CardioTimerInfo message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns CardioTimerInfo
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.CardioTimerInfo;
+
+                    /**
+                     * Creates a plain object from a CardioTimerInfo message. Also converts values to other types if specified.
+                     * @param message CardioTimerInfo
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.CardioTimerInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this CardioTimerInfo to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for CardioTimerInfo
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a KeiserTimerInfo. */
+                interface IKeiserTimerInfo {
+
+                    /** KeiserTimerInfo currentDuration */
+                    currentDuration?: (google.protobuf.IDuration|null);
+
+                    /** KeiserTimerInfo currentBlockStartTime */
+                    currentBlockStartTime?: (google.protobuf.ITimestamp|null);
+
+                    /** KeiserTimerInfo prepDuration */
+                    prepDuration?: (google.protobuf.IDuration|null);
+
+                    /** KeiserTimerInfo maxDuration */
+                    maxDuration?: (google.protobuf.IDuration|null);
+
+                    /** KeiserTimerInfo moveDuration */
+                    moveDuration?: (google.protobuf.IDuration|null);
+
+                    /** KeiserTimerInfo pauseDuration */
+                    pauseDuration?: (google.protobuf.IDuration|null);
+
+                    /** KeiserTimerInfo exerciseIndex */
+                    exerciseIndex?: (number|null);
+
+                    /** KeiserTimerInfo setIndex */
+                    setIndex?: (number|null);
+                }
+
+                /** Represents a KeiserTimerInfo. */
+                class KeiserTimerInfo implements IKeiserTimerInfo {
+
+                    /**
+                     * Constructs a new KeiserTimerInfo.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.IKeiserTimerInfo);
+
+                    /** KeiserTimerInfo currentDuration. */
+                    public currentDuration?: (google.protobuf.IDuration|null);
+
+                    /** KeiserTimerInfo currentBlockStartTime. */
+                    public currentBlockStartTime?: (google.protobuf.ITimestamp|null);
+
+                    /** KeiserTimerInfo prepDuration. */
+                    public prepDuration?: (google.protobuf.IDuration|null);
+
+                    /** KeiserTimerInfo maxDuration. */
+                    public maxDuration?: (google.protobuf.IDuration|null);
+
+                    /** KeiserTimerInfo moveDuration. */
+                    public moveDuration?: (google.protobuf.IDuration|null);
+
+                    /** KeiserTimerInfo pauseDuration. */
+                    public pauseDuration?: (google.protobuf.IDuration|null);
+
+                    /** KeiserTimerInfo exerciseIndex. */
+                    public exerciseIndex: number;
+
+                    /** KeiserTimerInfo setIndex. */
+                    public setIndex: number;
+
+                    /** KeiserTimerInfo _currentBlockStartTime. */
+                    public _currentBlockStartTime?: "currentBlockStartTime";
+
+                    /**
+                     * Creates a new KeiserTimerInfo instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns KeiserTimerInfo instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.IKeiserTimerInfo): LiftLog.Ui.Models.WorkoutMessage.KeiserTimerInfo;
+
+                    /**
+                     * Encodes the specified KeiserTimerInfo message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.KeiserTimerInfo.verify|verify} messages.
+                     * @param message KeiserTimerInfo message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.IKeiserTimerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified KeiserTimerInfo message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.KeiserTimerInfo.verify|verify} messages.
+                     * @param message KeiserTimerInfo message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.IKeiserTimerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a KeiserTimerInfo message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns KeiserTimerInfo
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.KeiserTimerInfo;
+
+                    /**
+                     * Decodes a KeiserTimerInfo message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns KeiserTimerInfo
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.KeiserTimerInfo;
+
+                    /**
+                     * Verifies a KeiserTimerInfo message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a KeiserTimerInfo message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns KeiserTimerInfo
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.KeiserTimerInfo;
+
+                    /**
+                     * Creates a plain object from a KeiserTimerInfo message. Also converts values to other types if specified.
+                     * @param message KeiserTimerInfo
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.KeiserTimerInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this KeiserTimerInfo to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for KeiserTimerInfo
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a Translations. */
+                interface ITranslations {
+
+                    /** Translations workoutPersistentNotification_RestBreak_Message */
+                    workoutPersistentNotification_RestBreak_Message?: (string|null);
+
+                    /** Translations workoutPersistentNotification_StartSoon_Message */
+                    workoutPersistentNotification_StartSoon_Message?: (string|null);
+
+                    /** Translations workoutPersistentNotification_StartNow_Message */
+                    workoutPersistentNotification_StartNow_Message?: (string|null);
+
+                    /** Translations workoutPersistentNotification_MinRestOver_Message */
+                    workoutPersistentNotification_MinRestOver_Message?: (string|null);
+
+                    /** Translations workoutPersistentNotification_MaxRestOver_Message */
+                    workoutPersistentNotification_MaxRestOver_Message?: (string|null);
+
+                    /** Translations workoutPersistentNotification_CurrentExercise_Message */
+                    workoutPersistentNotification_CurrentExercise_Message?: (string|null);
+
+                    /** Translations workoutPersistentNotification_Finished_Message */
+                    workoutPersistentNotification_Finished_Message?: (string|null);
+
+                    /** Translations workoutPersistentNotification_InProgress_Message */
+                    workoutPersistentNotification_InProgress_Message?: (string|null);
+
+                    /** Translations workoutPersistentNotification_FinishWorkout_Action */
+                    workoutPersistentNotification_FinishWorkout_Action?: (string|null);
+                }
+
+                /** Represents a Translations. */
+                class Translations implements ITranslations {
+
+                    /**
+                     * Constructs a new Translations.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.ITranslations);
+
+                    /** Translations workoutPersistentNotification_RestBreak_Message. */
+                    public workoutPersistentNotification_RestBreak_Message: string;
+
+                    /** Translations workoutPersistentNotification_StartSoon_Message. */
+                    public workoutPersistentNotification_StartSoon_Message: string;
+
+                    /** Translations workoutPersistentNotification_StartNow_Message. */
+                    public workoutPersistentNotification_StartNow_Message: string;
+
+                    /** Translations workoutPersistentNotification_MinRestOver_Message. */
+                    public workoutPersistentNotification_MinRestOver_Message: string;
+
+                    /** Translations workoutPersistentNotification_MaxRestOver_Message. */
+                    public workoutPersistentNotification_MaxRestOver_Message: string;
+
+                    /** Translations workoutPersistentNotification_CurrentExercise_Message. */
+                    public workoutPersistentNotification_CurrentExercise_Message: string;
+
+                    /** Translations workoutPersistentNotification_Finished_Message. */
+                    public workoutPersistentNotification_Finished_Message: string;
+
+                    /** Translations workoutPersistentNotification_InProgress_Message. */
+                    public workoutPersistentNotification_InProgress_Message: string;
+
+                    /** Translations workoutPersistentNotification_FinishWorkout_Action. */
+                    public workoutPersistentNotification_FinishWorkout_Action: string;
+
+                    /**
+                     * Creates a new Translations instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Translations instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.ITranslations): LiftLog.Ui.Models.WorkoutMessage.Translations;
+
+                    /**
+                     * Encodes the specified Translations message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.Translations.verify|verify} messages.
+                     * @param message Translations message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.ITranslations, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Translations message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.Translations.verify|verify} messages.
+                     * @param message Translations message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.ITranslations, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Translations message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Translations
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.Translations;
+
+                    /**
+                     * Decodes a Translations message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Translations
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.Translations;
+
+                    /**
+                     * Verifies a Translations message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Translations message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Translations
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.Translations;
+
+                    /**
+                     * Creates a plain object from a Translations message. Also converts values to other types if specified.
+                     * @param message Translations
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.Translations, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Translations to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for Translations
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of an AppConfiguration. */
+                interface IAppConfiguration {
+
+                    /** AppConfiguration notificationsEnabled */
+                    notificationsEnabled?: (boolean|null);
+                }
+
+                /** Represents an AppConfiguration. */
+                class AppConfiguration implements IAppConfiguration {
+
+                    /**
+                     * Constructs a new AppConfiguration.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.IAppConfiguration);
+
+                    /** AppConfiguration notificationsEnabled. */
+                    public notificationsEnabled: boolean;
+
+                    /**
+                     * Creates a new AppConfiguration instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AppConfiguration instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.IAppConfiguration): LiftLog.Ui.Models.WorkoutMessage.AppConfiguration;
+
+                    /**
+                     * Encodes the specified AppConfiguration message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.AppConfiguration.verify|verify} messages.
+                     * @param message AppConfiguration message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.IAppConfiguration, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AppConfiguration message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.AppConfiguration.verify|verify} messages.
+                     * @param message AppConfiguration message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.IAppConfiguration, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AppConfiguration message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AppConfiguration
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.AppConfiguration;
+
+                    /**
+                     * Decodes an AppConfiguration message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AppConfiguration
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.AppConfiguration;
+
+                    /**
+                     * Verifies an AppConfiguration message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AppConfiguration message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AppConfiguration
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.AppConfiguration;
+
+                    /**
+                     * Creates a plain object from an AppConfiguration message. Also converts values to other types if specified.
+                     * @param message AppConfiguration
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.AppConfiguration, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AppConfiguration to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for AppConfiguration
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+            }
+
+            /** Namespace ExportedDataDao. */
+            namespace ExportedDataDao {
+
+                /** Properties of an ExportedDataDaoV2. */
+                interface IExportedDataDaoV2 {
+
+                    /** ExportedDataDaoV2 sessions */
+                    sessions?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2[]|null);
+
+                    /** ExportedDataDaoV2 program */
+                    program?: (LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2[]|null);
+
+                    /** ExportedDataDaoV2 savedPrograms */
+                    savedPrograms?: ({ [k: string]: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1 }|null);
+
+                    /** ExportedDataDaoV2 activeProgramId */
+                    activeProgramId?: (google.protobuf.IStringValue|null);
+
+                    /** ExportedDataDaoV2 feedState */
+                    feedState?: (LiftLog.Ui.Models.IFeedStateDaoV1|null);
+                }
+
+                /** Represents an ExportedDataDaoV2. */
+                class ExportedDataDaoV2 implements IExportedDataDaoV2 {
+
+                    /**
+                     * Constructs a new ExportedDataDaoV2.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.ExportedDataDao.IExportedDataDaoV2);
+
+                    /** ExportedDataDaoV2 sessions. */
+                    public sessions: LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2[];
+
+                    /** ExportedDataDaoV2 program. */
+                    public program: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2[];
+
+                    /** ExportedDataDaoV2 savedPrograms. */
+                    public savedPrograms: { [k: string]: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1 };
+
+                    /** ExportedDataDaoV2 activeProgramId. */
+                    public activeProgramId?: (google.protobuf.IStringValue|null);
+
+                    /** ExportedDataDaoV2 feedState. */
+                    public feedState?: (LiftLog.Ui.Models.IFeedStateDaoV1|null);
+
+                    /**
+                     * Creates a new ExportedDataDaoV2 instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ExportedDataDaoV2 instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.ExportedDataDao.IExportedDataDaoV2): LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2;
+
+                    /**
+                     * Encodes the specified ExportedDataDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.verify|verify} messages.
+                     * @param message ExportedDataDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.ExportedDataDao.IExportedDataDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ExportedDataDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.verify|verify} messages.
+                     * @param message ExportedDataDaoV2 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.ExportedDataDao.IExportedDataDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an ExportedDataDaoV2 message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ExportedDataDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2;
+
+                    /**
+                     * Decodes an ExportedDataDaoV2 message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ExportedDataDaoV2
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2;
+
+                    /**
+                     * Verifies an ExportedDataDaoV2 message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an ExportedDataDaoV2 message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ExportedDataDaoV2
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2;
+
+                    /**
+                     * Creates a plain object from an ExportedDataDaoV2 message. Also converts values to other types if specified.
+                     * @param message ExportedDataDaoV2
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ExportedDataDaoV2 to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ExportedDataDaoV2
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+            }
+
+            /** Properties of a FeedIdentityDaoV1. */
+            interface IFeedIdentityDaoV1 {
+
+                /** FeedIdentityDaoV1 id */
+                id?: (LiftLog.Ui.Models.IUuidDao|null);
+
+                /** FeedIdentityDaoV1 lookup */
+                lookup?: (google.protobuf.IStringValue|null);
+
+                /** FeedIdentityDaoV1 aesKey */
+                aesKey?: (Uint8Array|null);
+
+                /** FeedIdentityDaoV1 publicKey */
+                publicKey?: (Uint8Array|null);
+
+                /** FeedIdentityDaoV1 privateKey */
+                privateKey?: (Uint8Array|null);
+
+                /** FeedIdentityDaoV1 password */
+                password?: (string|null);
+
+                /** FeedIdentityDaoV1 name */
+                name?: (google.protobuf.IStringValue|null);
+
+                /** FeedIdentityDaoV1 profilePicture */
+                profilePicture?: (Uint8Array|null);
+
+                /** FeedIdentityDaoV1 publishBodyweight */
+                publishBodyweight?: (boolean|null);
+
+                /** FeedIdentityDaoV1 publishPlan */
+                publishPlan?: (boolean|null);
+
+                /** FeedIdentityDaoV1 publishWorkouts */
+                publishWorkouts?: (boolean|null);
+            }
+
+            /** Represents a FeedIdentityDaoV1. */
+            class FeedIdentityDaoV1 implements IFeedIdentityDaoV1 {
+
+                /**
+                 * Constructs a new FeedIdentityDaoV1.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: LiftLog.Ui.Models.IFeedIdentityDaoV1);
+
+                /** FeedIdentityDaoV1 id. */
+                public id?: (LiftLog.Ui.Models.IUuidDao|null);
+
+                /** FeedIdentityDaoV1 lookup. */
+                public lookup?: (google.protobuf.IStringValue|null);
+
+                /** FeedIdentityDaoV1 aesKey. */
+                public aesKey: Uint8Array;
+
+                /** FeedIdentityDaoV1 publicKey. */
+                public publicKey: Uint8Array;
+
+                /** FeedIdentityDaoV1 privateKey. */
+                public privateKey: Uint8Array;
+
+                /** FeedIdentityDaoV1 password. */
+                public password: string;
+
+                /** FeedIdentityDaoV1 name. */
+                public name?: (google.protobuf.IStringValue|null);
+
+                /** FeedIdentityDaoV1 profilePicture. */
+                public profilePicture?: (Uint8Array|null);
+
+                /** FeedIdentityDaoV1 publishBodyweight. */
+                public publishBodyweight: boolean;
+
+                /** FeedIdentityDaoV1 publishPlan. */
+                public publishPlan: boolean;
+
+                /** FeedIdentityDaoV1 publishWorkouts. */
+                public publishWorkouts: boolean;
+
+                /** FeedIdentityDaoV1 _name. */
+                public _name?: "name";
+
+                /** FeedIdentityDaoV1 _profilePicture. */
+                public _profilePicture?: "profilePicture";
+
+                /**
+                 * Creates a new FeedIdentityDaoV1 instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns FeedIdentityDaoV1 instance
+                 */
+                public static create(properties?: LiftLog.Ui.Models.IFeedIdentityDaoV1): LiftLog.Ui.Models.FeedIdentityDaoV1;
+
+                /**
+                 * Encodes the specified FeedIdentityDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.FeedIdentityDaoV1.verify|verify} messages.
+                 * @param message FeedIdentityDaoV1 message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: LiftLog.Ui.Models.IFeedIdentityDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified FeedIdentityDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.FeedIdentityDaoV1.verify|verify} messages.
+                 * @param message FeedIdentityDaoV1 message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: LiftLog.Ui.Models.IFeedIdentityDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a FeedIdentityDaoV1 message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns FeedIdentityDaoV1
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.FeedIdentityDaoV1;
+
+                /**
+                 * Decodes a FeedIdentityDaoV1 message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns FeedIdentityDaoV1
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.FeedIdentityDaoV1;
+
+                /**
+                 * Verifies a FeedIdentityDaoV1 message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a FeedIdentityDaoV1 message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns FeedIdentityDaoV1
+                 */
+                public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.FeedIdentityDaoV1;
+
+                /**
+                 * Creates a plain object from a FeedIdentityDaoV1 message. Also converts values to other types if specified.
+                 * @param message FeedIdentityDaoV1
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: LiftLog.Ui.Models.FeedIdentityDaoV1, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this FeedIdentityDaoV1 to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for FeedIdentityDaoV1
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            /** Properties of a FeedUserDaoV1. */
+            interface IFeedUserDaoV1 {
+
+                /** FeedUserDaoV1 id */
+                id?: (LiftLog.Ui.Models.IUuidDao|null);
+
+                /** FeedUserDaoV1 lookup */
+                lookup?: (google.protobuf.IStringValue|null);
+
+                /** FeedUserDaoV1 publicKey */
+                publicKey?: (Uint8Array|null);
+
+                /** FeedUserDaoV1 name */
+                name?: (google.protobuf.IStringValue|null);
+
+                /** FeedUserDaoV1 nickname */
+                nickname?: (google.protobuf.IStringValue|null);
+
+                /** FeedUserDaoV1 currentPlan */
+                currentPlan?: (LiftLog.Ui.Models.ICurrentPlanDaoV1|null);
+
+                /** FeedUserDaoV1 profilePicture */
+                profilePicture?: (Uint8Array|null);
+
+                /** FeedUserDaoV1 aesKey */
+                aesKey?: (Uint8Array|null);
+
+                /** FeedUserDaoV1 followSecret */
+                followSecret?: (google.protobuf.IStringValue|null);
+            }
+
+            /** Represents a FeedUserDaoV1. */
+            class FeedUserDaoV1 implements IFeedUserDaoV1 {
+
+                /**
+                 * Constructs a new FeedUserDaoV1.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: LiftLog.Ui.Models.IFeedUserDaoV1);
+
+                /** FeedUserDaoV1 id. */
+                public id?: (LiftLog.Ui.Models.IUuidDao|null);
+
+                /** FeedUserDaoV1 lookup. */
+                public lookup?: (google.protobuf.IStringValue|null);
+
+                /** FeedUserDaoV1 publicKey. */
+                public publicKey: Uint8Array;
+
+                /** FeedUserDaoV1 name. */
+                public name?: (google.protobuf.IStringValue|null);
+
+                /** FeedUserDaoV1 nickname. */
+                public nickname?: (google.protobuf.IStringValue|null);
+
+                /** FeedUserDaoV1 currentPlan. */
+                public currentPlan?: (LiftLog.Ui.Models.ICurrentPlanDaoV1|null);
+
+                /** FeedUserDaoV1 profilePicture. */
+                public profilePicture?: (Uint8Array|null);
+
+                /** FeedUserDaoV1 aesKey. */
+                public aesKey?: (Uint8Array|null);
+
+                /** FeedUserDaoV1 followSecret. */
+                public followSecret?: (google.protobuf.IStringValue|null);
+
+                /** FeedUserDaoV1 _name. */
+                public _name?: "name";
+
+                /** FeedUserDaoV1 _nickname. */
+                public _nickname?: "nickname";
+
+                /** FeedUserDaoV1 _currentPlan. */
+                public _currentPlan?: "currentPlan";
+
+                /** FeedUserDaoV1 _profilePicture. */
+                public _profilePicture?: "profilePicture";
+
+                /** FeedUserDaoV1 _aesKey. */
+                public _aesKey?: "aesKey";
+
+                /** FeedUserDaoV1 _followSecret. */
+                public _followSecret?: "followSecret";
+
+                /**
+                 * Creates a new FeedUserDaoV1 instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns FeedUserDaoV1 instance
+                 */
+                public static create(properties?: LiftLog.Ui.Models.IFeedUserDaoV1): LiftLog.Ui.Models.FeedUserDaoV1;
+
+                /**
+                 * Encodes the specified FeedUserDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.FeedUserDaoV1.verify|verify} messages.
+                 * @param message FeedUserDaoV1 message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: LiftLog.Ui.Models.IFeedUserDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified FeedUserDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.FeedUserDaoV1.verify|verify} messages.
+                 * @param message FeedUserDaoV1 message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: LiftLog.Ui.Models.IFeedUserDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a FeedUserDaoV1 message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns FeedUserDaoV1
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.FeedUserDaoV1;
+
+                /**
+                 * Decodes a FeedUserDaoV1 message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns FeedUserDaoV1
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.FeedUserDaoV1;
+
+                /**
+                 * Verifies a FeedUserDaoV1 message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a FeedUserDaoV1 message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns FeedUserDaoV1
+                 */
+                public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.FeedUserDaoV1;
+
+                /**
+                 * Creates a plain object from a FeedUserDaoV1 message. Also converts values to other types if specified.
+                 * @param message FeedUserDaoV1
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: LiftLog.Ui.Models.FeedUserDaoV1, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this FeedUserDaoV1 to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for FeedUserDaoV1
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            /** Properties of a CurrentPlanDaoV1. */
+            interface ICurrentPlanDaoV1 {
+
+                /** CurrentPlanDaoV1 sessions */
+                sessions?: (LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2[]|null);
+            }
+
+            /** Represents a CurrentPlanDaoV1. */
+            class CurrentPlanDaoV1 implements ICurrentPlanDaoV1 {
+
+                /**
+                 * Constructs a new CurrentPlanDaoV1.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: LiftLog.Ui.Models.ICurrentPlanDaoV1);
+
+                /** CurrentPlanDaoV1 sessions. */
+                public sessions: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2[];
+
+                /**
+                 * Creates a new CurrentPlanDaoV1 instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns CurrentPlanDaoV1 instance
+                 */
+                public static create(properties?: LiftLog.Ui.Models.ICurrentPlanDaoV1): LiftLog.Ui.Models.CurrentPlanDaoV1;
+
+                /**
+                 * Encodes the specified CurrentPlanDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.CurrentPlanDaoV1.verify|verify} messages.
+                 * @param message CurrentPlanDaoV1 message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: LiftLog.Ui.Models.ICurrentPlanDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified CurrentPlanDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.CurrentPlanDaoV1.verify|verify} messages.
+                 * @param message CurrentPlanDaoV1 message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: LiftLog.Ui.Models.ICurrentPlanDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a CurrentPlanDaoV1 message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns CurrentPlanDaoV1
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.CurrentPlanDaoV1;
+
+                /**
+                 * Decodes a CurrentPlanDaoV1 message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns CurrentPlanDaoV1
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.CurrentPlanDaoV1;
+
+                /**
+                 * Verifies a CurrentPlanDaoV1 message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a CurrentPlanDaoV1 message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns CurrentPlanDaoV1
+                 */
+                public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.CurrentPlanDaoV1;
+
+                /**
+                 * Creates a plain object from a CurrentPlanDaoV1 message. Also converts values to other types if specified.
+                 * @param message CurrentPlanDaoV1
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: LiftLog.Ui.Models.CurrentPlanDaoV1, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this CurrentPlanDaoV1 to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for CurrentPlanDaoV1
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            /** Properties of a FeedItemDaoV1. */
+            interface IFeedItemDaoV1 {
+
+                /** FeedItemDaoV1 userId */
+                userId?: (LiftLog.Ui.Models.IUuidDao|null);
+
+                /** FeedItemDaoV1 eventId */
+                eventId?: (LiftLog.Ui.Models.IUuidDao|null);
+
+                /** FeedItemDaoV1 timestamp */
+                timestamp?: (google.protobuf.ITimestamp|null);
+
+                /** FeedItemDaoV1 expiry */
+                expiry?: (google.protobuf.ITimestamp|null);
+
+                /** FeedItemDaoV1 session */
+                session?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null);
+            }
+
+            /** Represents a FeedItemDaoV1. */
+            class FeedItemDaoV1 implements IFeedItemDaoV1 {
+
+                /**
+                 * Constructs a new FeedItemDaoV1.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: LiftLog.Ui.Models.IFeedItemDaoV1);
+
+                /** FeedItemDaoV1 userId. */
+                public userId?: (LiftLog.Ui.Models.IUuidDao|null);
+
+                /** FeedItemDaoV1 eventId. */
+                public eventId?: (LiftLog.Ui.Models.IUuidDao|null);
+
+                /** FeedItemDaoV1 timestamp. */
+                public timestamp?: (google.protobuf.ITimestamp|null);
+
+                /** FeedItemDaoV1 expiry. */
+                public expiry?: (google.protobuf.ITimestamp|null);
+
+                /** FeedItemDaoV1 session. */
+                public session?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null);
+
+                /** FeedItemDaoV1 payload. */
+                public payload?: "session";
+
+                /**
+                 * Creates a new FeedItemDaoV1 instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns FeedItemDaoV1 instance
+                 */
+                public static create(properties?: LiftLog.Ui.Models.IFeedItemDaoV1): LiftLog.Ui.Models.FeedItemDaoV1;
+
+                /**
+                 * Encodes the specified FeedItemDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.FeedItemDaoV1.verify|verify} messages.
+                 * @param message FeedItemDaoV1 message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: LiftLog.Ui.Models.IFeedItemDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified FeedItemDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.FeedItemDaoV1.verify|verify} messages.
+                 * @param message FeedItemDaoV1 message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: LiftLog.Ui.Models.IFeedItemDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a FeedItemDaoV1 message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns FeedItemDaoV1
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.FeedItemDaoV1;
+
+                /**
+                 * Decodes a FeedItemDaoV1 message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns FeedItemDaoV1
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.FeedItemDaoV1;
+
+                /**
+                 * Verifies a FeedItemDaoV1 message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a FeedItemDaoV1 message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns FeedItemDaoV1
+                 */
+                public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.FeedItemDaoV1;
+
+                /**
+                 * Creates a plain object from a FeedItemDaoV1 message. Also converts values to other types if specified.
+                 * @param message FeedItemDaoV1
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: LiftLog.Ui.Models.FeedItemDaoV1, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this FeedItemDaoV1 to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for FeedItemDaoV1
+                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns The default type url
+                 */
+                public static getTypeUrl(typeUrlPrefix?: string): string;
+            }
+
+            /** Properties of a FeedStateDaoV1. */
+            interface IFeedStateDaoV1 {
+
+                /** FeedStateDaoV1 feedItems */
+                feedItems?: (LiftLog.Ui.Models.IFeedItemDaoV1[]|null);
+
+                /** FeedStateDaoV1 followedUsers */
+                followedUsers?: (LiftLog.Ui.Models.IFeedUserDaoV1[]|null);
+
+                /** FeedStateDaoV1 identity */
+                identity?: (LiftLog.Ui.Models.IFeedIdentityDaoV1|null);
+
+                /** FeedStateDaoV1 followRequests */
+                followRequests?: (LiftLog.Ui.Models.IInboxMessageDao[]|null);
+
+                /** FeedStateDaoV1 followers */
+                followers?: (LiftLog.Ui.Models.IFeedUserDaoV1[]|null);
+
+                /** FeedStateDaoV1 unpublishedSessionIds */
+                unpublishedSessionIds?: (LiftLog.Ui.Models.IUuidDao[]|null);
+
+                /** FeedStateDaoV1 revokedFollowSecrets */
+                revokedFollowSecrets?: (string[]|null);
+            }
+
+            /** Represents a FeedStateDaoV1. */
+            class FeedStateDaoV1 implements IFeedStateDaoV1 {
+
+                /**
+                 * Constructs a new FeedStateDaoV1.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: LiftLog.Ui.Models.IFeedStateDaoV1);
+
+                /** FeedStateDaoV1 feedItems. */
+                public feedItems: LiftLog.Ui.Models.IFeedItemDaoV1[];
+
+                /** FeedStateDaoV1 followedUsers. */
+                public followedUsers: LiftLog.Ui.Models.IFeedUserDaoV1[];
+
+                /** FeedStateDaoV1 identity. */
+                public identity?: (LiftLog.Ui.Models.IFeedIdentityDaoV1|null);
+
+                /** FeedStateDaoV1 followRequests. */
+                public followRequests: LiftLog.Ui.Models.IInboxMessageDao[];
+
+                /** FeedStateDaoV1 followers. */
+                public followers: LiftLog.Ui.Models.IFeedUserDaoV1[];
+
+                /** FeedStateDaoV1 unpublishedSessionIds. */
+                public unpublishedSessionIds: LiftLog.Ui.Models.IUuidDao[];
+
+                /** FeedStateDaoV1 revokedFollowSecrets. */
+                public revokedFollowSecrets: string[];
+
+                /** FeedStateDaoV1 _identity. */
+                public _identity?: "identity";
+
+                /**
+                 * Creates a new FeedStateDaoV1 instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns FeedStateDaoV1 instance
+                 */
+                public static create(properties?: LiftLog.Ui.Models.IFeedStateDaoV1): LiftLog.Ui.Models.FeedStateDaoV1;
+
+                /**
+                 * Encodes the specified FeedStateDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.FeedStateDaoV1.verify|verify} messages.
+                 * @param message FeedStateDaoV1 message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: LiftLog.Ui.Models.IFeedStateDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified FeedStateDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.FeedStateDaoV1.verify|verify} messages.
+                 * @param message FeedStateDaoV1 message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: LiftLog.Ui.Models.IFeedStateDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a FeedStateDaoV1 message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns FeedStateDaoV1
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.FeedStateDaoV1;
+
+                /**
+                 * Decodes a FeedStateDaoV1 message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns FeedStateDaoV1
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.FeedStateDaoV1;
+
+                /**
+                 * Verifies a FeedStateDaoV1 message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a FeedStateDaoV1 message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns FeedStateDaoV1
+                 */
+                public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.FeedStateDaoV1;
+
+                /**
+                 * Creates a plain object from a FeedStateDaoV1 message. Also converts values to other types if specified.
+                 * @param message FeedStateDaoV1
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: LiftLog.Ui.Models.FeedStateDaoV1, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this FeedStateDaoV1 to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+
+                /**
+                 * Gets the default type url for FeedStateDaoV1
                  * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                  * @returns The default type url
                  */
@@ -3253,112 +5683,221 @@ export namespace LiftLog {
                 public static getTypeUrl(typeUrlPrefix?: string): string;
             }
 
-            /** Namespace CurrentSessionStateDao. */
-            namespace CurrentSessionStateDao {
+            /** Namespace ProgramBlueprintDao. */
+            namespace ProgramBlueprintDao {
 
-                /** Properties of a CurrentSessionStateDaoV2. */
-                interface ICurrentSessionStateDaoV2 {
+                /** Properties of a ProgramBlueprintDaoContainerV1. */
+                interface IProgramBlueprintDaoContainerV1 {
 
-                    /** CurrentSessionStateDaoV2 workoutSession */
-                    workoutSession?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null);
+                    /** ProgramBlueprintDaoContainerV1 programBlueprints */
+                    programBlueprints?: ({ [k: string]: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1 }|null);
 
-                    /** CurrentSessionStateDaoV2 historySession */
-                    historySession?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null);
+                    /** ProgramBlueprintDaoContainerV1 activeProgramId */
+                    activeProgramId?: (google.protobuf.IStringValue|null);
                 }
 
-                /** Represents a CurrentSessionStateDaoV2. */
-                class CurrentSessionStateDaoV2 implements ICurrentSessionStateDaoV2 {
+                /** Represents a ProgramBlueprintDaoContainerV1. */
+                class ProgramBlueprintDaoContainerV1 implements IProgramBlueprintDaoContainerV1 {
 
                     /**
-                     * Constructs a new CurrentSessionStateDaoV2.
+                     * Constructs a new ProgramBlueprintDaoContainerV1.
                      * @param [properties] Properties to set
                      */
-                    constructor(properties?: LiftLog.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2);
+                    constructor(properties?: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoContainerV1);
 
-                    /** CurrentSessionStateDaoV2 workoutSession. */
-                    public workoutSession?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null);
+                    /** ProgramBlueprintDaoContainerV1 programBlueprints. */
+                    public programBlueprints: { [k: string]: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1 };
 
-                    /** CurrentSessionStateDaoV2 historySession. */
-                    public historySession?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null);
+                    /** ProgramBlueprintDaoContainerV1 activeProgramId. */
+                    public activeProgramId?: (google.protobuf.IStringValue|null);
 
-                    /** CurrentSessionStateDaoV2 _workoutSession. */
-                    public _workoutSession?: "workoutSession";
-
-                    /** CurrentSessionStateDaoV2 _historySession. */
-                    public _historySession?: "historySession";
+                    /** ProgramBlueprintDaoContainerV1 _activeProgramId. */
+                    public _activeProgramId?: "activeProgramId";
 
                     /**
-                     * Creates a new CurrentSessionStateDaoV2 instance using the specified properties.
+                     * Creates a new ProgramBlueprintDaoContainerV1 instance using the specified properties.
                      * @param [properties] Properties to set
-                     * @returns CurrentSessionStateDaoV2 instance
+                     * @returns ProgramBlueprintDaoContainerV1 instance
                      */
-                    public static create(properties?: LiftLog.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2): LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2;
+                    public static create(properties?: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoContainerV1): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1;
 
                     /**
-                     * Encodes the specified CurrentSessionStateDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.verify|verify} messages.
-                     * @param message CurrentSessionStateDaoV2 message or plain object to encode
+                     * Encodes the specified ProgramBlueprintDaoContainerV1 message. Does not implicitly {@link LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.verify|verify} messages.
+                     * @param message ProgramBlueprintDaoContainerV1 message or plain object to encode
                      * @param [writer] Writer to encode to
                      * @returns Writer
                      */
-                    public static encode(message: LiftLog.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+                    public static encode(message: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoContainerV1, writer?: $protobuf.Writer): $protobuf.Writer;
 
                     /**
-                     * Encodes the specified CurrentSessionStateDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2.verify|verify} messages.
-                     * @param message CurrentSessionStateDaoV2 message or plain object to encode
+                     * Encodes the specified ProgramBlueprintDaoContainerV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.verify|verify} messages.
+                     * @param message ProgramBlueprintDaoContainerV1 message or plain object to encode
                      * @param [writer] Writer to encode to
                      * @returns Writer
                      */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.CurrentSessionStateDao.ICurrentSessionStateDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
+                    public static encodeDelimited(message: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoContainerV1, writer?: $protobuf.Writer): $protobuf.Writer;
 
                     /**
-                     * Decodes a CurrentSessionStateDaoV2 message from the specified reader or buffer.
+                     * Decodes a ProgramBlueprintDaoContainerV1 message from the specified reader or buffer.
                      * @param reader Reader or buffer to decode from
                      * @param [length] Message length if known beforehand
-                     * @returns CurrentSessionStateDaoV2
+                     * @returns ProgramBlueprintDaoContainerV1
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2;
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1;
 
                     /**
-                     * Decodes a CurrentSessionStateDaoV2 message from the specified reader or buffer, length delimited.
+                     * Decodes a ProgramBlueprintDaoContainerV1 message from the specified reader or buffer, length delimited.
                      * @param reader Reader or buffer to decode from
-                     * @returns CurrentSessionStateDaoV2
+                     * @returns ProgramBlueprintDaoContainerV1
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2;
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1;
 
                     /**
-                     * Verifies a CurrentSessionStateDaoV2 message.
+                     * Verifies a ProgramBlueprintDaoContainerV1 message.
                      * @param message Plain object to verify
                      * @returns `null` if valid, otherwise the reason why it is not
                      */
                     public static verify(message: { [k: string]: any }): (string|null);
 
                     /**
-                     * Creates a CurrentSessionStateDaoV2 message from a plain object. Also converts values to their respective internal types.
+                     * Creates a ProgramBlueprintDaoContainerV1 message from a plain object. Also converts values to their respective internal types.
                      * @param object Plain object
-                     * @returns CurrentSessionStateDaoV2
+                     * @returns ProgramBlueprintDaoContainerV1
                      */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2;
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1;
 
                     /**
-                     * Creates a plain object from a CurrentSessionStateDaoV2 message. Also converts values to other types if specified.
-                     * @param message CurrentSessionStateDaoV2
+                     * Creates a plain object from a ProgramBlueprintDaoContainerV1 message. Also converts values to other types if specified.
+                     * @param message ProgramBlueprintDaoContainerV1
                      * @param [options] Conversion options
                      * @returns Plain object
                      */
-                    public static toObject(message: LiftLog.Ui.Models.CurrentSessionStateDao.CurrentSessionStateDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
+                    public static toObject(message: LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
                     /**
-                     * Converts this CurrentSessionStateDaoV2 to JSON.
+                     * Converts this ProgramBlueprintDaoContainerV1 to JSON.
                      * @returns JSON object
                      */
                     public toJSON(): { [k: string]: any };
 
                     /**
-                     * Gets the default type url for CurrentSessionStateDaoV2
+                     * Gets the default type url for ProgramBlueprintDaoContainerV1
+                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                     * @returns The default type url
+                     */
+                    public static getTypeUrl(typeUrlPrefix?: string): string;
+                }
+
+                /** Properties of a ProgramBlueprintDaoV1. */
+                interface IProgramBlueprintDaoV1 {
+
+                    /** ProgramBlueprintDaoV1 name */
+                    name?: (string|null);
+
+                    /** ProgramBlueprintDaoV1 sessions */
+                    sessions?: (LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2[]|null);
+
+                    /** ProgramBlueprintDaoV1 lastEdited */
+                    lastEdited?: (LiftLog.Ui.Models.IDateOnlyDao|null);
+                }
+
+                /** Represents a ProgramBlueprintDaoV1. */
+                class ProgramBlueprintDaoV1 implements IProgramBlueprintDaoV1 {
+
+                    /**
+                     * Constructs a new ProgramBlueprintDaoV1.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1);
+
+                    /** ProgramBlueprintDaoV1 name. */
+                    public name: string;
+
+                    /** ProgramBlueprintDaoV1 sessions. */
+                    public sessions: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2[];
+
+                    /** ProgramBlueprintDaoV1 lastEdited. */
+                    public lastEdited?: (LiftLog.Ui.Models.IDateOnlyDao|null);
+
+                    /** ProgramBlueprintDaoV1 _lastEdited. */
+                    public _lastEdited?: "lastEdited";
+
+                    /**
+                     * Creates a new ProgramBlueprintDaoV1 instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ProgramBlueprintDaoV1 instance
+                     */
+                    public static create(properties?: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1;
+
+                    /**
+                     * Encodes the specified ProgramBlueprintDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.verify|verify} messages.
+                     * @param message ProgramBlueprintDaoV1 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ProgramBlueprintDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.verify|verify} messages.
+                     * @param message ProgramBlueprintDaoV1 message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ProgramBlueprintDaoV1 message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ProgramBlueprintDaoV1
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1;
+
+                    /**
+                     * Decodes a ProgramBlueprintDaoV1 message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ProgramBlueprintDaoV1
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1;
+
+                    /**
+                     * Verifies a ProgramBlueprintDaoV1 message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ProgramBlueprintDaoV1 message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ProgramBlueprintDaoV1
+                     */
+                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1;
+
+                    /**
+                     * Creates a plain object from a ProgramBlueprintDaoV1 message. Also converts values to other types if specified.
+                     * @param message ProgramBlueprintDaoV1
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ProgramBlueprintDaoV1 to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+
+                    /**
+                     * Gets the default type url for ProgramBlueprintDaoV1
                      * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
                      * @returns The default type url
                      */
@@ -3664,2151 +6203,6 @@ export namespace LiftLog {
                  * @returns The default type url
                  */
                 public static getTypeUrl(typeUrlPrefix?: string): string;
-            }
-
-            /** Namespace ProgramBlueprintDao. */
-            namespace ProgramBlueprintDao {
-
-                /** Properties of a ProgramBlueprintDaoContainerV1. */
-                interface IProgramBlueprintDaoContainerV1 {
-
-                    /** ProgramBlueprintDaoContainerV1 programBlueprints */
-                    programBlueprints?: ({ [k: string]: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1 }|null);
-
-                    /** ProgramBlueprintDaoContainerV1 activeProgramId */
-                    activeProgramId?: (google.protobuf.IStringValue|null);
-                }
-
-                /** Represents a ProgramBlueprintDaoContainerV1. */
-                class ProgramBlueprintDaoContainerV1 implements IProgramBlueprintDaoContainerV1 {
-
-                    /**
-                     * Constructs a new ProgramBlueprintDaoContainerV1.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoContainerV1);
-
-                    /** ProgramBlueprintDaoContainerV1 programBlueprints. */
-                    public programBlueprints: { [k: string]: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1 };
-
-                    /** ProgramBlueprintDaoContainerV1 activeProgramId. */
-                    public activeProgramId?: (google.protobuf.IStringValue|null);
-
-                    /** ProgramBlueprintDaoContainerV1 _activeProgramId. */
-                    public _activeProgramId?: "activeProgramId";
-
-                    /**
-                     * Creates a new ProgramBlueprintDaoContainerV1 instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns ProgramBlueprintDaoContainerV1 instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoContainerV1): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1;
-
-                    /**
-                     * Encodes the specified ProgramBlueprintDaoContainerV1 message. Does not implicitly {@link LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.verify|verify} messages.
-                     * @param message ProgramBlueprintDaoContainerV1 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoContainerV1, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified ProgramBlueprintDaoContainerV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1.verify|verify} messages.
-                     * @param message ProgramBlueprintDaoContainerV1 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoContainerV1, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a ProgramBlueprintDaoContainerV1 message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns ProgramBlueprintDaoContainerV1
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1;
-
-                    /**
-                     * Decodes a ProgramBlueprintDaoContainerV1 message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns ProgramBlueprintDaoContainerV1
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1;
-
-                    /**
-                     * Verifies a ProgramBlueprintDaoContainerV1 message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a ProgramBlueprintDaoContainerV1 message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns ProgramBlueprintDaoContainerV1
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1;
-
-                    /**
-                     * Creates a plain object from a ProgramBlueprintDaoContainerV1 message. Also converts values to other types if specified.
-                     * @param message ProgramBlueprintDaoContainerV1
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoContainerV1, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this ProgramBlueprintDaoContainerV1 to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for ProgramBlueprintDaoContainerV1
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a ProgramBlueprintDaoV1. */
-                interface IProgramBlueprintDaoV1 {
-
-                    /** ProgramBlueprintDaoV1 name */
-                    name?: (string|null);
-
-                    /** ProgramBlueprintDaoV1 sessions */
-                    sessions?: (LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2[]|null);
-
-                    /** ProgramBlueprintDaoV1 lastEdited */
-                    lastEdited?: (LiftLog.Ui.Models.IDateOnlyDao|null);
-                }
-
-                /** Represents a ProgramBlueprintDaoV1. */
-                class ProgramBlueprintDaoV1 implements IProgramBlueprintDaoV1 {
-
-                    /**
-                     * Constructs a new ProgramBlueprintDaoV1.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1);
-
-                    /** ProgramBlueprintDaoV1 name. */
-                    public name: string;
-
-                    /** ProgramBlueprintDaoV1 sessions. */
-                    public sessions: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2[];
-
-                    /** ProgramBlueprintDaoV1 lastEdited. */
-                    public lastEdited?: (LiftLog.Ui.Models.IDateOnlyDao|null);
-
-                    /** ProgramBlueprintDaoV1 _lastEdited. */
-                    public _lastEdited?: "lastEdited";
-
-                    /**
-                     * Creates a new ProgramBlueprintDaoV1 instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns ProgramBlueprintDaoV1 instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1;
-
-                    /**
-                     * Encodes the specified ProgramBlueprintDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.verify|verify} messages.
-                     * @param message ProgramBlueprintDaoV1 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified ProgramBlueprintDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1.verify|verify} messages.
-                     * @param message ProgramBlueprintDaoV1 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a ProgramBlueprintDaoV1 message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns ProgramBlueprintDaoV1
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1;
-
-                    /**
-                     * Decodes a ProgramBlueprintDaoV1 message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns ProgramBlueprintDaoV1
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1;
-
-                    /**
-                     * Verifies a ProgramBlueprintDaoV1 message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a ProgramBlueprintDaoV1 message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns ProgramBlueprintDaoV1
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1;
-
-                    /**
-                     * Creates a plain object from a ProgramBlueprintDaoV1 message. Also converts values to other types if specified.
-                     * @param message ProgramBlueprintDaoV1
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.ProgramBlueprintDao.ProgramBlueprintDaoV1, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this ProgramBlueprintDaoV1 to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for ProgramBlueprintDaoV1
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-            }
-
-            /** Namespace ExportedDataDao. */
-            namespace ExportedDataDao {
-
-                /** Properties of an ExportedDataDaoV2. */
-                interface IExportedDataDaoV2 {
-
-                    /** ExportedDataDaoV2 sessions */
-                    sessions?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2[]|null);
-
-                    /** ExportedDataDaoV2 program */
-                    program?: (LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2[]|null);
-
-                    /** ExportedDataDaoV2 savedPrograms */
-                    savedPrograms?: ({ [k: string]: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1 }|null);
-
-                    /** ExportedDataDaoV2 activeProgramId */
-                    activeProgramId?: (google.protobuf.IStringValue|null);
-
-                    /** ExportedDataDaoV2 feedState */
-                    feedState?: (LiftLog.Ui.Models.IFeedStateDaoV1|null);
-                }
-
-                /** Represents an ExportedDataDaoV2. */
-                class ExportedDataDaoV2 implements IExportedDataDaoV2 {
-
-                    /**
-                     * Constructs a new ExportedDataDaoV2.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.ExportedDataDao.IExportedDataDaoV2);
-
-                    /** ExportedDataDaoV2 sessions. */
-                    public sessions: LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2[];
-
-                    /** ExportedDataDaoV2 program. */
-                    public program: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2[];
-
-                    /** ExportedDataDaoV2 savedPrograms. */
-                    public savedPrograms: { [k: string]: LiftLog.Ui.Models.ProgramBlueprintDao.IProgramBlueprintDaoV1 };
-
-                    /** ExportedDataDaoV2 activeProgramId. */
-                    public activeProgramId?: (google.protobuf.IStringValue|null);
-
-                    /** ExportedDataDaoV2 feedState. */
-                    public feedState?: (LiftLog.Ui.Models.IFeedStateDaoV1|null);
-
-                    /**
-                     * Creates a new ExportedDataDaoV2 instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns ExportedDataDaoV2 instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.ExportedDataDao.IExportedDataDaoV2): LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2;
-
-                    /**
-                     * Encodes the specified ExportedDataDaoV2 message. Does not implicitly {@link LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.verify|verify} messages.
-                     * @param message ExportedDataDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.ExportedDataDao.IExportedDataDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified ExportedDataDaoV2 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2.verify|verify} messages.
-                     * @param message ExportedDataDaoV2 message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.ExportedDataDao.IExportedDataDaoV2, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes an ExportedDataDaoV2 message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns ExportedDataDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2;
-
-                    /**
-                     * Decodes an ExportedDataDaoV2 message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns ExportedDataDaoV2
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2;
-
-                    /**
-                     * Verifies an ExportedDataDaoV2 message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates an ExportedDataDaoV2 message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns ExportedDataDaoV2
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2;
-
-                    /**
-                     * Creates a plain object from an ExportedDataDaoV2 message. Also converts values to other types if specified.
-                     * @param message ExportedDataDaoV2
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.ExportedDataDao.ExportedDataDaoV2, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this ExportedDataDaoV2 to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for ExportedDataDaoV2
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-            }
-
-            /** Properties of a FeedIdentityDaoV1. */
-            interface IFeedIdentityDaoV1 {
-
-                /** FeedIdentityDaoV1 id */
-                id?: (LiftLog.Ui.Models.IUuidDao|null);
-
-                /** FeedIdentityDaoV1 lookup */
-                lookup?: (google.protobuf.IStringValue|null);
-
-                /** FeedIdentityDaoV1 aesKey */
-                aesKey?: (Uint8Array|null);
-
-                /** FeedIdentityDaoV1 publicKey */
-                publicKey?: (Uint8Array|null);
-
-                /** FeedIdentityDaoV1 privateKey */
-                privateKey?: (Uint8Array|null);
-
-                /** FeedIdentityDaoV1 password */
-                password?: (string|null);
-
-                /** FeedIdentityDaoV1 name */
-                name?: (google.protobuf.IStringValue|null);
-
-                /** FeedIdentityDaoV1 profilePicture */
-                profilePicture?: (Uint8Array|null);
-
-                /** FeedIdentityDaoV1 publishBodyweight */
-                publishBodyweight?: (boolean|null);
-
-                /** FeedIdentityDaoV1 publishPlan */
-                publishPlan?: (boolean|null);
-
-                /** FeedIdentityDaoV1 publishWorkouts */
-                publishWorkouts?: (boolean|null);
-            }
-
-            /** Represents a FeedIdentityDaoV1. */
-            class FeedIdentityDaoV1 implements IFeedIdentityDaoV1 {
-
-                /**
-                 * Constructs a new FeedIdentityDaoV1.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: LiftLog.Ui.Models.IFeedIdentityDaoV1);
-
-                /** FeedIdentityDaoV1 id. */
-                public id?: (LiftLog.Ui.Models.IUuidDao|null);
-
-                /** FeedIdentityDaoV1 lookup. */
-                public lookup?: (google.protobuf.IStringValue|null);
-
-                /** FeedIdentityDaoV1 aesKey. */
-                public aesKey: Uint8Array;
-
-                /** FeedIdentityDaoV1 publicKey. */
-                public publicKey: Uint8Array;
-
-                /** FeedIdentityDaoV1 privateKey. */
-                public privateKey: Uint8Array;
-
-                /** FeedIdentityDaoV1 password. */
-                public password: string;
-
-                /** FeedIdentityDaoV1 name. */
-                public name?: (google.protobuf.IStringValue|null);
-
-                /** FeedIdentityDaoV1 profilePicture. */
-                public profilePicture?: (Uint8Array|null);
-
-                /** FeedIdentityDaoV1 publishBodyweight. */
-                public publishBodyweight: boolean;
-
-                /** FeedIdentityDaoV1 publishPlan. */
-                public publishPlan: boolean;
-
-                /** FeedIdentityDaoV1 publishWorkouts. */
-                public publishWorkouts: boolean;
-
-                /** FeedIdentityDaoV1 _name. */
-                public _name?: "name";
-
-                /** FeedIdentityDaoV1 _profilePicture. */
-                public _profilePicture?: "profilePicture";
-
-                /**
-                 * Creates a new FeedIdentityDaoV1 instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns FeedIdentityDaoV1 instance
-                 */
-                public static create(properties?: LiftLog.Ui.Models.IFeedIdentityDaoV1): LiftLog.Ui.Models.FeedIdentityDaoV1;
-
-                /**
-                 * Encodes the specified FeedIdentityDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.FeedIdentityDaoV1.verify|verify} messages.
-                 * @param message FeedIdentityDaoV1 message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: LiftLog.Ui.Models.IFeedIdentityDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified FeedIdentityDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.FeedIdentityDaoV1.verify|verify} messages.
-                 * @param message FeedIdentityDaoV1 message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: LiftLog.Ui.Models.IFeedIdentityDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a FeedIdentityDaoV1 message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns FeedIdentityDaoV1
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.FeedIdentityDaoV1;
-
-                /**
-                 * Decodes a FeedIdentityDaoV1 message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns FeedIdentityDaoV1
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.FeedIdentityDaoV1;
-
-                /**
-                 * Verifies a FeedIdentityDaoV1 message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a FeedIdentityDaoV1 message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns FeedIdentityDaoV1
-                 */
-                public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.FeedIdentityDaoV1;
-
-                /**
-                 * Creates a plain object from a FeedIdentityDaoV1 message. Also converts values to other types if specified.
-                 * @param message FeedIdentityDaoV1
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: LiftLog.Ui.Models.FeedIdentityDaoV1, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this FeedIdentityDaoV1 to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-
-                /**
-                 * Gets the default type url for FeedIdentityDaoV1
-                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns The default type url
-                 */
-                public static getTypeUrl(typeUrlPrefix?: string): string;
-            }
-
-            /** Properties of a FeedUserDaoV1. */
-            interface IFeedUserDaoV1 {
-
-                /** FeedUserDaoV1 id */
-                id?: (LiftLog.Ui.Models.IUuidDao|null);
-
-                /** FeedUserDaoV1 lookup */
-                lookup?: (google.protobuf.IStringValue|null);
-
-                /** FeedUserDaoV1 publicKey */
-                publicKey?: (Uint8Array|null);
-
-                /** FeedUserDaoV1 name */
-                name?: (google.protobuf.IStringValue|null);
-
-                /** FeedUserDaoV1 nickname */
-                nickname?: (google.protobuf.IStringValue|null);
-
-                /** FeedUserDaoV1 currentPlan */
-                currentPlan?: (LiftLog.Ui.Models.ICurrentPlanDaoV1|null);
-
-                /** FeedUserDaoV1 profilePicture */
-                profilePicture?: (Uint8Array|null);
-
-                /** FeedUserDaoV1 aesKey */
-                aesKey?: (Uint8Array|null);
-
-                /** FeedUserDaoV1 followSecret */
-                followSecret?: (google.protobuf.IStringValue|null);
-            }
-
-            /** Represents a FeedUserDaoV1. */
-            class FeedUserDaoV1 implements IFeedUserDaoV1 {
-
-                /**
-                 * Constructs a new FeedUserDaoV1.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: LiftLog.Ui.Models.IFeedUserDaoV1);
-
-                /** FeedUserDaoV1 id. */
-                public id?: (LiftLog.Ui.Models.IUuidDao|null);
-
-                /** FeedUserDaoV1 lookup. */
-                public lookup?: (google.protobuf.IStringValue|null);
-
-                /** FeedUserDaoV1 publicKey. */
-                public publicKey: Uint8Array;
-
-                /** FeedUserDaoV1 name. */
-                public name?: (google.protobuf.IStringValue|null);
-
-                /** FeedUserDaoV1 nickname. */
-                public nickname?: (google.protobuf.IStringValue|null);
-
-                /** FeedUserDaoV1 currentPlan. */
-                public currentPlan?: (LiftLog.Ui.Models.ICurrentPlanDaoV1|null);
-
-                /** FeedUserDaoV1 profilePicture. */
-                public profilePicture?: (Uint8Array|null);
-
-                /** FeedUserDaoV1 aesKey. */
-                public aesKey?: (Uint8Array|null);
-
-                /** FeedUserDaoV1 followSecret. */
-                public followSecret?: (google.protobuf.IStringValue|null);
-
-                /** FeedUserDaoV1 _name. */
-                public _name?: "name";
-
-                /** FeedUserDaoV1 _nickname. */
-                public _nickname?: "nickname";
-
-                /** FeedUserDaoV1 _currentPlan. */
-                public _currentPlan?: "currentPlan";
-
-                /** FeedUserDaoV1 _profilePicture. */
-                public _profilePicture?: "profilePicture";
-
-                /** FeedUserDaoV1 _aesKey. */
-                public _aesKey?: "aesKey";
-
-                /** FeedUserDaoV1 _followSecret. */
-                public _followSecret?: "followSecret";
-
-                /**
-                 * Creates a new FeedUserDaoV1 instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns FeedUserDaoV1 instance
-                 */
-                public static create(properties?: LiftLog.Ui.Models.IFeedUserDaoV1): LiftLog.Ui.Models.FeedUserDaoV1;
-
-                /**
-                 * Encodes the specified FeedUserDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.FeedUserDaoV1.verify|verify} messages.
-                 * @param message FeedUserDaoV1 message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: LiftLog.Ui.Models.IFeedUserDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified FeedUserDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.FeedUserDaoV1.verify|verify} messages.
-                 * @param message FeedUserDaoV1 message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: LiftLog.Ui.Models.IFeedUserDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a FeedUserDaoV1 message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns FeedUserDaoV1
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.FeedUserDaoV1;
-
-                /**
-                 * Decodes a FeedUserDaoV1 message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns FeedUserDaoV1
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.FeedUserDaoV1;
-
-                /**
-                 * Verifies a FeedUserDaoV1 message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a FeedUserDaoV1 message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns FeedUserDaoV1
-                 */
-                public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.FeedUserDaoV1;
-
-                /**
-                 * Creates a plain object from a FeedUserDaoV1 message. Also converts values to other types if specified.
-                 * @param message FeedUserDaoV1
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: LiftLog.Ui.Models.FeedUserDaoV1, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this FeedUserDaoV1 to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-
-                /**
-                 * Gets the default type url for FeedUserDaoV1
-                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns The default type url
-                 */
-                public static getTypeUrl(typeUrlPrefix?: string): string;
-            }
-
-            /** Properties of a CurrentPlanDaoV1. */
-            interface ICurrentPlanDaoV1 {
-
-                /** CurrentPlanDaoV1 sessions */
-                sessions?: (LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2[]|null);
-            }
-
-            /** Represents a CurrentPlanDaoV1. */
-            class CurrentPlanDaoV1 implements ICurrentPlanDaoV1 {
-
-                /**
-                 * Constructs a new CurrentPlanDaoV1.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: LiftLog.Ui.Models.ICurrentPlanDaoV1);
-
-                /** CurrentPlanDaoV1 sessions. */
-                public sessions: LiftLog.Ui.Models.SessionBlueprintDao.ISessionBlueprintDaoV2[];
-
-                /**
-                 * Creates a new CurrentPlanDaoV1 instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns CurrentPlanDaoV1 instance
-                 */
-                public static create(properties?: LiftLog.Ui.Models.ICurrentPlanDaoV1): LiftLog.Ui.Models.CurrentPlanDaoV1;
-
-                /**
-                 * Encodes the specified CurrentPlanDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.CurrentPlanDaoV1.verify|verify} messages.
-                 * @param message CurrentPlanDaoV1 message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: LiftLog.Ui.Models.ICurrentPlanDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified CurrentPlanDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.CurrentPlanDaoV1.verify|verify} messages.
-                 * @param message CurrentPlanDaoV1 message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: LiftLog.Ui.Models.ICurrentPlanDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a CurrentPlanDaoV1 message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns CurrentPlanDaoV1
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.CurrentPlanDaoV1;
-
-                /**
-                 * Decodes a CurrentPlanDaoV1 message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns CurrentPlanDaoV1
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.CurrentPlanDaoV1;
-
-                /**
-                 * Verifies a CurrentPlanDaoV1 message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a CurrentPlanDaoV1 message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns CurrentPlanDaoV1
-                 */
-                public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.CurrentPlanDaoV1;
-
-                /**
-                 * Creates a plain object from a CurrentPlanDaoV1 message. Also converts values to other types if specified.
-                 * @param message CurrentPlanDaoV1
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: LiftLog.Ui.Models.CurrentPlanDaoV1, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this CurrentPlanDaoV1 to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-
-                /**
-                 * Gets the default type url for CurrentPlanDaoV1
-                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns The default type url
-                 */
-                public static getTypeUrl(typeUrlPrefix?: string): string;
-            }
-
-            /** Properties of a FeedItemDaoV1. */
-            interface IFeedItemDaoV1 {
-
-                /** FeedItemDaoV1 userId */
-                userId?: (LiftLog.Ui.Models.IUuidDao|null);
-
-                /** FeedItemDaoV1 eventId */
-                eventId?: (LiftLog.Ui.Models.IUuidDao|null);
-
-                /** FeedItemDaoV1 timestamp */
-                timestamp?: (google.protobuf.ITimestamp|null);
-
-                /** FeedItemDaoV1 expiry */
-                expiry?: (google.protobuf.ITimestamp|null);
-
-                /** FeedItemDaoV1 session */
-                session?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null);
-            }
-
-            /** Represents a FeedItemDaoV1. */
-            class FeedItemDaoV1 implements IFeedItemDaoV1 {
-
-                /**
-                 * Constructs a new FeedItemDaoV1.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: LiftLog.Ui.Models.IFeedItemDaoV1);
-
-                /** FeedItemDaoV1 userId. */
-                public userId?: (LiftLog.Ui.Models.IUuidDao|null);
-
-                /** FeedItemDaoV1 eventId. */
-                public eventId?: (LiftLog.Ui.Models.IUuidDao|null);
-
-                /** FeedItemDaoV1 timestamp. */
-                public timestamp?: (google.protobuf.ITimestamp|null);
-
-                /** FeedItemDaoV1 expiry. */
-                public expiry?: (google.protobuf.ITimestamp|null);
-
-                /** FeedItemDaoV1 session. */
-                public session?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null);
-
-                /** FeedItemDaoV1 payload. */
-                public payload?: "session";
-
-                /**
-                 * Creates a new FeedItemDaoV1 instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns FeedItemDaoV1 instance
-                 */
-                public static create(properties?: LiftLog.Ui.Models.IFeedItemDaoV1): LiftLog.Ui.Models.FeedItemDaoV1;
-
-                /**
-                 * Encodes the specified FeedItemDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.FeedItemDaoV1.verify|verify} messages.
-                 * @param message FeedItemDaoV1 message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: LiftLog.Ui.Models.IFeedItemDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified FeedItemDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.FeedItemDaoV1.verify|verify} messages.
-                 * @param message FeedItemDaoV1 message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: LiftLog.Ui.Models.IFeedItemDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a FeedItemDaoV1 message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns FeedItemDaoV1
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.FeedItemDaoV1;
-
-                /**
-                 * Decodes a FeedItemDaoV1 message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns FeedItemDaoV1
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.FeedItemDaoV1;
-
-                /**
-                 * Verifies a FeedItemDaoV1 message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a FeedItemDaoV1 message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns FeedItemDaoV1
-                 */
-                public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.FeedItemDaoV1;
-
-                /**
-                 * Creates a plain object from a FeedItemDaoV1 message. Also converts values to other types if specified.
-                 * @param message FeedItemDaoV1
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: LiftLog.Ui.Models.FeedItemDaoV1, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this FeedItemDaoV1 to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-
-                /**
-                 * Gets the default type url for FeedItemDaoV1
-                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns The default type url
-                 */
-                public static getTypeUrl(typeUrlPrefix?: string): string;
-            }
-
-            /** Properties of a FeedStateDaoV1. */
-            interface IFeedStateDaoV1 {
-
-                /** FeedStateDaoV1 feedItems */
-                feedItems?: (LiftLog.Ui.Models.IFeedItemDaoV1[]|null);
-
-                /** FeedStateDaoV1 followedUsers */
-                followedUsers?: (LiftLog.Ui.Models.IFeedUserDaoV1[]|null);
-
-                /** FeedStateDaoV1 identity */
-                identity?: (LiftLog.Ui.Models.IFeedIdentityDaoV1|null);
-
-                /** FeedStateDaoV1 followRequests */
-                followRequests?: (LiftLog.Ui.Models.IInboxMessageDao[]|null);
-
-                /** FeedStateDaoV1 followers */
-                followers?: (LiftLog.Ui.Models.IFeedUserDaoV1[]|null);
-
-                /** FeedStateDaoV1 unpublishedSessionIds */
-                unpublishedSessionIds?: (LiftLog.Ui.Models.IUuidDao[]|null);
-
-                /** FeedStateDaoV1 revokedFollowSecrets */
-                revokedFollowSecrets?: (string[]|null);
-            }
-
-            /** Represents a FeedStateDaoV1. */
-            class FeedStateDaoV1 implements IFeedStateDaoV1 {
-
-                /**
-                 * Constructs a new FeedStateDaoV1.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: LiftLog.Ui.Models.IFeedStateDaoV1);
-
-                /** FeedStateDaoV1 feedItems. */
-                public feedItems: LiftLog.Ui.Models.IFeedItemDaoV1[];
-
-                /** FeedStateDaoV1 followedUsers. */
-                public followedUsers: LiftLog.Ui.Models.IFeedUserDaoV1[];
-
-                /** FeedStateDaoV1 identity. */
-                public identity?: (LiftLog.Ui.Models.IFeedIdentityDaoV1|null);
-
-                /** FeedStateDaoV1 followRequests. */
-                public followRequests: LiftLog.Ui.Models.IInboxMessageDao[];
-
-                /** FeedStateDaoV1 followers. */
-                public followers: LiftLog.Ui.Models.IFeedUserDaoV1[];
-
-                /** FeedStateDaoV1 unpublishedSessionIds. */
-                public unpublishedSessionIds: LiftLog.Ui.Models.IUuidDao[];
-
-                /** FeedStateDaoV1 revokedFollowSecrets. */
-                public revokedFollowSecrets: string[];
-
-                /** FeedStateDaoV1 _identity. */
-                public _identity?: "identity";
-
-                /**
-                 * Creates a new FeedStateDaoV1 instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns FeedStateDaoV1 instance
-                 */
-                public static create(properties?: LiftLog.Ui.Models.IFeedStateDaoV1): LiftLog.Ui.Models.FeedStateDaoV1;
-
-                /**
-                 * Encodes the specified FeedStateDaoV1 message. Does not implicitly {@link LiftLog.Ui.Models.FeedStateDaoV1.verify|verify} messages.
-                 * @param message FeedStateDaoV1 message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: LiftLog.Ui.Models.IFeedStateDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified FeedStateDaoV1 message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.FeedStateDaoV1.verify|verify} messages.
-                 * @param message FeedStateDaoV1 message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: LiftLog.Ui.Models.IFeedStateDaoV1, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a FeedStateDaoV1 message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns FeedStateDaoV1
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.FeedStateDaoV1;
-
-                /**
-                 * Decodes a FeedStateDaoV1 message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns FeedStateDaoV1
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.FeedStateDaoV1;
-
-                /**
-                 * Verifies a FeedStateDaoV1 message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a FeedStateDaoV1 message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns FeedStateDaoV1
-                 */
-                public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.FeedStateDaoV1;
-
-                /**
-                 * Creates a plain object from a FeedStateDaoV1 message. Also converts values to other types if specified.
-                 * @param message FeedStateDaoV1
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: LiftLog.Ui.Models.FeedStateDaoV1, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this FeedStateDaoV1 to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-
-                /**
-                 * Gets the default type url for FeedStateDaoV1
-                 * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                 * @returns The default type url
-                 */
-                public static getTypeUrl(typeUrlPrefix?: string): string;
-            }
-
-            /** Namespace WorkoutMessage. */
-            namespace WorkoutMessage {
-
-                /** Properties of a WorkoutMessage. */
-                interface IWorkoutMessage {
-
-                    /** WorkoutMessage translations */
-                    translations?: (LiftLog.Ui.Models.WorkoutMessage.ITranslations|null);
-
-                    /** WorkoutMessage appConfiguration */
-                    appConfiguration?: (LiftLog.Ui.Models.WorkoutMessage.IAppConfiguration|null);
-
-                    /** WorkoutMessage workoutStartedEvent */
-                    workoutStartedEvent?: (LiftLog.Ui.Models.WorkoutMessage.IWorkoutStartedEvent|null);
-
-                    /** WorkoutMessage workoutUpdatedEvent */
-                    workoutUpdatedEvent?: (LiftLog.Ui.Models.WorkoutMessage.IWorkoutUpdatedEvent|null);
-
-                    /** WorkoutMessage workoutEndedEvent */
-                    workoutEndedEvent?: (LiftLog.Ui.Models.WorkoutMessage.IWorkoutEndedEvent|null);
-
-                    /** WorkoutMessage finishWorkoutCommand */
-                    finishWorkoutCommand?: (LiftLog.Ui.Models.WorkoutMessage.IFinishWorkoutCommand|null);
-                }
-
-                /** Represents a WorkoutMessage. */
-                class WorkoutMessage implements IWorkoutMessage {
-
-                    /**
-                     * Constructs a new WorkoutMessage.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.IWorkoutMessage);
-
-                    /** WorkoutMessage translations. */
-                    public translations?: (LiftLog.Ui.Models.WorkoutMessage.ITranslations|null);
-
-                    /** WorkoutMessage appConfiguration. */
-                    public appConfiguration?: (LiftLog.Ui.Models.WorkoutMessage.IAppConfiguration|null);
-
-                    /** WorkoutMessage workoutStartedEvent. */
-                    public workoutStartedEvent?: (LiftLog.Ui.Models.WorkoutMessage.IWorkoutStartedEvent|null);
-
-                    /** WorkoutMessage workoutUpdatedEvent. */
-                    public workoutUpdatedEvent?: (LiftLog.Ui.Models.WorkoutMessage.IWorkoutUpdatedEvent|null);
-
-                    /** WorkoutMessage workoutEndedEvent. */
-                    public workoutEndedEvent?: (LiftLog.Ui.Models.WorkoutMessage.IWorkoutEndedEvent|null);
-
-                    /** WorkoutMessage finishWorkoutCommand. */
-                    public finishWorkoutCommand?: (LiftLog.Ui.Models.WorkoutMessage.IFinishWorkoutCommand|null);
-
-                    /** WorkoutMessage payload. */
-                    public payload?: ("workoutStartedEvent"|"workoutUpdatedEvent"|"workoutEndedEvent"|"finishWorkoutCommand");
-
-                    /**
-                     * Creates a new WorkoutMessage instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns WorkoutMessage instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.IWorkoutMessage): LiftLog.Ui.Models.WorkoutMessage.WorkoutMessage;
-
-                    /**
-                     * Encodes the specified WorkoutMessage message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.WorkoutMessage.verify|verify} messages.
-                     * @param message WorkoutMessage message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.IWorkoutMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified WorkoutMessage message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.WorkoutMessage.verify|verify} messages.
-                     * @param message WorkoutMessage message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.IWorkoutMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a WorkoutMessage message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns WorkoutMessage
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.WorkoutMessage;
-
-                    /**
-                     * Decodes a WorkoutMessage message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns WorkoutMessage
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.WorkoutMessage;
-
-                    /**
-                     * Verifies a WorkoutMessage message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a WorkoutMessage message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns WorkoutMessage
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.WorkoutMessage;
-
-                    /**
-                     * Creates a plain object from a WorkoutMessage message. Also converts values to other types if specified.
-                     * @param message WorkoutMessage
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.WorkoutMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this WorkoutMessage to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for WorkoutMessage
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a WorkoutStartedEvent. */
-                interface IWorkoutStartedEvent {
-                }
-
-                /** Represents a WorkoutStartedEvent. */
-                class WorkoutStartedEvent implements IWorkoutStartedEvent {
-
-                    /**
-                     * Constructs a new WorkoutStartedEvent.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.IWorkoutStartedEvent);
-
-                    /**
-                     * Creates a new WorkoutStartedEvent instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns WorkoutStartedEvent instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.IWorkoutStartedEvent): LiftLog.Ui.Models.WorkoutMessage.WorkoutStartedEvent;
-
-                    /**
-                     * Encodes the specified WorkoutStartedEvent message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.WorkoutStartedEvent.verify|verify} messages.
-                     * @param message WorkoutStartedEvent message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.IWorkoutStartedEvent, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified WorkoutStartedEvent message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.WorkoutStartedEvent.verify|verify} messages.
-                     * @param message WorkoutStartedEvent message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.IWorkoutStartedEvent, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a WorkoutStartedEvent message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns WorkoutStartedEvent
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.WorkoutStartedEvent;
-
-                    /**
-                     * Decodes a WorkoutStartedEvent message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns WorkoutStartedEvent
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.WorkoutStartedEvent;
-
-                    /**
-                     * Verifies a WorkoutStartedEvent message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a WorkoutStartedEvent message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns WorkoutStartedEvent
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.WorkoutStartedEvent;
-
-                    /**
-                     * Creates a plain object from a WorkoutStartedEvent message. Also converts values to other types if specified.
-                     * @param message WorkoutStartedEvent
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.WorkoutStartedEvent, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this WorkoutStartedEvent to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for WorkoutStartedEvent
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a WorkoutUpdatedEvent. */
-                interface IWorkoutUpdatedEvent {
-
-                    /** WorkoutUpdatedEvent workout */
-                    workout?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null);
-
-                    /** WorkoutUpdatedEvent currentExerciseDetails */
-                    currentExerciseDetails?: (LiftLog.Ui.Models.WorkoutMessage.ICurrentExerciseDetails|null);
-
-                    /** WorkoutUpdatedEvent restTimerInfo */
-                    restTimerInfo?: (LiftLog.Ui.Models.WorkoutMessage.IRestTimerInfo|null);
-
-                    /** WorkoutUpdatedEvent cardioTimerInfo */
-                    cardioTimerInfo?: (LiftLog.Ui.Models.WorkoutMessage.ICardioTimerInfo|null);
-
-                    /** WorkoutUpdatedEvent totalWeightLifted */
-                    totalWeightLifted?: (LiftLog.Ui.Models.IWeight|null);
-
-                    /** WorkoutUpdatedEvent workoutDuration */
-                    workoutDuration?: (google.protobuf.IDuration|null);
-                }
-
-                /** Represents a WorkoutUpdatedEvent. */
-                class WorkoutUpdatedEvent implements IWorkoutUpdatedEvent {
-
-                    /**
-                     * Constructs a new WorkoutUpdatedEvent.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.IWorkoutUpdatedEvent);
-
-                    /** WorkoutUpdatedEvent workout. */
-                    public workout?: (LiftLog.Ui.Models.SessionHistoryDao.ISessionDaoV2|null);
-
-                    /** WorkoutUpdatedEvent currentExerciseDetails. */
-                    public currentExerciseDetails?: (LiftLog.Ui.Models.WorkoutMessage.ICurrentExerciseDetails|null);
-
-                    /** WorkoutUpdatedEvent restTimerInfo. */
-                    public restTimerInfo?: (LiftLog.Ui.Models.WorkoutMessage.IRestTimerInfo|null);
-
-                    /** WorkoutUpdatedEvent cardioTimerInfo. */
-                    public cardioTimerInfo?: (LiftLog.Ui.Models.WorkoutMessage.ICardioTimerInfo|null);
-
-                    /** WorkoutUpdatedEvent totalWeightLifted. */
-                    public totalWeightLifted?: (LiftLog.Ui.Models.IWeight|null);
-
-                    /** WorkoutUpdatedEvent workoutDuration. */
-                    public workoutDuration?: (google.protobuf.IDuration|null);
-
-                    /** WorkoutUpdatedEvent _currentExerciseDetails. */
-                    public _currentExerciseDetails?: "currentExerciseDetails";
-
-                    /** WorkoutUpdatedEvent _restTimerInfo. */
-                    public _restTimerInfo?: "restTimerInfo";
-
-                    /** WorkoutUpdatedEvent _cardioTimerInfo. */
-                    public _cardioTimerInfo?: "cardioTimerInfo";
-
-                    /**
-                     * Creates a new WorkoutUpdatedEvent instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns WorkoutUpdatedEvent instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.IWorkoutUpdatedEvent): LiftLog.Ui.Models.WorkoutMessage.WorkoutUpdatedEvent;
-
-                    /**
-                     * Encodes the specified WorkoutUpdatedEvent message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.WorkoutUpdatedEvent.verify|verify} messages.
-                     * @param message WorkoutUpdatedEvent message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.IWorkoutUpdatedEvent, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified WorkoutUpdatedEvent message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.WorkoutUpdatedEvent.verify|verify} messages.
-                     * @param message WorkoutUpdatedEvent message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.IWorkoutUpdatedEvent, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a WorkoutUpdatedEvent message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns WorkoutUpdatedEvent
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.WorkoutUpdatedEvent;
-
-                    /**
-                     * Decodes a WorkoutUpdatedEvent message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns WorkoutUpdatedEvent
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.WorkoutUpdatedEvent;
-
-                    /**
-                     * Verifies a WorkoutUpdatedEvent message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a WorkoutUpdatedEvent message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns WorkoutUpdatedEvent
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.WorkoutUpdatedEvent;
-
-                    /**
-                     * Creates a plain object from a WorkoutUpdatedEvent message. Also converts values to other types if specified.
-                     * @param message WorkoutUpdatedEvent
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.WorkoutUpdatedEvent, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this WorkoutUpdatedEvent to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for WorkoutUpdatedEvent
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a WorkoutEndedEvent. */
-                interface IWorkoutEndedEvent {
-                }
-
-                /** Represents a WorkoutEndedEvent. */
-                class WorkoutEndedEvent implements IWorkoutEndedEvent {
-
-                    /**
-                     * Constructs a new WorkoutEndedEvent.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.IWorkoutEndedEvent);
-
-                    /**
-                     * Creates a new WorkoutEndedEvent instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns WorkoutEndedEvent instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.IWorkoutEndedEvent): LiftLog.Ui.Models.WorkoutMessage.WorkoutEndedEvent;
-
-                    /**
-                     * Encodes the specified WorkoutEndedEvent message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.WorkoutEndedEvent.verify|verify} messages.
-                     * @param message WorkoutEndedEvent message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.IWorkoutEndedEvent, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified WorkoutEndedEvent message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.WorkoutEndedEvent.verify|verify} messages.
-                     * @param message WorkoutEndedEvent message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.IWorkoutEndedEvent, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a WorkoutEndedEvent message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns WorkoutEndedEvent
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.WorkoutEndedEvent;
-
-                    /**
-                     * Decodes a WorkoutEndedEvent message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns WorkoutEndedEvent
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.WorkoutEndedEvent;
-
-                    /**
-                     * Verifies a WorkoutEndedEvent message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a WorkoutEndedEvent message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns WorkoutEndedEvent
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.WorkoutEndedEvent;
-
-                    /**
-                     * Creates a plain object from a WorkoutEndedEvent message. Also converts values to other types if specified.
-                     * @param message WorkoutEndedEvent
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.WorkoutEndedEvent, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this WorkoutEndedEvent to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for WorkoutEndedEvent
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a FinishWorkoutCommand. */
-                interface IFinishWorkoutCommand {
-                }
-
-                /** Represents a FinishWorkoutCommand. */
-                class FinishWorkoutCommand implements IFinishWorkoutCommand {
-
-                    /**
-                     * Constructs a new FinishWorkoutCommand.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.IFinishWorkoutCommand);
-
-                    /**
-                     * Creates a new FinishWorkoutCommand instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns FinishWorkoutCommand instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.IFinishWorkoutCommand): LiftLog.Ui.Models.WorkoutMessage.FinishWorkoutCommand;
-
-                    /**
-                     * Encodes the specified FinishWorkoutCommand message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.FinishWorkoutCommand.verify|verify} messages.
-                     * @param message FinishWorkoutCommand message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.IFinishWorkoutCommand, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified FinishWorkoutCommand message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.FinishWorkoutCommand.verify|verify} messages.
-                     * @param message FinishWorkoutCommand message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.IFinishWorkoutCommand, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a FinishWorkoutCommand message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns FinishWorkoutCommand
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.FinishWorkoutCommand;
-
-                    /**
-                     * Decodes a FinishWorkoutCommand message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns FinishWorkoutCommand
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.FinishWorkoutCommand;
-
-                    /**
-                     * Verifies a FinishWorkoutCommand message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a FinishWorkoutCommand message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns FinishWorkoutCommand
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.FinishWorkoutCommand;
-
-                    /**
-                     * Creates a plain object from a FinishWorkoutCommand message. Also converts values to other types if specified.
-                     * @param message FinishWorkoutCommand
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.FinishWorkoutCommand, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this FinishWorkoutCommand to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for FinishWorkoutCommand
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a CurrentExerciseDetails. */
-                interface ICurrentExerciseDetails {
-
-                    /** CurrentExerciseDetails exercise */
-                    exercise?: (LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2|null);
-
-                    /** CurrentExerciseDetails setIndex */
-                    setIndex?: (number|null);
-                }
-
-                /** Represents a CurrentExerciseDetails. */
-                class CurrentExerciseDetails implements ICurrentExerciseDetails {
-
-                    /**
-                     * Constructs a new CurrentExerciseDetails.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.ICurrentExerciseDetails);
-
-                    /** CurrentExerciseDetails exercise. */
-                    public exercise?: (LiftLog.Ui.Models.SessionHistoryDao.IRecordedExerciseDaoV2|null);
-
-                    /** CurrentExerciseDetails setIndex. */
-                    public setIndex: number;
-
-                    /**
-                     * Creates a new CurrentExerciseDetails instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns CurrentExerciseDetails instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.ICurrentExerciseDetails): LiftLog.Ui.Models.WorkoutMessage.CurrentExerciseDetails;
-
-                    /**
-                     * Encodes the specified CurrentExerciseDetails message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.CurrentExerciseDetails.verify|verify} messages.
-                     * @param message CurrentExerciseDetails message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.ICurrentExerciseDetails, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified CurrentExerciseDetails message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.CurrentExerciseDetails.verify|verify} messages.
-                     * @param message CurrentExerciseDetails message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.ICurrentExerciseDetails, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a CurrentExerciseDetails message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns CurrentExerciseDetails
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.CurrentExerciseDetails;
-
-                    /**
-                     * Decodes a CurrentExerciseDetails message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns CurrentExerciseDetails
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.CurrentExerciseDetails;
-
-                    /**
-                     * Verifies a CurrentExerciseDetails message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a CurrentExerciseDetails message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns CurrentExerciseDetails
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.CurrentExerciseDetails;
-
-                    /**
-                     * Creates a plain object from a CurrentExerciseDetails message. Also converts values to other types if specified.
-                     * @param message CurrentExerciseDetails
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.CurrentExerciseDetails, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this CurrentExerciseDetails to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for CurrentExerciseDetails
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a RestTimerInfo. */
-                interface IRestTimerInfo {
-
-                    /** RestTimerInfo startedAt */
-                    startedAt?: (google.protobuf.ITimestamp|null);
-
-                    /** RestTimerInfo partiallyEndAt */
-                    partiallyEndAt?: (google.protobuf.ITimestamp|null);
-
-                    /** RestTimerInfo endAt */
-                    endAt?: (google.protobuf.ITimestamp|null);
-                }
-
-                /** Represents a RestTimerInfo. */
-                class RestTimerInfo implements IRestTimerInfo {
-
-                    /**
-                     * Constructs a new RestTimerInfo.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.IRestTimerInfo);
-
-                    /** RestTimerInfo startedAt. */
-                    public startedAt?: (google.protobuf.ITimestamp|null);
-
-                    /** RestTimerInfo partiallyEndAt. */
-                    public partiallyEndAt?: (google.protobuf.ITimestamp|null);
-
-                    /** RestTimerInfo endAt. */
-                    public endAt?: (google.protobuf.ITimestamp|null);
-
-                    /**
-                     * Creates a new RestTimerInfo instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns RestTimerInfo instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.IRestTimerInfo): LiftLog.Ui.Models.WorkoutMessage.RestTimerInfo;
-
-                    /**
-                     * Encodes the specified RestTimerInfo message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.RestTimerInfo.verify|verify} messages.
-                     * @param message RestTimerInfo message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.IRestTimerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified RestTimerInfo message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.RestTimerInfo.verify|verify} messages.
-                     * @param message RestTimerInfo message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.IRestTimerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a RestTimerInfo message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns RestTimerInfo
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.RestTimerInfo;
-
-                    /**
-                     * Decodes a RestTimerInfo message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns RestTimerInfo
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.RestTimerInfo;
-
-                    /**
-                     * Verifies a RestTimerInfo message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a RestTimerInfo message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns RestTimerInfo
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.RestTimerInfo;
-
-                    /**
-                     * Creates a plain object from a RestTimerInfo message. Also converts values to other types if specified.
-                     * @param message RestTimerInfo
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.RestTimerInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this RestTimerInfo to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for RestTimerInfo
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a CardioTimerInfo. */
-                interface ICardioTimerInfo {
-
-                    /** CardioTimerInfo currentDuration */
-                    currentDuration?: (google.protobuf.IDuration|null);
-
-                    /** CardioTimerInfo currentBlockStartTime */
-                    currentBlockStartTime?: (google.protobuf.ITimestamp|null);
-
-                    /** CardioTimerInfo exerciseIndex */
-                    exerciseIndex?: (number|null);
-
-                    /** CardioTimerInfo setIndex */
-                    setIndex?: (number|null);
-                }
-
-                /** Represents a CardioTimerInfo. */
-                class CardioTimerInfo implements ICardioTimerInfo {
-
-                    /**
-                     * Constructs a new CardioTimerInfo.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.ICardioTimerInfo);
-
-                    /** CardioTimerInfo currentDuration. */
-                    public currentDuration?: (google.protobuf.IDuration|null);
-
-                    /** CardioTimerInfo currentBlockStartTime. */
-                    public currentBlockStartTime?: (google.protobuf.ITimestamp|null);
-
-                    /** CardioTimerInfo exerciseIndex. */
-                    public exerciseIndex: number;
-
-                    /** CardioTimerInfo setIndex. */
-                    public setIndex: number;
-
-                    /** CardioTimerInfo _currentBlockStartTime. */
-                    public _currentBlockStartTime?: "currentBlockStartTime";
-
-                    /**
-                     * Creates a new CardioTimerInfo instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns CardioTimerInfo instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.ICardioTimerInfo): LiftLog.Ui.Models.WorkoutMessage.CardioTimerInfo;
-
-                    /**
-                     * Encodes the specified CardioTimerInfo message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.CardioTimerInfo.verify|verify} messages.
-                     * @param message CardioTimerInfo message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.ICardioTimerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified CardioTimerInfo message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.CardioTimerInfo.verify|verify} messages.
-                     * @param message CardioTimerInfo message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.ICardioTimerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a CardioTimerInfo message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns CardioTimerInfo
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.CardioTimerInfo;
-
-                    /**
-                     * Decodes a CardioTimerInfo message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns CardioTimerInfo
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.CardioTimerInfo;
-
-                    /**
-                     * Verifies a CardioTimerInfo message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a CardioTimerInfo message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns CardioTimerInfo
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.CardioTimerInfo;
-
-                    /**
-                     * Creates a plain object from a CardioTimerInfo message. Also converts values to other types if specified.
-                     * @param message CardioTimerInfo
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.CardioTimerInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this CardioTimerInfo to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for CardioTimerInfo
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of a Translations. */
-                interface ITranslations {
-
-                    /** Translations workoutPersistentNotification_RestBreak_Message */
-                    workoutPersistentNotification_RestBreak_Message?: (string|null);
-
-                    /** Translations workoutPersistentNotification_StartSoon_Message */
-                    workoutPersistentNotification_StartSoon_Message?: (string|null);
-
-                    /** Translations workoutPersistentNotification_StartNow_Message */
-                    workoutPersistentNotification_StartNow_Message?: (string|null);
-
-                    /** Translations workoutPersistentNotification_MinRestOver_Message */
-                    workoutPersistentNotification_MinRestOver_Message?: (string|null);
-
-                    /** Translations workoutPersistentNotification_MaxRestOver_Message */
-                    workoutPersistentNotification_MaxRestOver_Message?: (string|null);
-
-                    /** Translations workoutPersistentNotification_CurrentExercise_Message */
-                    workoutPersistentNotification_CurrentExercise_Message?: (string|null);
-
-                    /** Translations workoutPersistentNotification_Finished_Message */
-                    workoutPersistentNotification_Finished_Message?: (string|null);
-
-                    /** Translations workoutPersistentNotification_InProgress_Message */
-                    workoutPersistentNotification_InProgress_Message?: (string|null);
-
-                    /** Translations workoutPersistentNotification_FinishWorkout_Action */
-                    workoutPersistentNotification_FinishWorkout_Action?: (string|null);
-                }
-
-                /** Represents a Translations. */
-                class Translations implements ITranslations {
-
-                    /**
-                     * Constructs a new Translations.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.ITranslations);
-
-                    /** Translations workoutPersistentNotification_RestBreak_Message. */
-                    public workoutPersistentNotification_RestBreak_Message: string;
-
-                    /** Translations workoutPersistentNotification_StartSoon_Message. */
-                    public workoutPersistentNotification_StartSoon_Message: string;
-
-                    /** Translations workoutPersistentNotification_StartNow_Message. */
-                    public workoutPersistentNotification_StartNow_Message: string;
-
-                    /** Translations workoutPersistentNotification_MinRestOver_Message. */
-                    public workoutPersistentNotification_MinRestOver_Message: string;
-
-                    /** Translations workoutPersistentNotification_MaxRestOver_Message. */
-                    public workoutPersistentNotification_MaxRestOver_Message: string;
-
-                    /** Translations workoutPersistentNotification_CurrentExercise_Message. */
-                    public workoutPersistentNotification_CurrentExercise_Message: string;
-
-                    /** Translations workoutPersistentNotification_Finished_Message. */
-                    public workoutPersistentNotification_Finished_Message: string;
-
-                    /** Translations workoutPersistentNotification_InProgress_Message. */
-                    public workoutPersistentNotification_InProgress_Message: string;
-
-                    /** Translations workoutPersistentNotification_FinishWorkout_Action. */
-                    public workoutPersistentNotification_FinishWorkout_Action: string;
-
-                    /**
-                     * Creates a new Translations instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns Translations instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.ITranslations): LiftLog.Ui.Models.WorkoutMessage.Translations;
-
-                    /**
-                     * Encodes the specified Translations message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.Translations.verify|verify} messages.
-                     * @param message Translations message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.ITranslations, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified Translations message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.Translations.verify|verify} messages.
-                     * @param message Translations message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.ITranslations, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a Translations message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns Translations
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.Translations;
-
-                    /**
-                     * Decodes a Translations message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns Translations
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.Translations;
-
-                    /**
-                     * Verifies a Translations message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a Translations message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns Translations
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.Translations;
-
-                    /**
-                     * Creates a plain object from a Translations message. Also converts values to other types if specified.
-                     * @param message Translations
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.Translations, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this Translations to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for Translations
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
-
-                /** Properties of an AppConfiguration. */
-                interface IAppConfiguration {
-
-                    /** AppConfiguration notificationsEnabled */
-                    notificationsEnabled?: (boolean|null);
-                }
-
-                /** Represents an AppConfiguration. */
-                class AppConfiguration implements IAppConfiguration {
-
-                    /**
-                     * Constructs a new AppConfiguration.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: LiftLog.Ui.Models.WorkoutMessage.IAppConfiguration);
-
-                    /** AppConfiguration notificationsEnabled. */
-                    public notificationsEnabled: boolean;
-
-                    /**
-                     * Creates a new AppConfiguration instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns AppConfiguration instance
-                     */
-                    public static create(properties?: LiftLog.Ui.Models.WorkoutMessage.IAppConfiguration): LiftLog.Ui.Models.WorkoutMessage.AppConfiguration;
-
-                    /**
-                     * Encodes the specified AppConfiguration message. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.AppConfiguration.verify|verify} messages.
-                     * @param message AppConfiguration message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: LiftLog.Ui.Models.WorkoutMessage.IAppConfiguration, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified AppConfiguration message, length delimited. Does not implicitly {@link LiftLog.Ui.Models.WorkoutMessage.AppConfiguration.verify|verify} messages.
-                     * @param message AppConfiguration message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: LiftLog.Ui.Models.WorkoutMessage.IAppConfiguration, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes an AppConfiguration message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns AppConfiguration
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): LiftLog.Ui.Models.WorkoutMessage.AppConfiguration;
-
-                    /**
-                     * Decodes an AppConfiguration message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns AppConfiguration
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): LiftLog.Ui.Models.WorkoutMessage.AppConfiguration;
-
-                    /**
-                     * Verifies an AppConfiguration message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates an AppConfiguration message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns AppConfiguration
-                     */
-                    public static fromObject(object: { [k: string]: any }): LiftLog.Ui.Models.WorkoutMessage.AppConfiguration;
-
-                    /**
-                     * Creates a plain object from an AppConfiguration message. Also converts values to other types if specified.
-                     * @param message AppConfiguration
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: LiftLog.Ui.Models.WorkoutMessage.AppConfiguration, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this AppConfiguration to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-
-                    /**
-                     * Gets the default type url for AppConfiguration
-                     * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-                     * @returns The default type url
-                     */
-                    public static getTypeUrl(typeUrlPrefix?: string): string;
-                }
             }
         }
     }
