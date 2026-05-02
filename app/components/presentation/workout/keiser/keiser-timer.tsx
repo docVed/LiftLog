@@ -2,7 +2,7 @@ import { CardioTrackerCard } from '@/components/presentation/workout/cardio/card
 import IconButton from '@/components/presentation/foundation/gesture-wrappers/icon-button';
 import { SurfaceText } from '@/components/presentation/foundation/surface-text';
 import { useAppTheme, spacing, rounding } from '@/hooks/useAppTheme';
-import { RecordedKeiserExerciseSet } from '@/models/session-models';
+import { KeiserExerciseSetBlueprint } from '@/models/blueprint-models';
 import { Duration, OffsetDateTime } from '@js-joda/core';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useAnimatedValue, Animated, View } from 'react-native';
@@ -12,66 +12,59 @@ import {
 } from '@/components/presentation/workout/keiser/keiser-timer-state';
 
 interface KeiserTimerProps {
-  set: RecordedKeiserExerciseSet;
+  blueprint: KeiserExerciseSetBlueprint;
+  recordedDuration: Duration | undefined;
   currentBlockStartTime: OffsetDateTime | undefined;
-  setCurrentBlockStartTime: (val: OffsetDateTime | undefined) => void;
-  updateDuration: (duration: Duration | undefined) => void;
-  setCompletionTime: (time: OffsetDateTime | undefined) => void;
-  reset: () => void;
+  isReadonly: boolean;
+  onPlay: () => void;
+  onPause: (accumulatedDuration: Duration) => void;
+  onAutoComplete: (
+    accumulatedDuration: Duration,
+    completionTime: OffsetDateTime,
+  ) => void;
+  onReset: () => void;
 }
 
 export function KeiserTimer({
-  set,
+  blueprint,
+  recordedDuration,
   currentBlockStartTime,
-  setCurrentBlockStartTime,
-  updateDuration,
-  setCompletionTime,
-  reset,
+  isReadonly,
+  onPlay,
+  onPause,
+  onAutoComplete,
+  onReset,
 }: KeiserTimerProps) {
-  const playPauseButtonSize = 24;
+  const playPauseButtonSize = 32;
   const { colors } = useAppTheme();
   const animatedRadius = useAnimatedValue(40);
 
   const compute = useCallback(
-    (recorded: Duration | undefined) =>
+    (): KeiserTimerState =>
       computeKeiserTimerState({
         now: OffsetDateTime.now(),
         currentBlockStartTime,
-        recordedDuration: recorded,
-        prepDuration: set.blueprint.prepDuration,
-        maxDuration: set.blueprint.maxDuration,
-        moveDuration: set.blueprint.moveDuration,
-        pauseDuration: set.blueprint.pauseDuration,
+        recordedDuration,
+        prepDuration: blueprint.prepDuration,
+        maxDuration: blueprint.maxDuration,
+        moveDuration: blueprint.moveDuration,
+        pauseDuration: blueprint.pauseDuration,
       }),
-    [currentBlockStartTime, set.blueprint],
+    [currentBlockStartTime, recordedDuration, blueprint],
   );
 
-  const [timerState, setTimerState] = useState<KeiserTimerState>(() =>
-    compute(set.duration),
-  );
-  // Track if we've already auto-stopped to avoid repeated dispatches.
+  const [timerState, setTimerState] = useState<KeiserTimerState>(compute);
   const autoStoppedRef = useRef(false);
 
   const handlePlay = () => {
     autoStoppedRef.current = false;
-    setCurrentBlockStartTime(OffsetDateTime.now());
+    onPlay();
   };
+
   const handlePause = () => {
-    if (!currentBlockStartTime) {
-      return;
-    }
-    const now = OffsetDateTime.now();
-    const state = computeKeiserTimerState({
-      now,
-      currentBlockStartTime,
-      recordedDuration: set.duration,
-      prepDuration: set.blueprint.prepDuration,
-      maxDuration: set.blueprint.maxDuration,
-      moveDuration: set.blueprint.moveDuration,
-      pauseDuration: set.blueprint.pauseDuration,
-    });
-    setCurrentBlockStartTime(undefined);
-    updateDuration(state.runDuration);
+    if (!currentBlockStartTime) return;
+    const state = compute();
+    onPause(state.runDuration);
   };
 
   const handlePlayPause = () => {
@@ -92,7 +85,7 @@ export function KeiserTimer({
 
   const handleReset = () => {
     autoStoppedRef.current = false;
-    reset();
+    onReset();
     setTimerState({
       phase: 'idle',
       displaySeconds: 0,
@@ -100,52 +93,36 @@ export function KeiserTimer({
     });
   };
 
-  // Tick while running.
+  // Tick while running; auto-stop on completion.
   useEffect(() => {
     if (!currentBlockStartTime) {
-      setTimerState(compute(set.duration));
+      setTimerState(compute());
       return;
     }
     const tick = () => {
-      const state = compute(set.duration);
+      const state = compute();
       setTimerState(state);
       if (state.phase === 'completed' && !autoStoppedRef.current) {
         autoStoppedRef.current = true;
-        const now = OffsetDateTime.now();
-        setCurrentBlockStartTime(undefined);
-        updateDuration(state.runDuration);
-        setCompletionTime(now);
+        onAutoComplete(state.runDuration, OffsetDateTime.now());
       }
     };
     tick();
     const id = setInterval(tick, 200);
     return () => clearInterval(id);
-  }, [
-    currentBlockStartTime,
-    compute,
-    set.duration,
-    setCurrentBlockStartTime,
-    updateDuration,
-    setCompletionTime,
-  ]);
+  }, [currentBlockStartTime, compute, onAutoComplete]);
 
   // Persist accumulated duration every 5s while running so the timer survives reload.
   useEffect(() => {
     if (!currentBlockStartTime) return;
     const id = setTimeout(() => {
-      const state = compute(set.duration);
+      const state = compute();
       if (state.phase === 'prep' || state.phase === 'completed') return;
-      setCurrentBlockStartTime(OffsetDateTime.now());
-      updateDuration(state.runDuration);
+      onPause(state.runDuration);
+      onPlay();
     }, 5000);
     return () => clearTimeout(id);
-  }, [
-    currentBlockStartTime,
-    compute,
-    set.duration,
-    setCurrentBlockStartTime,
-    updateDuration,
-  ]);
+  }, [currentBlockStartTime, compute, onPause, onPlay]);
 
   const phaseLabel = (() => {
     switch (timerState.phase) {
@@ -179,7 +156,14 @@ export function KeiserTimer({
 
   return (
     <CardioTrackerCard onHold={handleReset}>
-      <View style={{ alignItems: 'center', gap: spacing[2], minWidth: 180 }}>
+      <View
+        style={{
+          alignItems: 'center',
+          gap: spacing[2],
+          minWidth: 220,
+          paddingVertical: spacing[2],
+        }}
+      >
         <View
           style={{
             backgroundColor: phaseColor,
@@ -192,17 +176,18 @@ export function KeiserTimer({
             {phaseLabel}
           </SurfaceText>
         </View>
-        <SurfaceText font="text-2xl">
+        <SurfaceText font="text-3xl">
           {formatDisplaySeconds(timerState.displaySeconds)}
         </SurfaceText>
         <SurfaceText font="text-2xs" color="onSurfaceVariant">
-          / {formatDisplaySeconds(set.blueprint.maxDuration.seconds())}
+          / {formatDisplaySeconds(blueprint.maxDuration.seconds())}
         </SurfaceText>
-        <View style={{ flexDirection: 'row', gap: spacing[2] }}>
+        <View style={{ flexDirection: 'row', gap: spacing[3] }}>
           <IconButton
             icon={currentBlockStartTime ? 'pause' : 'playArrow'}
             animated
             size={playPauseButtonSize}
+            disabled={isReadonly && !currentBlockStartTime}
             testID="keiser-timer-play-pause"
             onPress={handlePlayPause}
             containerColor={

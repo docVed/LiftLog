@@ -22,6 +22,7 @@ import {
   updateResistanceForCardioExercise,
   updateStepsForCardioExercise,
   updateWeightForCardioExercise,
+  updateWeightForKeiserExerciseSet,
   updateWeightForSet,
 } from '@/store/current-session';
 import { Card, FAB, Icon, Text } from 'react-native-paper';
@@ -379,6 +380,14 @@ export default function SessionComponent(props: {
           }
           resetSet={(setIndex) =>
             dispatch(resetKeiserExerciseSet, {
+              setIndex,
+              exerciseIndex: index,
+            })
+          }
+          updateWeight={(setIndex, weight, applyTo) =>
+            dispatch(updateWeightForKeiserExerciseSet, {
+              weight,
+              applyTo,
               setIndex,
               exerciseIndex: index,
             })
