@@ -287,10 +287,11 @@ const currentSessionSlice = createSlice({
               : undefined;
 
           if (keiserExistingExercise) {
+            const unit = action.useImperialUnits ? 'pounds' : 'kilograms';
             keiserExistingExercise.sets = (
               action.newBlueprint as KeiserExerciseBlueprint
             ).sets.map((set, i) =>
-              RecordedKeiserExerciseSet.empty(set)
+              RecordedKeiserExerciseSet.empty(set, unit)
                 .with({
                   ...keiserExistingExercise.sets[i],
                   blueprint: set,
@@ -638,6 +639,40 @@ const currentSessionSlice = createSlice({
         set.completionDateTime = undefined;
       },
     ),
+
+    updateWeightForKeiserExerciseSet: targetedSessionAction(
+      (
+        session,
+        action: {
+          exerciseIndex: number;
+          setIndex: number;
+          weight: Weight;
+          applyTo: WeightAppliesTo;
+        },
+      ) => {
+        const exercise = session.recordedExercises[action.exerciseIndex];
+        if (exercise.type !== 'RecordedKeiserExercise') {
+          return;
+        }
+        switch (action.applyTo) {
+          case 'thisSet':
+            exercise.sets[action.setIndex].weight = action.weight;
+            break;
+          case 'uncompletedSets':
+            exercise.sets.forEach((set) => {
+              if (!set.completionDateTime) {
+                set.weight = action.weight;
+              }
+            });
+            break;
+          case 'allSets':
+            exercise.sets.forEach((set) => {
+              set.weight = action.weight;
+            });
+            break;
+        }
+      },
+    ),
   },
   selectors: {
     selectState: (x) => x,
@@ -711,6 +746,7 @@ export const {
   updateCurrentBlockStartTimeForKeiserExercise,
   setCompletionTimeForKeiserExercise,
   resetKeiserExerciseSet,
+  updateWeightForKeiserExerciseSet,
 } = currentSessionSlice.actions;
 
 export const currentSessionReducer = currentSessionSlice.reducer;

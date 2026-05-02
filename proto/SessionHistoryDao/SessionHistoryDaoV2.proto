@@ -60,6 +60,7 @@ message RecordedKeiserExerciseSetDao {
   LiftLog.Ui.Models.SessionBlueprintDao.KeiserExerciseSetBlueprintDao blueprint = 1;
   optional LiftLog.Ui.Models.DateTimeDao completion_date_time = 2;
   optional google.protobuf.Duration duration = 3;
+  optional LiftLog.Ui.Models.Weight weight = 4;
 }
 
 message PotentialSetDaoV2 {

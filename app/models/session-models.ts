@@ -129,7 +129,7 @@ export class Session {
           RecordedCardioExercise.empty(ce),
         )
         .with(P.instanceOf(KeiserExerciseBlueprint), (ke) =>
-          RecordedKeiserExercise.empty(ke),
+          RecordedKeiserExercise.empty(ke, defaultWeightUnit),
         )
         .exhaustive();
     }
@@ -462,7 +462,7 @@ export function createEmptyRecordedExercise(
       RecordedCardioExercise.empty(b),
     )
     .with(P.instanceOf(KeiserExerciseBlueprint), (b) =>
-      RecordedKeiserExercise.empty(b),
+      RecordedKeiserExercise.empty(b, unit),
     )
     .exhaustive();
 }
@@ -785,6 +785,7 @@ export interface RecordedKeiserExerciseSetPOJO {
   readonly blueprint: KeiserExerciseSetBlueprintPOJO;
   readonly completionDateTime: OffsetDateTime | undefined;
   readonly duration: Duration | undefined;
+  readonly weight: Weight;
   readonly currentBlockStartTime: OffsetDateTime | undefined;
 }
 
@@ -793,6 +794,7 @@ export class RecordedKeiserExerciseSet {
     readonly blueprint: KeiserExerciseSetBlueprint,
     readonly completionDateTime: OffsetDateTime | undefined,
     readonly duration: Duration | undefined,
+    readonly weight: Weight,
     /**
      * Describes the start time of a currently running timer. This is not persisted.
      * The actual elapsed time (excluding prep) is computed from this and `duration`.
@@ -800,11 +802,15 @@ export class RecordedKeiserExerciseSet {
     readonly currentBlockStartTime: OffsetDateTime | undefined,
   ) {}
 
-  static empty(blueprint: KeiserExerciseSetBlueprint): RecordedKeiserExerciseSet {
+  static empty(
+    blueprint: KeiserExerciseSetBlueprint,
+    unit: WeightUnit,
+  ): RecordedKeiserExerciseSet {
     return new RecordedKeiserExerciseSet(
       blueprint,
       undefined,
       undefined,
+      new Weight(0, unit),
       undefined,
     );
   }
@@ -818,6 +824,7 @@ export class RecordedKeiserExerciseSet {
       KeiserExerciseSetBlueprint.fromPOJO(pojo.blueprint),
       pojo.completionDateTime,
       pojo.duration,
+      pojo.weight,
       pojo.currentBlockStartTime,
     );
   }
@@ -836,6 +843,7 @@ export class RecordedKeiserExerciseSet {
       blueprint: this.blueprint.toPOJO(),
       completionDateTime: this.completionDateTime,
       duration: this.duration,
+      weight: this.weight,
       currentBlockStartTime: this.currentBlockStartTime,
     };
   }
@@ -847,6 +855,7 @@ export class RecordedKeiserExerciseSet {
       blueprint: KeiserExerciseSetBlueprint.fromDao(dao.blueprint!).toPOJO(),
       completionDateTime: fromDateTimeDao(dao.completionDateTime),
       duration: fromDurationDao(dao.duration),
+      weight: dao.weight ? Weight.fromDao(dao.weight) : Weight.NIL,
       currentBlockStartTime: undefined,
     });
   }
@@ -856,6 +865,7 @@ export class RecordedKeiserExerciseSet {
       blueprint: this.blueprint.toDao(),
       completionDateTime: toDateTimeDao(this.completionDateTime),
       duration: toDurationDao(this.duration),
+      weight: this.weight.toDao(),
     };
   }
 
@@ -866,6 +876,7 @@ export class RecordedKeiserExerciseSet {
         ? other.completionDateTime
         : this.completionDateTime,
       'duration' in other ? other.duration : this.duration,
+      other.weight ?? this.weight,
       'currentBlockStartTime' in other
         ? other.currentBlockStartTime
         : this.currentBlockStartTime,
@@ -882,6 +893,7 @@ export class RecordedKeiserExerciseSet {
         other.duration &&
         this.duration.equals(other.duration)) ||
         this.duration === other.duration) &&
+      weightEqual(this.weight, other.weight) &&
       this.blueprint.equals(other.blueprint)
     );
   }
@@ -915,10 +927,13 @@ export class RecordedKeiserExercise {
     );
   }
 
-  static empty(blueprint: KeiserExerciseBlueprint): RecordedKeiserExercise {
+  static empty(
+    blueprint: KeiserExerciseBlueprint,
+    unit: WeightUnit,
+  ): RecordedKeiserExercise {
     return new RecordedKeiserExercise(
       blueprint,
-      blueprint.sets.map((x) => RecordedKeiserExerciseSet.empty(x)),
+      blueprint.sets.map((x) => RecordedKeiserExerciseSet.empty(x, unit)),
       undefined,
     );
   }
@@ -961,7 +976,15 @@ export class RecordedKeiserExercise {
   withNothingCompleted(): RecordedKeiserExercise {
     return this.with({
       notes: undefined,
-      sets: this.blueprint.sets.map((s) => RecordedKeiserExerciseSet.empty(s)),
+      sets: this.sets.map((s) =>
+        s
+          .with({
+            duration: undefined,
+            completionDateTime: undefined,
+            currentBlockStartTime: undefined,
+          })
+          .toPOJO(),
+      ),
     });
   }
 
@@ -1032,6 +1055,7 @@ export class RecordedKeiserExercise {
           ? blueprint.sets.map((s) =>
               RecordedKeiserExerciseSet.empty(
                 KeiserExerciseSetBlueprint.fromPOJO(s),
+                'nil',
               ).toPOJO(),
             )
           : sets,

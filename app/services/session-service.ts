@@ -12,6 +12,7 @@ import {
   RecordedCardioExerciseSet,
   RecordedExercise,
   RecordedKeiserExercise,
+  RecordedKeiserExerciseSet,
   RecordedWeightedExercise,
   Session,
 } from '@/models/session-models';
@@ -122,7 +123,27 @@ export class SessionService {
         });
       }
       if (e instanceof KeiserExerciseBlueprint) {
-        return RecordedKeiserExercise.empty(e);
+        const keiserLastExercise =
+          lastExercise instanceof RecordedKeiserExercise
+            ? lastExercise
+            : undefined;
+        return RecordedKeiserExercise.empty(
+          e,
+          $this.getDefaultWeightUnit(),
+        ).with({
+          sets: e.sets.map((s, i) => {
+            const previousWeight = keiserLastExercise?.sets[i]?.weight;
+            return RecordedKeiserExerciseSet.empty(
+              s,
+              $this.getDefaultWeightUnit(),
+            )
+              .with({
+                weight:
+                  previousWeight ?? new Weight(0, $this.getDefaultWeightUnit()),
+              })
+              .toPOJO();
+          }),
+        });
       }
       const weightedLastExercise =
         lastExercise instanceof RecordedWeightedExercise

@@ -4031,6 +4031,7 @@ export const LiftLog = $root.LiftLog = (() => {
                      * @property {LiftLog.Ui.Models.SessionBlueprintDao.IKeiserExerciseSetBlueprintDao|null} [blueprint] RecordedKeiserExerciseSetDao blueprint
                      * @property {LiftLog.Ui.Models.IDateTimeDao|null} [completionDateTime] RecordedKeiserExerciseSetDao completionDateTime
                      * @property {google.protobuf.IDuration|null} [duration] RecordedKeiserExerciseSetDao duration
+                     * @property {LiftLog.Ui.Models.IWeight|null} [weight] RecordedKeiserExerciseSetDao weight
                      */
 
                     /**
@@ -4072,6 +4073,14 @@ export const LiftLog = $root.LiftLog = (() => {
                      */
                     RecordedKeiserExerciseSetDao.prototype.duration = null;
 
+                    /**
+                     * RecordedKeiserExerciseSetDao weight.
+                     * @member {LiftLog.Ui.Models.IWeight|null|undefined} weight
+                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedKeiserExerciseSetDao
+                     * @instance
+                     */
+                    RecordedKeiserExerciseSetDao.prototype.weight = null;
+
                     // OneOf field names bound to virtual getters and setters
                     let $oneOfFields;
 
@@ -4094,6 +4103,17 @@ export const LiftLog = $root.LiftLog = (() => {
                      */
                     Object.defineProperty(RecordedKeiserExerciseSetDao.prototype, "_duration", {
                         get: $util.oneOfGetter($oneOfFields = ["duration"]),
+                        set: $util.oneOfSetter($oneOfFields)
+                    });
+
+                    /**
+                     * RecordedKeiserExerciseSetDao _weight.
+                     * @member {"weight"|undefined} _weight
+                     * @memberof LiftLog.Ui.Models.SessionHistoryDao.RecordedKeiserExerciseSetDao
+                     * @instance
+                     */
+                    Object.defineProperty(RecordedKeiserExerciseSetDao.prototype, "_weight", {
+                        get: $util.oneOfGetter($oneOfFields = ["weight"]),
                         set: $util.oneOfSetter($oneOfFields)
                     });
 
@@ -4127,6 +4147,8 @@ export const LiftLog = $root.LiftLog = (() => {
                             $root.LiftLog.Ui.Models.DateTimeDao.encode(message.completionDateTime, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                         if (message.duration != null && Object.hasOwnProperty.call(message, "duration"))
                             $root.google.protobuf.Duration.encode(message.duration, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                        if (message.weight != null && Object.hasOwnProperty.call(message, "weight"))
+                            $root.LiftLog.Ui.Models.Weight.encode(message.weight, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                         return writer;
                     };
 
@@ -4173,6 +4195,10 @@ export const LiftLog = $root.LiftLog = (() => {
                                 }
                             case 3: {
                                     message.duration = $root.google.protobuf.Duration.decode(reader, reader.uint32());
+                                    break;
+                                }
+                            case 4: {
+                                    message.weight = $root.LiftLog.Ui.Models.Weight.decode(reader, reader.uint32());
                                     break;
                                 }
                             default:
@@ -4232,6 +4258,14 @@ export const LiftLog = $root.LiftLog = (() => {
                                     return "duration." + error;
                             }
                         }
+                        if (message.weight != null && message.hasOwnProperty("weight")) {
+                            properties._weight = 1;
+                            {
+                                let error = $root.LiftLog.Ui.Models.Weight.verify(message.weight);
+                                if (error)
+                                    return "weight." + error;
+                            }
+                        }
                         return null;
                     };
 
@@ -4262,6 +4296,11 @@ export const LiftLog = $root.LiftLog = (() => {
                                 throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.RecordedKeiserExerciseSetDao.duration: object expected");
                             message.duration = $root.google.protobuf.Duration.fromObject(object.duration);
                         }
+                        if (object.weight != null) {
+                            if (typeof object.weight !== "object")
+                                throw TypeError(".LiftLog.Ui.Models.SessionHistoryDao.RecordedKeiserExerciseSetDao.weight: object expected");
+                            message.weight = $root.LiftLog.Ui.Models.Weight.fromObject(object.weight);
+                        }
                         return message;
                     };
 
@@ -4291,6 +4330,11 @@ export const LiftLog = $root.LiftLog = (() => {
                             object.duration = $root.google.protobuf.Duration.toObject(message.duration, options);
                             if (options.oneofs)
                                 object._duration = "duration";
+                        }
+                        if (message.weight != null && message.hasOwnProperty("weight")) {
+                            object.weight = $root.LiftLog.Ui.Models.Weight.toObject(message.weight, options);
+                            if (options.oneofs)
+                                object._weight = "weight";
                         }
                         return object;
                     };

@@ -1471,6 +1471,9 @@ export namespace LiftLog {
 
                     /** RecordedKeiserExerciseSetDao duration */
                     duration?: (google.protobuf.IDuration|null);
+
+                    /** RecordedKeiserExerciseSetDao weight */
+                    weight?: (LiftLog.Ui.Models.IWeight|null);
                 }
 
                 /** Represents a RecordedKeiserExerciseSetDao. */
@@ -1491,11 +1494,17 @@ export namespace LiftLog {
                     /** RecordedKeiserExerciseSetDao duration. */
                     public duration?: (google.protobuf.IDuration|null);
 
+                    /** RecordedKeiserExerciseSetDao weight. */
+                    public weight?: (LiftLog.Ui.Models.IWeight|null);
+
                     /** RecordedKeiserExerciseSetDao _completionDateTime. */
                     public _completionDateTime?: "completionDateTime";
 
                     /** RecordedKeiserExerciseSetDao _duration. */
                     public _duration?: "duration";
+
+                    /** RecordedKeiserExerciseSetDao _weight. */
+                    public _weight?: "weight";
 
                     /**
                      * Creates a new RecordedKeiserExerciseSetDao instance using the specified properties.
