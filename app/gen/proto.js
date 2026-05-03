@@ -5854,6 +5854,7 @@ export const LiftLog = $root.LiftLog = (() => {
                      * @property {boolean|null} [deprecatedTrackIncline] ExerciseBlueprintDaoV2 deprecatedTrackIncline
                      * @property {Array.<LiftLog.Ui.Models.SessionBlueprintDao.ICardioExerciseSetBlueprintDao>|null} [cardioSets] ExerciseBlueprintDaoV2 cardioSets
                      * @property {Array.<LiftLog.Ui.Models.SessionBlueprintDao.IKeiserExerciseSetBlueprintDao>|null} [keiserSets] ExerciseBlueprintDaoV2 keiserSets
+                     * @property {boolean|null} [keiserDisplayTotalSeconds] ExerciseBlueprintDaoV2 keiserDisplayTotalSeconds
                      */
 
                     /**
@@ -6002,6 +6003,14 @@ export const LiftLog = $root.LiftLog = (() => {
                     ExerciseBlueprintDaoV2.prototype.keiserSets = $util.emptyArray;
 
                     /**
+                     * ExerciseBlueprintDaoV2 keiserDisplayTotalSeconds.
+                     * @member {boolean} keiserDisplayTotalSeconds
+                     * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
+                     * @instance
+                     */
+                    ExerciseBlueprintDaoV2.prototype.keiserDisplayTotalSeconds = false;
+
+                    /**
                      * Creates a new ExerciseBlueprintDaoV2 instance using the specified properties.
                      * @function create
                      * @memberof LiftLog.Ui.Models.SessionBlueprintDao.ExerciseBlueprintDaoV2
@@ -6059,6 +6068,8 @@ export const LiftLog = $root.LiftLog = (() => {
                         if (message.keiserSets != null && message.keiserSets.length)
                             for (let i = 0; i < message.keiserSets.length; ++i)
                                 $root.LiftLog.Ui.Models.SessionBlueprintDao.KeiserExerciseSetBlueprintDao.encode(message.keiserSets[i], writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
+                        if (message.keiserDisplayTotalSeconds != null && Object.hasOwnProperty.call(message, "keiserDisplayTotalSeconds"))
+                            writer.uint32(/* id 18, wireType 0 =*/144).bool(message.keiserDisplayTotalSeconds);
                         return writer;
                     };
 
@@ -6161,6 +6172,10 @@ export const LiftLog = $root.LiftLog = (() => {
                                     if (!(message.keiserSets && message.keiserSets.length))
                                         message.keiserSets = [];
                                     message.keiserSets.push($root.LiftLog.Ui.Models.SessionBlueprintDao.KeiserExerciseSetBlueprintDao.decode(reader, reader.uint32()));
+                                    break;
+                                }
+                            case 18: {
+                                    message.keiserDisplayTotalSeconds = reader.bool();
                                     break;
                                 }
                             default:
@@ -6270,6 +6285,9 @@ export const LiftLog = $root.LiftLog = (() => {
                                     return "keiserSets." + error;
                             }
                         }
+                        if (message.keiserDisplayTotalSeconds != null && message.hasOwnProperty("keiserDisplayTotalSeconds"))
+                            if (typeof message.keiserDisplayTotalSeconds !== "boolean")
+                                return "keiserDisplayTotalSeconds: boolean expected";
                         return null;
                     };
 
@@ -6360,6 +6378,8 @@ export const LiftLog = $root.LiftLog = (() => {
                                 message.keiserSets[i] = $root.LiftLog.Ui.Models.SessionBlueprintDao.KeiserExerciseSetBlueprintDao.fromObject(object.keiserSets[i]);
                             }
                         }
+                        if (object.keiserDisplayTotalSeconds != null)
+                            message.keiserDisplayTotalSeconds = Boolean(object.keiserDisplayTotalSeconds);
                         return message;
                     };
 
@@ -6395,6 +6415,7 @@ export const LiftLog = $root.LiftLog = (() => {
                             object.deprecatedTrackDistance = false;
                             object.deprecatedTrackResistance = false;
                             object.deprecatedTrackIncline = false;
+                            object.keiserDisplayTotalSeconds = false;
                         }
                         if (message.name != null && message.hasOwnProperty("name"))
                             object.name = message.name;
@@ -6434,6 +6455,8 @@ export const LiftLog = $root.LiftLog = (() => {
                             for (let j = 0; j < message.keiserSets.length; ++j)
                                 object.keiserSets[j] = $root.LiftLog.Ui.Models.SessionBlueprintDao.KeiserExerciseSetBlueprintDao.toObject(message.keiserSets[j], options);
                         }
+                        if (message.keiserDisplayTotalSeconds != null && message.hasOwnProperty("keiserDisplayTotalSeconds"))
+                            object.keiserDisplayTotalSeconds = message.keiserDisplayTotalSeconds;
                         return object;
                     };
 

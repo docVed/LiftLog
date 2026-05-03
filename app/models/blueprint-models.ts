@@ -606,12 +606,15 @@ export class KeiserExerciseSetBlueprint {
   }
 }
 
+export type KeiserDisplayFormat = 'mmss' | 'seconds';
+
 export interface KeiserExerciseBlueprintPOJO {
   type: 'KeiserExerciseBlueprint';
   name: string;
   sets: KeiserExerciseSetBlueprintPOJO[];
   notes: string;
   link: string;
+  displayFormat: KeiserDisplayFormat;
 }
 
 export class KeiserExerciseBlueprint {
@@ -620,6 +623,7 @@ export class KeiserExerciseBlueprint {
     readonly sets: KeiserExerciseSetBlueprint[],
     readonly notes: string,
     readonly link: string,
+    readonly displayFormat: KeiserDisplayFormat,
   ) {
     if (!sets.length) {
       throw new Error('Must have at least one set in keiser exercise');
@@ -632,6 +636,7 @@ export class KeiserExerciseBlueprint {
       [KeiserExerciseSetBlueprint.empty()],
       '',
       '',
+      'mmss',
     );
   }
 
@@ -643,6 +648,7 @@ export class KeiserExerciseBlueprint {
       pojo.sets.map((x) => KeiserExerciseSetBlueprint.fromPOJO(x)),
       pojo.notes,
       pojo.link,
+      pojo.displayFormat ?? 'mmss',
     );
   }
 
@@ -664,7 +670,8 @@ export class KeiserExerciseBlueprint {
       this.sets.length === other.sets.length &&
       this.sets.every((set, index) => set.equals(other.sets[index])) &&
       this.notes === other.notes &&
-      this.link === other.link
+      this.link === other.link &&
+      this.displayFormat === other.displayFormat
     );
   }
 
@@ -675,6 +682,7 @@ export class KeiserExerciseBlueprint {
       sets: this.sets.map((x) => x.toPOJO()),
       notes: this.notes,
       link: this.link,
+      displayFormat: this.displayFormat,
     };
   }
 
@@ -685,6 +693,7 @@ export class KeiserExerciseBlueprint {
       link: this.link,
       type: LiftLog.Ui.Models.SessionBlueprintDao.ExerciseType.KEISER_TIMER,
       keiserSets: this.sets.map((x) => x.toDao()),
+      keiserDisplayTotalSeconds: this.displayFormat === 'seconds',
     });
   }
 
@@ -699,6 +708,7 @@ export class KeiserExerciseBlueprint {
       sets.length === 0 ? [KeiserExerciseSetBlueprint.empty()] : sets,
       dao.notes ?? '',
       dao.link ?? '',
+      dao.keiserDisplayTotalSeconds ? 'seconds' : 'mmss',
     );
   }
 
@@ -709,6 +719,7 @@ export class KeiserExerciseBlueprint {
         this.sets,
       other.notes ?? this.notes,
       other.link ?? this.link,
+      other.displayFormat ?? this.displayFormat,
     );
   }
 }

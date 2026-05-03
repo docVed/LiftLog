@@ -2202,6 +2202,9 @@ export namespace LiftLog {
 
                     /** ExerciseBlueprintDaoV2 keiserSets */
                     keiserSets?: (LiftLog.Ui.Models.SessionBlueprintDao.IKeiserExerciseSetBlueprintDao[]|null);
+
+                    /** ExerciseBlueprintDaoV2 keiserDisplayTotalSeconds */
+                    keiserDisplayTotalSeconds?: (boolean|null);
                 }
 
                 /** Represents an ExerciseBlueprintDaoV2. */
@@ -2260,6 +2263,9 @@ export namespace LiftLog {
 
                     /** ExerciseBlueprintDaoV2 keiserSets. */
                     public keiserSets: LiftLog.Ui.Models.SessionBlueprintDao.IKeiserExerciseSetBlueprintDao[];
+
+                    /** ExerciseBlueprintDaoV2 keiserDisplayTotalSeconds. */
+                    public keiserDisplayTotalSeconds: boolean;
 
                     /**
                      * Creates a new ExerciseBlueprintDaoV2 instance using the specified properties.

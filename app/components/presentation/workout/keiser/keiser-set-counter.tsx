@@ -12,9 +12,13 @@ import BigNumber from 'bignumber.js';
 import { T } from '@tolgee/react';
 import { WeightAppliesTo } from '@/store/current-session';
 import { useState } from 'react';
+import { usePreferredWeightUnit } from '@/hooks/usePreferredWeightUnit';
+import { KeiserDisplayFormat } from '@/models/blueprint-models';
+import { formatKeiserSeconds } from '@/components/presentation/workout/keiser/keiser-format';
 
 interface KeiserSetCounterProps {
   set: RecordedKeiserExerciseSet;
+  displayFormat: KeiserDisplayFormat;
   isActive: boolean;
   isReadonly: boolean;
   onUpdateWeight: (weight: Weight, applyTo: WeightAppliesTo) => void;
@@ -23,11 +27,16 @@ interface KeiserSetCounterProps {
 
 export default function KeiserSetCounter(props: KeiserSetCounterProps) {
   const { colors } = useAppTheme();
+  const preferredUnit = usePreferredWeightUnit();
   const [isWeightDialogOpen, setIsWeightDialogOpen] = useState(false);
   const [applyTo, setApplyTo] = useState<WeightAppliesTo>('uncompletedSets');
   const completed = props.set.isCompletelyFilled;
   const recordedSeconds = props.set.duration?.seconds() ?? 0;
   const maxSeconds = props.set.blueprint.maxDuration.seconds();
+  const displayWeight =
+    props.set.weight.unit === 'nil'
+      ? new Weight(props.set.weight.value, preferredUnit)
+      : props.set.weight;
 
   return (
     <Holdable disabled={props.isReadonly} onLongPress={props.onReset}>
@@ -63,10 +72,12 @@ export default function KeiserSetCounter(props: KeiserSetCounterProps) {
                 }}
               >
                 <Text style={{ fontWeight: 'bold' }}>
-                  {completed ? formatSeconds(recordedSeconds) : '-'}
+                  {completed
+                    ? formatKeiserSeconds(recordedSeconds, props.displayFormat)
+                    : '-'}
                 </Text>
                 <Text style={{ ...font['text-sm'], verticalAlign: 'top' }}>
-                  /{formatSeconds(maxSeconds)}
+                  /{formatKeiserSeconds(maxSeconds, props.displayFormat)}
                 </Text>
               </Text>
             </View>
@@ -101,7 +112,7 @@ export default function KeiserSetCounter(props: KeiserSetCounterProps) {
               disabled={props.isReadonly}
             >
               <Text style={{ color: colors.onSurface, ...font['text-sm'] }}>
-                <WeightFormat weight={props.set.weight} />
+                <WeightFormat weight={displayWeight} />
               </Text>
             </TouchableRipple>
           </View>
@@ -109,7 +120,7 @@ export default function KeiserSetCounter(props: KeiserSetCounterProps) {
             open={isWeightDialogOpen}
             allowNegative
             increment={BigNumber(2.5)}
-            weight={props.set.weight}
+            weight={displayWeight}
             onClose={() => setIsWeightDialogOpen(false)}
             updateWeight={(w) => props.onUpdateWeight(w, applyTo)}
           >
@@ -151,8 +162,3 @@ export default function KeiserSetCounter(props: KeiserSetCounterProps) {
   );
 }
 
-function formatSeconds(totalSeconds: number): string {
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-}

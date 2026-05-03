@@ -52,6 +52,7 @@ message ExerciseBlueprintDaoV2 {
 
   // Keiser timer
   repeated KeiserExerciseSetBlueprintDao keiser_sets = 17;
+  bool keiser_display_total_seconds = 18;
 }
 
 message CardioExerciseSetBlueprintDao {

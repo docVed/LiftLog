@@ -58,7 +58,7 @@ export function KeiserExercise(props: KeiserExerciseProps) {
     [props, timerSetIndex],
   );
 
-  const handleAutoComplete = useCallback(
+  const handleComplete = useCallback(
     (accumulatedDuration: Duration, completionTime: OffsetDateTime) => {
       props.setCurrentBlockStartTime(undefined, timerSetIndex);
       props.updateDuration(accumulatedDuration, timerSetIndex);
@@ -86,12 +86,14 @@ export function KeiserExercise(props: KeiserExerciseProps) {
       <View style={{ gap: spacing[4] }}>
         <KeiserTimer
           blueprint={timerSet.blueprint}
+          displayFormat={recordedExercise.blueprint.displayFormat}
           recordedDuration={timerSet.duration}
           currentBlockStartTime={timerSet.currentBlockStartTime}
           isReadonly={props.isReadonly || allDone}
           onPlay={handlePlay}
           onPause={handlePause}
-          onAutoComplete={handleAutoComplete}
+          onStop={handleComplete}
+          onAutoComplete={handleComplete}
           onReset={handleReset}
         />
         <View
@@ -101,6 +103,7 @@ export function KeiserExercise(props: KeiserExerciseProps) {
             <KeiserSetCounter
               key={index}
               set={set}
+              displayFormat={recordedExercise.blueprint.displayFormat}
               isActive={index === timerSetIndex}
               isReadonly={props.isReadonly}
               onUpdateWeight={(w, applyTo) =>

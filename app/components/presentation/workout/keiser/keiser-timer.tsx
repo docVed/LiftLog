@@ -2,7 +2,11 @@ import { CardioTrackerCard } from '@/components/presentation/workout/cardio/card
 import IconButton from '@/components/presentation/foundation/gesture-wrappers/icon-button';
 import { SurfaceText } from '@/components/presentation/foundation/surface-text';
 import { useAppTheme, spacing, rounding } from '@/hooks/useAppTheme';
-import { KeiserExerciseSetBlueprint } from '@/models/blueprint-models';
+import {
+  KeiserDisplayFormat,
+  KeiserExerciseSetBlueprint,
+} from '@/models/blueprint-models';
+import { formatKeiserSeconds } from '@/components/presentation/workout/keiser/keiser-format';
 import { Duration, OffsetDateTime } from '@js-joda/core';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useAnimatedValue, Animated, View } from 'react-native';
@@ -13,11 +17,16 @@ import {
 
 interface KeiserTimerProps {
   blueprint: KeiserExerciseSetBlueprint;
+  displayFormat: KeiserDisplayFormat;
   recordedDuration: Duration | undefined;
   currentBlockStartTime: OffsetDateTime | undefined;
   isReadonly: boolean;
   onPlay: () => void;
   onPause: (accumulatedDuration: Duration) => void;
+  onStop: (
+    accumulatedDuration: Duration,
+    completionTime: OffsetDateTime,
+  ) => void;
   onAutoComplete: (
     accumulatedDuration: Duration,
     completionTime: OffsetDateTime,
@@ -27,11 +36,13 @@ interface KeiserTimerProps {
 
 export function KeiserTimer({
   blueprint,
+  displayFormat,
   recordedDuration,
   currentBlockStartTime,
   isReadonly,
   onPlay,
   onPause,
+  onStop,
   onAutoComplete,
   onReset,
 }: KeiserTimerProps) {
@@ -92,6 +103,22 @@ export function KeiserTimer({
       runDuration: Duration.ZERO,
     });
   };
+
+  const handleStop = () => {
+    autoStoppedRef.current = true;
+    const state = compute();
+    // Don't mark complete if we're still in prep — nothing to save.
+    if (state.phase === 'prep' || state.phase === 'idle') {
+      return;
+    }
+    onStop(state.runDuration, OffsetDateTime.now());
+  };
+
+  const canStop =
+    !isReadonly &&
+    timerState.phase !== 'idle' &&
+    timerState.phase !== 'prep' &&
+    timerState.phase !== 'completed';
 
   // Tick while running; auto-stop on completion.
   useEffect(() => {
@@ -177,10 +204,10 @@ export function KeiserTimer({
           </SurfaceText>
         </View>
         <SurfaceText font="text-3xl">
-          {formatDisplaySeconds(timerState.displaySeconds)}
+          {formatKeiserSeconds(timerState.displaySeconds, displayFormat)}
         </SurfaceText>
         <SurfaceText font="text-2xs" color="onSurfaceVariant">
-          / {formatDisplaySeconds(blueprint.maxDuration.seconds())}
+          / {formatKeiserSeconds(blueprint.maxDuration.seconds(), displayFormat)}
         </SurfaceText>
         <View style={{ flexDirection: 'row', gap: spacing[3] }}>
           <IconButton
@@ -200,6 +227,14 @@ export function KeiserTimer({
             mode="contained-tonal"
           />
           <IconButton
+            icon="stop"
+            size={playPauseButtonSize}
+            disabled={!canStop}
+            testID="keiser-timer-stop"
+            onPress={handleStop}
+            mode="contained-tonal"
+          />
+          <IconButton
             icon="replay"
             size={playPauseButtonSize}
             testID="keiser-timer-reset"
@@ -212,11 +247,3 @@ export function KeiserTimer({
   );
 }
 
-function formatDisplaySeconds(totalSeconds: number): string {
-  const negative = totalSeconds < 0;
-  const abs = Math.abs(totalSeconds);
-  const minutes = Math.floor(abs / 60);
-  const seconds = abs % 60;
-  const sign = negative ? '-' : '';
-  return `${sign}${minutes}:${seconds.toString().padStart(2, '0')}`;
-}

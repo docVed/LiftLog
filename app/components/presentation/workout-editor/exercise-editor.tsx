@@ -546,6 +546,24 @@ function KeiserExerciseEditor({
   return (
     <>
       <SharedFieldsEditor exercise={exercise} updateExercise={updateExercise} />
+      <LabelledFormRow label="Time display" icon="targetFill">
+        <SegmentedButtons
+          value={exercise.displayFormat}
+          onValueChange={(value) =>
+            updateExercise({
+              displayFormat: value as 'mmss' | 'seconds',
+            })
+          }
+          buttons={[
+            { value: 'mmss', label: 'm:s', testID: 'keiser-format-mmss' },
+            {
+              value: 'seconds',
+              label: 'Seconds',
+              testID: 'keiser-format-seconds',
+            },
+          ]}
+        />
+      </LabelledFormRow>
       {exercise.sets.map((set, setIndex) => (
         <KeiserSetEditor
           key={setIndex}
