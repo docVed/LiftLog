@@ -153,9 +153,19 @@ function PlannedChips(props: {
     ));
   }
   if (props.exercise instanceof RecordedKeiserExercise) {
-    return props.exercise.sets.map((set, index) => (
+    return getKeiserPlannedChipData(props.exercise).map((chip, index) => (
       <Chip key={index}>
-        <SurfaceText>{formatTimeSpan(set.blueprint.maxDuration)}</SurfaceText>
+        <SurfaceText color="onSurface">
+          {chip.maxSeconds}sx{chip.numSets}
+        </SurfaceText>
+        {props.showWeight ? (
+          <>
+            <SurfaceText color="onSurface" font="text-2xs">
+              {' @ '}
+            </SurfaceText>
+            <WeightFormat color="onSurface" weight={chip.weight} />
+          </>
+        ) : undefined}
       </Chip>
     ));
   }
@@ -239,5 +249,29 @@ function getPlannedChipData(
       numSets: x.count(),
       weight: x.first().weight,
     }))
+    .toArray();
+}
+
+interface KeiserChipData {
+  maxSeconds: number;
+  numSets: number;
+  weight: Weight;
+}
+
+function getKeiserPlannedChipData(
+  exercise: RecordedKeiserExercise,
+): KeiserChipData[] {
+  return Enumerable.from(exercise.sets)
+    .groupBy(
+      (s) => `${s.blueprint.maxDuration.seconds()}_${s.weight.shortLocaleFormat()}`,
+    )
+    .select((g) => {
+      const first = g.first();
+      return {
+        maxSeconds: first.blueprint.maxDuration.seconds(),
+        numSets: g.count(),
+        weight: first.weight,
+      };
+    })
     .toArray();
 }

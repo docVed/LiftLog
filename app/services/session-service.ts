@@ -123,24 +123,24 @@ export class SessionService {
         });
       }
       if (e instanceof KeiserExerciseBlueprint) {
+        const defaultUnit = $this.getDefaultWeightUnit();
         const keiserLastExercise =
           lastExercise instanceof RecordedKeiserExercise
             ? lastExercise
             : undefined;
-        return RecordedKeiserExercise.empty(
-          e,
-          $this.getDefaultWeightUnit(),
-        ).with({
+        const fallbackPrevious = keiserLastExercise?.sets.at(-1)?.weight;
+        return RecordedKeiserExercise.empty(e, defaultUnit).with({
           sets: e.sets.map((s, i) => {
-            const previousWeight = keiserLastExercise?.sets[i]?.weight;
-            return RecordedKeiserExerciseSet.empty(
-              s,
-              $this.getDefaultWeightUnit(),
-            )
-              .with({
-                weight:
-                  previousWeight ?? new Weight(0, $this.getDefaultWeightUnit()),
-              })
+            const previous =
+              keiserLastExercise?.sets[i]?.weight ?? fallbackPrevious;
+            // Normalize unit: if the previous weight has unit 'nil' (older
+            // data), keep the value but use the user's default unit.
+            const carried =
+              previous && previous.unit !== 'nil'
+                ? previous
+                : new Weight(previous?.value ?? 0, defaultUnit);
+            return RecordedKeiserExerciseSet.empty(s, defaultUnit)
+              .with({ weight: carried })
               .toPOJO();
           }),
         });
