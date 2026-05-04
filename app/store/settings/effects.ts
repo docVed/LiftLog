@@ -113,25 +113,33 @@ export function applySettingsEffects() {
       dispatch(setKeepScreenAwakeDuringWorkout(keepScreenAwakeDuringWorkout));
       dispatch(setExportToHealthAggregator(exportToHealthAggregator));
 
-      if (Platform.OS === 'ios') {
-        Purchases.configure({
-          apiKey: process.env.EXPO_PUBLIC_REVENUECAT_APPLE_API_KEY!,
-        });
-      } else if (Platform.OS === 'android') {
-        Purchases.configure({
-          apiKey: process.env.EXPO_PUBLIC_REVENUECAT_GOOGLE_API_KEY!,
-        });
-      }
-      // migrate pro token to a revenuecat
-      if (proToken && !proToken.startsWith('$RCAnonymousID')) {
+      const rcKey =
+        Platform.OS === 'ios'
+          ? process.env.EXPO_PUBLIC_REVENUECAT_APPLE_API_KEY
+          : Platform.OS === 'android'
+            ? process.env.EXPO_PUBLIC_REVENUECAT_GOOGLE_API_KEY
+            : undefined;
+      if (rcKey) {
         try {
-          const customerInfo = await Purchases.getCustomerInfo();
-          await Purchases.syncPurchases();
-          dispatch(setProToken(customerInfo.originalAppUserId));
-          await preferenceService.setProToken(customerInfo.originalAppUserId);
+          Purchases.configure({ apiKey: rcKey });
+          // migrate pro token to revenuecat
+          if (proToken && !proToken.startsWith('$RCAnonymousID')) {
+            try {
+              const customerInfo = await Purchases.getCustomerInfo();
+              await Purchases.syncPurchases();
+              dispatch(setProToken(customerInfo.originalAppUserId));
+              await preferenceService.setProToken(
+                customerInfo.originalAppUserId,
+              );
+            } catch (err) {
+              captureException(
+                new Error('Failed to sync customer', { cause: err }),
+              );
+            }
+          }
         } catch (err) {
           captureException(
-            new Error('Failed to sync customer', { cause: err }),
+            new Error('Failed to configure RevenueCat', { cause: err }),
           );
         }
       }

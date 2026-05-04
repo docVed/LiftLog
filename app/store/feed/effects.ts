@@ -60,17 +60,7 @@ export function applyFeedEffects() {
             }
           }
         }
-        if (!hasIdentity) {
-          dispatch(
-            createFeedIdentity({
-              name: undefined,
-              publishBodyweight: false,
-              publishPlan: false,
-              publishWorkouts: false,
-              fromUserAction: false,
-            }),
-          );
-        } else {
+        if (hasIdentity) {
           if (Platform.OS === 'ios') {
             try {
               await selectFeedIdentityRemote(getState())
@@ -100,10 +90,12 @@ export function applyFeedEffects() {
         }
 
         dispatch(setIsHydrated(true));
-        dispatch(revokeFollowSecrets({ fromUserAction: false }));
-        // Refreshes the identity if it no longer exists on the server
-        dispatch(updateFeedIdentity({ fromUserAction: false, updates: {} }));
-        dispatch(fetchInboxItems({ fromUserAction: false }));
+        if (hasIdentity) {
+          dispatch(revokeFollowSecrets({ fromUserAction: false }));
+          // Refreshes the identity if it no longer exists on the server
+          dispatch(updateFeedIdentity({ fromUserAction: false, updates: {} }));
+          dispatch(fetchInboxItems({ fromUserAction: false }));
+        }
         const elapsedMilliseconds = performance.now() - sw;
         logger.info(`Feed state initialized in ${elapsedMilliseconds}ms`);
       } catch (e) {
