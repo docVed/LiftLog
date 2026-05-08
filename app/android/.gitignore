@@ -12,5 +12,8 @@ local.properties
 *.hprof
 .cxx/
 
+# Local environment overrides (machine-specific, not committed)
+.env
+
 # Bundle artifacts
 *.jsbundle

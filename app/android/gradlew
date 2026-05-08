@@ -1,5 +1,8 @@
 #!/bin/sh
-
+# Source local env overrides (e.g. JAVA_HOME) if present.
+_gradlew_dir="$(cd "$(dirname "$0")" && pwd)"
+[ -f "$_gradlew_dir/.env" ] && . "$_gradlew_dir/.env"
+unset _gradlew_dir
 #
 # Copyright © 2015 the original authors.
 #
