@@ -166,23 +166,23 @@ export function KeiserTimer({
     }
   })();
 
-  const phaseColor = (() => {
-    switch (timerState.phase) {
-      case 'move':
-        return colors.green;
-      case 'pause':
-        return colors.amber;
-      case 'completed':
-        return colors.primary;
-      case 'prep':
-        return colors.tertiary;
-      default:
-        return colors.surfaceVariant;
-    }
-  })();
+  const phaseColor = isReadonly
+    ? colors.surfaceVariant
+    : (() => {
+        switch (timerState.phase) {
+          case 'move':
+            return colors.green;
+          case 'pause':
+            return colors.amber;
+          case 'prep':
+            return colors.tertiary;
+          default:
+            return colors.surfaceVariant;
+        }
+      })();
 
   return (
-    <CardioTrackerCard onHold={handleReset}>
+    <CardioTrackerCard onHold={handleReset} backgroundColor={phaseColor}>
       <View
         style={{
           alignItems: 'center',
@@ -191,18 +191,9 @@ export function KeiserTimer({
           paddingVertical: spacing[2],
         }}
       >
-        <View
-          style={{
-            backgroundColor: phaseColor,
-            paddingHorizontal: spacing[5],
-            paddingVertical: spacing[2],
-            borderRadius: rounding.roundedRectangleRadius,
-          }}
-        >
-          <SurfaceText font="text-3xl" color="onSurface">
-            {phaseLabel}
-          </SurfaceText>
-        </View>
+        <SurfaceText font="text-3xl" color="onSurface">
+          {phaseLabel}
+        </SurfaceText>
         <SurfaceText font="text-4xl">
           {formatKeiserSeconds(timerState.displaySeconds, displayFormat)}
         </SurfaceText>

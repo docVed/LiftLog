@@ -7,6 +7,7 @@ import { FadeIn, FadeOut, LinearTransition } from 'react-native-reanimated';
 export function CardioTrackerCard(props: {
   onHold: () => void;
   children: ReactNode;
+  backgroundColor?: string;
 }) {
   return (
     <Holdable
@@ -19,7 +20,7 @@ export function CardioTrackerCard(props: {
       <Card
         mode="contained"
         container={false} // needed to allow container to grow to fit stretched card
-        style={{ flex: 1 }}
+        style={[{ flex: 1 }, props.backgroundColor ? { backgroundColor: props.backgroundColor } : undefined]}
         contentStyle={{ flex: 1 }}
       >
         <Card.Content
