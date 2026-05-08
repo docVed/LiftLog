@@ -83,6 +83,14 @@ def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
 apply from: new File(["node", "--print", "require('path').dirname(require.resolve('@sentry/react-native/package.json'))"].execute().text.trim(), "sentry.gradle")
 
+// Disable Sentry source map / native symbol uploads when no auth token is present.
+// The sentry.gradle onlyIf closures call these functions at execution time, so
+// overriding them here (after the apply) takes effect before any task runs.
+if (!System.getenv("SENTRY_AUTH_TOKEN")) {
+    project.ext.shouldSentryAutoUploadGeneral = { -> return false }
+    project.ext.shouldSentryAutoUploadNative = { -> return false }
+}
+
 android {
     ndkVersion rootProject.ext.ndkVersion
 
