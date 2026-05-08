@@ -1,4 +1,3 @@
-import { CardioTrackerCard } from '@/components/presentation/workout/cardio/cardio-tracker-card';
 import IconButton from '@/components/presentation/foundation/gesture-wrappers/icon-button';
 import { SurfaceText } from '@/components/presentation/foundation/surface-text';
 import { useAppTheme, spacing, rounding } from '@/hooks/useAppTheme';
@@ -32,6 +31,7 @@ interface KeiserTimerProps {
     completionTime: OffsetDateTime,
   ) => void;
   onReset: () => void;
+  onPhaseColor?: (color: string) => void;
 }
 
 export function KeiserTimer({
@@ -45,6 +45,7 @@ export function KeiserTimer({
   onStop,
   onAutoComplete,
   onReset,
+  onPhaseColor,
 }: KeiserTimerProps) {
   const playPauseButtonSize = 48;
   const { colors } = useAppTheme();
@@ -181,60 +182,57 @@ export function KeiserTimer({
         }
       })();
 
+  useEffect(() => {
+    onPhaseColor?.(phaseColor);
+  }, [phaseColor, onPhaseColor]);
+
   return (
-    <CardioTrackerCard onHold={handleReset} backgroundColor={phaseColor}>
-      <View
-        style={{
-          alignItems: 'center',
-          gap: spacing[2],
-          minWidth: 220,
-          paddingVertical: spacing[2],
-        }}
-      >
-        <SurfaceText font="text-3xl" color="onSurface">
-          {phaseLabel}
-        </SurfaceText>
-        <SurfaceText font="text-4xl">
-          {formatKeiserSeconds(timerState.displaySeconds, displayFormat)}
-        </SurfaceText>
-        <SurfaceText font="text-2xs" color="onSurfaceVariant">
-          / {formatKeiserSeconds(blueprint.maxDuration.seconds(), displayFormat)}
-        </SurfaceText>
-        <View style={{ flexDirection: 'row', gap: spacing[3] }}>
-          <IconButton
-            icon={currentBlockStartTime ? 'pause' : 'playArrow'}
-            animated
-            size={playPauseButtonSize}
-            disabled={isReadonly && !currentBlockStartTime}
-            testID="keiser-timer-play-pause"
-            onPress={handlePlayPause}
-            containerColor={
-              currentBlockStartTime ? colors.amber : colors.green
-            }
-            iconColor={
-              currentBlockStartTime ? colors.onAmber : colors.onGreen
-            }
-            style={{ borderRadius: animatedRadius }}
-            mode="contained-tonal"
-          />
-          <IconButton
-            icon="stop"
-            size={playPauseButtonSize}
-            disabled={!canStop}
-            testID="keiser-timer-stop"
-            onPress={handleStop}
-            mode="contained-tonal"
-          />
-          <IconButton
-            icon="replay"
-            size={playPauseButtonSize}
-            testID="keiser-timer-reset"
-            onPress={handleReset}
-            mode="contained-tonal"
-          />
-        </View>
+    <View
+      style={{
+        alignItems: 'center',
+        gap: spacing[2],
+        paddingVertical: spacing[6],
+        paddingHorizontal: spacing[4],
+      }}
+    >
+      <SurfaceText font="text-3xl" color="onSurface">
+        {phaseLabel}
+      </SurfaceText>
+      <SurfaceText font="text-4xl">
+        {formatKeiserSeconds(timerState.displaySeconds, displayFormat)}
+      </SurfaceText>
+      <SurfaceText font="text-2xs" color="onSurfaceVariant">
+        / {formatKeiserSeconds(blueprint.maxDuration.seconds(), displayFormat)}
+      </SurfaceText>
+      <View style={{ flexDirection: 'row', gap: spacing[3] }}>
+        <IconButton
+          icon={currentBlockStartTime ? 'pause' : 'playArrow'}
+          animated
+          size={playPauseButtonSize}
+          disabled={isReadonly && !currentBlockStartTime}
+          testID="keiser-timer-play-pause"
+          onPress={handlePlayPause}
+          containerColor={currentBlockStartTime ? colors.amber : colors.green}
+          iconColor={currentBlockStartTime ? colors.onAmber : colors.onGreen}
+          style={{ borderRadius: animatedRadius }}
+          mode="contained-tonal"
+        />
+        <IconButton
+          icon="stop"
+          size={playPauseButtonSize}
+          disabled={!canStop}
+          testID="keiser-timer-stop"
+          onPress={handleStop}
+          mode="contained-tonal"
+        />
+        <IconButton
+          icon="replay"
+          size={playPauseButtonSize}
+          testID="keiser-timer-reset"
+          onPress={handleReset}
+          mode="contained-tonal"
+        />
       </View>
-    </CardioTrackerCard>
+    </View>
   );
 }
-

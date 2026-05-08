@@ -2,7 +2,7 @@ import { RecordedKeiserExercise } from '@/models/session-models';
 import ExerciseSection from '@/components/presentation/workout/exercise-section';
 import { Duration, OffsetDateTime } from '@js-joda/core';
 import { View } from 'react-native';
-import { rounding, spacing } from '@/hooks/useAppTheme';
+import { rounding, spacing, useAppTheme } from '@/hooks/useAppTheme';
 import { KeiserTimer } from '@/components/presentation/workout/keiser/keiser-timer';
 import KeiserSetCounter from '@/components/presentation/workout/keiser/keiser-set-counter';
 import { useCallback, useState } from 'react';
@@ -37,7 +37,9 @@ interface KeiserExerciseProps {
 
 export function KeiserExercise(props: KeiserExerciseProps) {
   const { recordedExercise } = props;
+  const { colors } = useAppTheme();
   const [timerSetIndex, setTimerSetIndex] = useState<number | null>(null);
+  const [timerPhaseColor, setTimerPhaseColor] = useState(colors.surfaceVariant);
   const timerSet =
     timerSetIndex !== null ? recordedExercise.sets[timerSetIndex] : null;
 
@@ -107,7 +109,7 @@ export function KeiserExercise(props: KeiserExerciseProps) {
           contentContainerStyle={{
             margin: spacing[6],
             borderRadius: rounding.roundedRectangleRadius,
-            overflow: 'hidden',
+            backgroundColor: timerPhaseColor,
           }}
         >
           {timerSet !== null && (
@@ -123,6 +125,7 @@ export function KeiserExercise(props: KeiserExerciseProps) {
               onStop={handleComplete}
               onAutoComplete={handleComplete}
               onReset={handleReset}
+              onPhaseColor={setTimerPhaseColor}
             />
           )}
         </Modal>
