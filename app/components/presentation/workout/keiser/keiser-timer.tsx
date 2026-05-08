@@ -46,7 +46,7 @@ export function KeiserTimer({
   onAutoComplete,
   onReset,
 }: KeiserTimerProps) {
-  const playPauseButtonSize = 32;
+  const playPauseButtonSize = 48;
   const { colors } = useAppTheme();
   const animatedRadius = useAnimatedValue(40);
 
@@ -194,16 +194,16 @@ export function KeiserTimer({
         <View
           style={{
             backgroundColor: phaseColor,
-            paddingHorizontal: spacing[3],
-            paddingVertical: spacing[1],
+            paddingHorizontal: spacing[5],
+            paddingVertical: spacing[2],
             borderRadius: rounding.roundedRectangleRadius,
           }}
         >
-          <SurfaceText font="text-base" color="onSurface">
+          <SurfaceText font="text-3xl" color="onSurface">
             {phaseLabel}
           </SurfaceText>
         </View>
-        <SurfaceText font="text-3xl">
+        <SurfaceText font="text-4xl">
           {formatKeiserSeconds(timerState.displaySeconds, displayFormat)}
         </SurfaceText>
         <SurfaceText font="text-2xs" color="onSurfaceVariant">

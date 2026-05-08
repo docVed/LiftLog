@@ -2,12 +2,13 @@ import { RecordedKeiserExercise } from '@/models/session-models';
 import ExerciseSection from '@/components/presentation/workout/exercise-section';
 import { Duration, OffsetDateTime } from '@js-joda/core';
 import { View } from 'react-native';
-import { spacing } from '@/hooks/useAppTheme';
+import { rounding, spacing, useAppTheme } from '@/hooks/useAppTheme';
 import { KeiserTimer } from '@/components/presentation/workout/keiser/keiser-timer';
 import KeiserSetCounter from '@/components/presentation/workout/keiser/keiser-set-counter';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { Weight } from '@/models/weight';
 import { WeightAppliesTo } from '@/store/current-session';
+import { Modal, Portal } from 'react-native-paper';
 
 type KeiserSetCallback<T> = (value: T, setIndex: number) => void;
 
@@ -36,22 +37,20 @@ interface KeiserExerciseProps {
 
 export function KeiserExercise(props: KeiserExerciseProps) {
   const { recordedExercise } = props;
-  const activeIndex = recordedExercise.sets.findIndex(
-    (s) => !s.isCompletelyFilled,
-  );
-  // When all sets are completed, expose the last set so the timer still has a
-  // blueprint to render (DONE state) but the play button stays disabled.
-  const timerSetIndex =
-    activeIndex >= 0 ? activeIndex : recordedExercise.sets.length - 1;
-  const timerSet = recordedExercise.sets[timerSetIndex];
-  const allDone = activeIndex < 0;
+  const { colors } = useAppTheme();
+
+  const [timerSetIndex, setTimerSetIndex] = useState<number | null>(null);
+  const timerSet =
+    timerSetIndex !== null ? recordedExercise.sets[timerSetIndex] : null;
 
   const handlePlay = useCallback(() => {
+    if (timerSetIndex === null) return;
     props.setCurrentBlockStartTime(OffsetDateTime.now(), timerSetIndex);
   }, [props, timerSetIndex]);
 
   const handlePause = useCallback(
     (accumulatedDuration: Duration) => {
+      if (timerSetIndex === null) return;
       props.setCurrentBlockStartTime(undefined, timerSetIndex);
       props.updateDuration(accumulatedDuration, timerSetIndex);
     },
@@ -60,6 +59,7 @@ export function KeiserExercise(props: KeiserExerciseProps) {
 
   const handleComplete = useCallback(
     (accumulatedDuration: Duration, completionTime: OffsetDateTime) => {
+      if (timerSetIndex === null) return;
       props.setCurrentBlockStartTime(undefined, timerSetIndex);
       props.updateDuration(accumulatedDuration, timerSetIndex);
       props.setCompletionTime(completionTime, timerSetIndex);
@@ -68,6 +68,7 @@ export function KeiserExercise(props: KeiserExerciseProps) {
   );
 
   const handleReset = useCallback(() => {
+    if (timerSetIndex === null) return;
     props.resetSet(timerSetIndex);
   }, [props, timerSetIndex]);
 
@@ -83,37 +84,52 @@ export function KeiserExercise(props: KeiserExerciseProps) {
       onEditExercise={props.onEditExercise}
       onRemoveExercise={props.onRemoveExercise}
     >
-      <View style={{ gap: spacing[4] }}>
-        <KeiserTimer
-          blueprint={timerSet.blueprint}
-          displayFormat={recordedExercise.blueprint.displayFormat}
-          recordedDuration={timerSet.duration}
-          currentBlockStartTime={timerSet.currentBlockStartTime}
-          isReadonly={props.isReadonly || allDone}
-          onPlay={handlePlay}
-          onPause={handlePause}
-          onStop={handleComplete}
-          onAutoComplete={handleComplete}
-          onReset={handleReset}
-        />
-        <View
-          style={{ flexDirection: 'row', gap: spacing[2], flexWrap: 'wrap' }}
-        >
-          {recordedExercise.sets.map((set, index) => (
-            <KeiserSetCounter
-              key={index}
-              set={set}
-              displayFormat={recordedExercise.blueprint.displayFormat}
-              isActive={index === timerSetIndex}
-              isReadonly={props.isReadonly}
-              onUpdateWeight={(w, applyTo) =>
-                props.updateWeight(index, w, applyTo)
-              }
-              onReset={() => props.resetSet(index)}
-            />
-          ))}
-        </View>
+      <View
+        style={{ flexDirection: 'row', gap: spacing[2], flexWrap: 'wrap' }}
+      >
+        {recordedExercise.sets.map((set, index) => (
+          <KeiserSetCounter
+            key={index}
+            set={set}
+            displayFormat={recordedExercise.blueprint.displayFormat}
+            isActive={set.currentBlockStartTime !== undefined}
+            isReadonly={props.isReadonly}
+            onPress={() => setTimerSetIndex(index)}
+            onUpdateWeight={(w, applyTo) =>
+              props.updateWeight(index, w, applyTo)
+            }
+            onReset={() => props.resetSet(index)}
+          />
+        ))}
       </View>
+      <Portal>
+        <Modal
+          visible={timerSetIndex !== null}
+          onDismiss={() => setTimerSetIndex(null)}
+          contentContainerStyle={{
+            margin: spacing[6],
+            borderRadius: rounding.roundedRectangleRadius,
+            overflow: 'hidden',
+            backgroundColor: colors.surfaceContainerHigh,
+          }}
+        >
+          {timerSet !== null && (
+            <KeiserTimer
+              key={timerSetIndex}
+              blueprint={timerSet.blueprint}
+              displayFormat={recordedExercise.blueprint.displayFormat}
+              recordedDuration={timerSet.duration}
+              currentBlockStartTime={timerSet.currentBlockStartTime}
+              isReadonly={props.isReadonly || timerSet.isCompletelyFilled}
+              onPlay={handlePlay}
+              onPause={handlePause}
+              onStop={handleComplete}
+              onAutoComplete={handleComplete}
+              onReset={handleReset}
+            />
+          )}
+        </Modal>
+      </Portal>
     </ExerciseSection>
   );
 }

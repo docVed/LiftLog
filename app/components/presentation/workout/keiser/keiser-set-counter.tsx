@@ -21,6 +21,7 @@ interface KeiserSetCounterProps {
   displayFormat: KeiserDisplayFormat;
   isActive: boolean;
   isReadonly: boolean;
+  onPress?: () => void;
   onUpdateWeight: (weight: Weight, applyTo: WeightAppliesTo) => void;
   onReset: () => void;
 }
@@ -52,10 +53,11 @@ export default function KeiserSetCounter(props: KeiserSetCounterProps) {
               overflow: 'hidden',
             }}
           >
-            <View
+            <TouchableRipple
+              testID="keiser-set-time"
+              onPress={props.onPress}
               style={{
                 flexShrink: 0,
-                padding: 0,
                 height: spacing[15],
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -63,7 +65,6 @@ export default function KeiserSetCounter(props: KeiserSetCounterProps) {
                   ? colors.primary
                   : colors.secondaryContainer,
               }}
-              testID="keiser-set-time"
             >
               <Text
                 style={{
@@ -80,7 +81,7 @@ export default function KeiserSetCounter(props: KeiserSetCounterProps) {
                   /{formatKeiserSeconds(maxSeconds, props.displayFormat)}
                 </Text>
               </Text>
-            </View>
+            </TouchableRipple>
           </View>
           <View
             style={{
