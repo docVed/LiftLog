@@ -5,10 +5,17 @@ import {
   KeiserDisplayFormat,
   KeiserExerciseSetBlueprint,
 } from '@/models/blueprint-models';
-import { formatKeiserSeconds } from '@/components/presentation/workout/keiser/keiser-format';
+import {
+  formatKeiserSeconds,
+  formatKeiserSecondsForEdit,
+  parseKeiserEditedSeconds,
+} from '@/components/presentation/workout/keiser/keiser-format';
 import { Duration, OffsetDateTime } from '@js-joda/core';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useAnimatedValue, Animated, View } from 'react-native';
+import { useAnimatedValue, Animated, Pressable, View } from 'react-native';
+import { Dialog, Portal, TextInput } from 'react-native-paper';
+import Button from '@/components/presentation/foundation/gesture-wrappers/button';
+import ConfirmationDialog from '@/components/presentation/foundation/confirmation-dialog';
 import {
   computeKeiserTimerState,
   KeiserTimerState,
@@ -19,7 +26,11 @@ interface KeiserTimerProps {
   displayFormat: KeiserDisplayFormat;
   recordedDuration: Duration | undefined;
   currentBlockStartTime: OffsetDateTime | undefined;
+  /** Parent-level read-only (e.g. viewing past sessions). Blocks all edits. */
   isReadonly: boolean;
+  /** This set has been finished. Blocks play/pause/stop, but reset and
+   *  manual time editing are still allowed so the user can correct mistakes. */
+  isCompleted?: boolean;
   onPlay: () => void;
   onPause: (accumulatedDuration: Duration) => void;
   onStop: (
@@ -40,6 +51,7 @@ export function KeiserTimer({
   recordedDuration,
   currentBlockStartTime,
   isReadonly,
+  isCompleted = false,
   onPlay,
   onPause,
   onStop,
@@ -47,6 +59,7 @@ export function KeiserTimer({
   onReset,
   onPhaseColor,
 }: KeiserTimerProps) {
+  const actionsLocked = isReadonly || isCompleted;
   const playPauseButtonSize = 48;
   const { colors } = useAppTheme();
   const animatedRadius = useAnimatedValue(40);
@@ -67,6 +80,10 @@ export function KeiserTimer({
 
   const [timerState, setTimerState] = useState<KeiserTimerState>(compute);
   const autoStoppedRef = useRef(false);
+  const [editTimeOpen, setEditTimeOpen] = useState(false);
+  const [editTimeText, setEditTimeText] = useState('');
+  const [editTimeError, setEditTimeError] = useState(false);
+  const [confirmResetOpen, setConfirmResetOpen] = useState(false);
 
   const handlePlay = () => {
     autoStoppedRef.current = false;
@@ -105,6 +122,47 @@ export function KeiserTimer({
     });
   };
 
+  const handleResetRequest = () => {
+    // No need to confirm a reset when there's nothing to lose.
+    if (timerState.phase === 'idle') {
+      handleReset();
+      return;
+    }
+    setConfirmResetOpen(true);
+  };
+
+  const handleConfirmReset = () => {
+    setConfirmResetOpen(false);
+    handleReset();
+  };
+
+  const canEditTime = !currentBlockStartTime && !isReadonly;
+
+  const handleOpenEditTime = () => {
+    if (!canEditTime) return;
+    setEditTimeText(
+      formatKeiserSecondsForEdit(
+        timerState.runDuration.seconds(),
+        displayFormat,
+      ),
+    );
+    setEditTimeError(false);
+    setEditTimeOpen(true);
+  };
+
+  const handleSaveEditTime = () => {
+    const parsed = parseKeiserEditedSeconds(editTimeText);
+    if (parsed === undefined) {
+      setEditTimeError(true);
+      return;
+    }
+    const maxSeconds = blueprint.maxDuration.seconds();
+    const capped = Math.min(parsed, maxSeconds);
+    autoStoppedRef.current = false;
+    onPause(Duration.ofSeconds(capped));
+    setEditTimeOpen(false);
+  };
+
   const handleStop = () => {
     autoStoppedRef.current = true;
     const state = compute();
@@ -116,7 +174,7 @@ export function KeiserTimer({
   };
 
   const canStop =
-    !isReadonly &&
+    !actionsLocked &&
     timerState.phase !== 'idle' &&
     timerState.phase !== 'prep' &&
     timerState.phase !== 'completed';
@@ -167,7 +225,7 @@ export function KeiserTimer({
     }
   })();
 
-  const phaseColor = isReadonly
+  const phaseColor = actionsLocked
     ? colors.surfaceVariant
     : (() => {
         switch (timerState.phase) {
@@ -198,9 +256,26 @@ export function KeiserTimer({
       <SurfaceText font="text-3xl" color="onSurface">
         {phaseLabel}
       </SurfaceText>
-      <SurfaceText font="text-4xl">
-        {formatKeiserSeconds(timerState.displaySeconds, displayFormat)}
-      </SurfaceText>
+      <Pressable
+        testID="keiser-timer-time"
+        onPress={handleOpenEditTime}
+        accessibilityRole={canEditTime ? 'button' : undefined}
+        accessibilityHint={canEditTime ? 'Tap to edit time' : undefined}
+        style={{
+          alignItems: 'center',
+          paddingHorizontal: spacing[3],
+          paddingVertical: spacing[1],
+          borderRadius: 6,
+          borderBottomWidth: canEditTime ? 1 : 0,
+          borderBottomColor: colors.onSurfaceVariant,
+          borderStyle: 'dashed',
+          opacity: canEditTime ? 1 : 0.95,
+        }}
+      >
+        <SurfaceText font="text-4xl">
+          {formatKeiserSeconds(timerState.displaySeconds, displayFormat)}
+        </SurfaceText>
+      </Pressable>
       <SurfaceText font="text-2xs" color="onSurfaceVariant">
         / {formatKeiserSeconds(blueprint.maxDuration.seconds(), displayFormat)}
       </SurfaceText>
@@ -209,7 +284,7 @@ export function KeiserTimer({
           icon={currentBlockStartTime ? 'pause' : 'playArrow'}
           animated
           size={playPauseButtonSize}
-          disabled={isReadonly && !currentBlockStartTime}
+          disabled={actionsLocked && !currentBlockStartTime}
           testID="keiser-timer-play-pause"
           onPress={handlePlayPause}
           containerColor={currentBlockStartTime ? colors.amber : colors.green}
@@ -229,10 +304,65 @@ export function KeiserTimer({
           icon="replay"
           size={playPauseButtonSize}
           testID="keiser-timer-reset"
-          onPress={handleReset}
+          onPress={handleResetRequest}
           mode="contained-tonal"
         />
       </View>
+      <ConfirmationDialog
+        open={confirmResetOpen}
+        headline="Reset timer?"
+        textContent="The recorded time for this set will be cleared."
+        okText="Reset"
+        onOk={handleConfirmReset}
+        onCancel={() => setConfirmResetOpen(false)}
+      />
+      <Portal>
+        <Dialog visible={editTimeOpen} onDismiss={() => setEditTimeOpen(false)}>
+          <Dialog.Title>Edit time</Dialog.Title>
+          <Dialog.Content>
+            <TextInput
+              testID="keiser-timer-edit-time-input"
+              mode="outlined"
+              autoFocus
+              selectTextOnFocus
+              keyboardType={
+                displayFormat === 'seconds' ? 'number-pad' : 'default'
+              }
+              inputMode={displayFormat === 'seconds' ? 'numeric' : 'text'}
+              placeholder={displayFormat === 'seconds' ? 'seconds' : 'm:ss'}
+              value={editTimeText}
+              onChangeText={(t) => {
+                setEditTimeText(t);
+                if (editTimeError) setEditTimeError(false);
+              }}
+              error={editTimeError}
+              returnKeyType="done"
+              onSubmitEditing={handleSaveEditTime}
+            />
+            <SurfaceText font="text-2xs" color="onSurfaceVariant">
+              Max{' '}
+              {formatKeiserSeconds(
+                blueprint.maxDuration.seconds(),
+                displayFormat,
+              )}
+            </SurfaceText>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button
+              testID="keiser-timer-edit-time-cancel"
+              onPress={() => setEditTimeOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              testID="keiser-timer-edit-time-save"
+              onPress={handleSaveEditTime}
+            >
+              Save
+            </Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Portal>
     </View>
   );
 }

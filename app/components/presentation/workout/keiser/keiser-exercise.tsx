@@ -2,6 +2,7 @@ import { RecordedKeiserExercise } from '@/models/session-models';
 import ExerciseSection from '@/components/presentation/workout/exercise-section';
 import { Duration, OffsetDateTime } from '@js-joda/core';
 import { View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { rounding, spacing, useAppTheme } from '@/hooks/useAppTheme';
 import { KeiserTimer } from '@/components/presentation/workout/keiser/keiser-timer';
 import KeiserSetCounter from '@/components/presentation/workout/keiser/keiser-set-counter';
@@ -9,6 +10,11 @@ import { useCallback, useState } from 'react';
 import { Weight } from '@/models/weight';
 import { WeightAppliesTo } from '@/store/current-session';
 import { Modal, Portal } from 'react-native-paper';
+
+// Approximate height of react-native-paper's BottomNavigation.Bar with labels.
+// The bar adds insets.bottom on top of this for safe-area padding.
+const BOTTOM_TAB_BAR_HEIGHT = 80;
+const PHASE_BAR_THICKNESS = 32;
 
 type KeiserSetCallback<T> = (value: T, setIndex: number) => void;
 
@@ -38,8 +44,10 @@ interface KeiserExerciseProps {
 export function KeiserExercise(props: KeiserExerciseProps) {
   const { recordedExercise } = props;
   const { colors } = useAppTheme();
+  const insets = useSafeAreaInsets();
   const [timerSetIndex, setTimerSetIndex] = useState<number | null>(null);
   const [timerPhaseColor, setTimerPhaseColor] = useState(colors.surfaceVariant);
+  const timerOpen = timerSetIndex !== null;
   const timerSet =
     timerSetIndex !== null ? recordedExercise.sets[timerSetIndex] : null;
 
@@ -67,6 +75,14 @@ export function KeiserExercise(props: KeiserExerciseProps) {
     [props, timerSetIndex],
   );
 
+  const handleStop = useCallback(
+    (accumulatedDuration: Duration, completionTime: OffsetDateTime) => {
+      handleComplete(accumulatedDuration, completionTime);
+      setTimeout(() => setTimerSetIndex(null), 1000);
+    },
+    [handleComplete],
+  );
+
   const handleReset = useCallback(() => {
     if (timerSetIndex === null) return;
     props.resetSet(timerSetIndex);
@@ -84,9 +100,7 @@ export function KeiserExercise(props: KeiserExerciseProps) {
       onEditExercise={props.onEditExercise}
       onRemoveExercise={props.onRemoveExercise}
     >
-      <View
-        style={{ flexDirection: 'row', gap: spacing[2], flexWrap: 'wrap' }}
-      >
+      <View style={{ flexDirection: 'row', gap: spacing[2], flexWrap: 'wrap' }}>
         {recordedExercise.sets.map((set, index) => (
           <KeiserSetCounter
             key={index}
@@ -103,8 +117,34 @@ export function KeiserExercise(props: KeiserExerciseProps) {
         ))}
       </View>
       <Portal>
+        {timerOpen && (
+          <>
+            <View
+              pointerEvents="none"
+              style={{
+                position: 'absolute',
+                top: insets.top,
+                left: 0,
+                right: 0,
+                height: PHASE_BAR_THICKNESS,
+                backgroundColor: timerPhaseColor,
+              }}
+            />
+            <View
+              pointerEvents="none"
+              style={{
+                position: 'absolute',
+                bottom: BOTTOM_TAB_BAR_HEIGHT + insets.bottom,
+                left: 0,
+                right: 0,
+                height: PHASE_BAR_THICKNESS,
+                backgroundColor: timerPhaseColor,
+              }}
+            />
+          </>
+        )}
         <Modal
-          visible={timerSetIndex !== null}
+          visible={timerOpen}
           onDismiss={() => setTimerSetIndex(null)}
           contentContainerStyle={{
             margin: spacing[6],
@@ -119,10 +159,11 @@ export function KeiserExercise(props: KeiserExerciseProps) {
               displayFormat={recordedExercise.blueprint.displayFormat}
               recordedDuration={timerSet.duration}
               currentBlockStartTime={timerSet.currentBlockStartTime}
-              isReadonly={props.isReadonly || timerSet.isCompletelyFilled}
+              isReadonly={props.isReadonly}
+              isCompleted={timerSet.isCompletelyFilled}
               onPlay={handlePlay}
               onPause={handlePause}
-              onStop={handleComplete}
+              onStop={handleStop}
               onAutoComplete={handleComplete}
               onReset={handleReset}
               onPhaseColor={setTimerPhaseColor}

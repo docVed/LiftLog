@@ -68,7 +68,9 @@ export default function KeiserSetCounter(props: KeiserSetCounterProps) {
             >
               <Text
                 style={{
-                  color: completed ? colors.onPrimary : colors.onSecondaryContainer,
+                  color: completed
+                    ? colors.onPrimary
+                    : colors.onSecondaryContainer,
                   ...font['text-xl'],
                 }}
               >
@@ -162,4 +164,3 @@ export default function KeiserSetCounter(props: KeiserSetCounterProps) {
     </Holdable>
   );
 }
-
