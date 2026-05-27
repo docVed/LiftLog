@@ -48,11 +48,26 @@ export class SessionService {
         .getOrderedSessions()
         .firstOrDefault((x) => !x.isFreeform);
 
+    // The cached `latestExercises` is keyed on completion time, so it can be
+    // stale when the most recent session has weight changes that aren't
+    // reflected by a newer completion (in-progress modifications, or a
+    // workout finished without completing every set). Overlay the latest
+    // session's exercises so user intent flows into upcoming previews.
+    const effectiveLatestExercises = { ...latestExercises };
+    if (latestSession) {
+      latestSession.recordedExercises.forEach((exercise) => {
+        const key = KeyedExerciseBlueprint.fromExerciseBlueprint(
+          exercise.blueprint,
+        ).toString();
+        effectiveLatestExercises[key] = exercise;
+      });
+    }
+
     await yieldToEventLoop();
     if (!latestSession) {
       latestSession = this.createNewSession(
         sessionBlueprints[0],
-        latestExercises,
+        effectiveLatestExercises,
       );
       yield latestSession;
     }
@@ -61,7 +76,7 @@ export class SessionService {
       latestSession = this.getNextSession(
         latestSession,
         sessionBlueprints,
-        latestExercises,
+        effectiveLatestExercises,
       );
       yield latestSession;
     }

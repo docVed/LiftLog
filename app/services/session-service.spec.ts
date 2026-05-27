@@ -1,16 +1,21 @@
 import { describe, expect, it } from 'vitest';
-import { Duration, OffsetDateTime, ZoneOffset } from '@js-joda/core';
+import { Duration, LocalDate, OffsetDateTime, ZoneOffset } from '@js-joda/core';
 import BigNumber from 'bignumber.js';
 import { SessionService } from '@/services/session-service';
 import {
   KeiserExerciseBlueprint,
   KeiserExerciseSetBlueprint,
   KeyedExerciseBlueprint,
+  Rest,
   SessionBlueprint,
+  WeightedExerciseBlueprint,
 } from '@/models/blueprint-models';
 import {
+  PotentialSet,
   RecordedKeiserExercise,
   RecordedKeiserExerciseSet,
+  RecordedWeightedExercise,
+  Session,
 } from '@/models/session-models';
 import { Weight } from '@/models/weight';
 import type { RootState } from '@/store';
@@ -32,7 +37,10 @@ function makeBlueprint(name = 'Squat'): SessionBlueprint {
   });
 }
 
-function makeService(useImperialUnits: boolean): SessionService {
+function makeService(
+  useImperialUnits: boolean,
+  workoutSession?: Session,
+): SessionService {
   const fakeRepo = {
     getOrderedSessions: () => ({
       firstOrDefault: () => undefined,
@@ -40,7 +48,7 @@ function makeService(useImperialUnits: boolean): SessionService {
   } as unknown as ProgressRepository;
   const state = {
     settings: { useImperialUnits },
-    currentSession: { workoutSession: undefined },
+    currentSession: { workoutSession: workoutSession?.toPOJO() },
   } as unknown as RootState;
   return new SessionService(fakeRepo, () => state);
 }
@@ -131,5 +139,139 @@ describe('SessionService keiser carryover', () => {
       expect(set.weight.unit).toBe('kilograms');
       expect(set.weight.value.toNumber()).toBe(0);
     }
+  });
+});
+
+describe('SessionService upcoming-session weight carryover', () => {
+  function makeWeightedBlueprint(): SessionBlueprint {
+    return SessionBlueprint.fromPOJO({
+      name: 'Workout A',
+      notes: '',
+      exercises: [
+        new WeightedExerciseBlueprint(
+          'Squat',
+          3,
+          5,
+          new BigNumber(2.5),
+          Rest.medium,
+          false,
+          '',
+          '',
+        ).toPOJO(),
+      ],
+    });
+  }
+
+  function buildSession(
+    blueprint: SessionBlueprint,
+    weight: Weight,
+  ): Session {
+    const bp = blueprint.exercises[0] as WeightedExerciseBlueprint;
+    return new Session(
+      'session-1',
+      blueprint,
+      [
+        new RecordedWeightedExercise(
+          bp,
+          Array.from(
+            { length: bp.sets },
+            () =>
+              PotentialSet.fromPOJO({ weight, set: undefined }),
+          ),
+          undefined,
+        ),
+      ],
+      LocalDate.of(2026, 5, 27),
+      undefined,
+    );
+  }
+
+  it('propagates current workout weight changes into upcoming previews even without completed sets', async () => {
+    const blueprint = makeWeightedBlueprint();
+    const bp = blueprint.exercises[0] as WeightedExerciseBlueprint;
+    const key = KeyedExerciseBlueprint.fromExerciseBlueprint(bp).toString();
+
+    // History: previous squat completed at 100kg → cached as latest.
+    const historical = new RecordedWeightedExercise(
+      bp,
+      [
+        PotentialSet.fromPOJO({
+          weight: new Weight(new BigNumber(100), 'kilograms'),
+          set: {
+            type: 'RecordedSet',
+            repsCompleted: 5,
+            completionDateTime: OffsetDateTime.of(
+              2026,
+              5,
+              20,
+              10,
+              0,
+              0,
+              0,
+              ZoneOffset.UTC,
+            ),
+          },
+        }),
+        PotentialSet.fromPOJO({
+          weight: new Weight(new BigNumber(100), 'kilograms'),
+          set: {
+            type: 'RecordedSet',
+            repsCompleted: 5,
+            completionDateTime: OffsetDateTime.of(
+              2026,
+              5,
+              20,
+              10,
+              5,
+              0,
+              0,
+              ZoneOffset.UTC,
+            ),
+          },
+        }),
+        PotentialSet.fromPOJO({
+          weight: new Weight(new BigNumber(100), 'kilograms'),
+          set: {
+            type: 'RecordedSet',
+            repsCompleted: 5,
+            completionDateTime: OffsetDateTime.of(
+              2026,
+              5,
+              20,
+              10,
+              10,
+              0,
+              0,
+              ZoneOffset.UTC,
+            ),
+          },
+        }),
+      ],
+      undefined,
+    );
+
+    // Active workout: user has just bumped weight to 120kg, hasn't completed
+    // any set yet. This is the data that should drive the next preview.
+    const currentSession = buildSession(
+      blueprint,
+      new Weight(new BigNumber(120), 'kilograms'),
+    );
+
+    const svc = makeService(false, currentSession);
+    const upcoming: Session[] = [];
+    for await (const s of svc.getUpcomingSessions(
+      [blueprint],
+      { [key]: historical },
+    )) {
+      upcoming.push(s);
+      if (upcoming.length >= 1) break;
+    }
+
+    const nextEx = upcoming[0].recordedExercises[0] as RecordedWeightedExercise;
+    // Since the current session has no completed sets it's not "successful",
+    // so the next preview should carry the user-modified 120kg as-is.
+    expect(nextEx.potentialSets[0].weight.value.toNumber()).toBe(120);
+    expect(nextEx.potentialSets[1].weight.value.toNumber()).toBe(120);
+    expect(nextEx.potentialSets[2].weight.value.toNumber()).toBe(120);
   });
 });
